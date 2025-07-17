@@ -1,0 +1,83 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-body-tertiary">
+  <div class="card shadow-lg border-0 p-4 rounded-4" style="max-width: 480px; width: 100%;">
+    <div class="card-body">
+
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">Sign Up</h2>
+        <p class="text-muted">Create your account to get started</p>
+      </div>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <!-- Email Field -->
+        <div class="form-floating mb-3">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+          <%= f.label :email %>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-floating mb-3 position-relative">
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "password", placeholder: "Password" %>
+          <%= f.label :password %>
+          <i class="fa fa-eye toggle-password position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor: pointer;" id="togglePassword"></i>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-floating mb-3">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
+          <%= f.label :password_confirmation %>
+        </div>
+
+        <!-- Submit -->
+        <div class="d-grid">
+          <%= f.submit "Create Account", class: "btn btn-primary btn-lg rounded-pill" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-3">
+        <small class="text-muted">Already have an account?</small><br />
+        <%= link_to "Log in", new_session_path(resource_name), class: "fw-semibold text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("turbo:load", () => {
+    const toggle = document.getElementById("togglePassword");
+    const input = document.getElementById("password");
+
+    if (toggle && input) {
+      toggle.addEventListener("click", () => {
+        const isPassword = input.getAttribute("type") === "password";
+        input.setAttribute("type", isPassword ? "text" : "password");
+        toggle.classList.toggle("fa-eye");
+        toggle.classList.toggle("fa-eye-slash");
+      });
+    }
+  });
+</script>
+<style>
+  .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+    border-color: #3b82f6;
+  }
+
+  .btn-primary {
+    background-color: #3b82f6;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #2563eb;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 1rem;
+  }
+
+  .toggle-password {
+    font-size: 1rem;
+  }
+</style>

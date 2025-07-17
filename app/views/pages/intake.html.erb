@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice Fusion Schedule</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+
+  <style>
+    /* 🧠 Your entire original CSS stays intact (no need to paste again here for space) */
+    .main-container {
+      width: calc(100vw - 60px);
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+  <style>
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  .topbar {
+    background-color: #333333;
+    color: #ccc;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    user-select: none;
+  }
+  .topbar .help {
+    margin-right: auto;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .user-info > * {
+    cursor: default;
+  }
+  .topbar .icon {
+    color: #ccc;
+    cursor: pointer;
+  }
+  .sidebar {
+    background-color: #1a1a1a;
+    width: 60px;
+    min-width: 60px;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+    user-select: none;
+  }
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .sidebar .logo-text {
+    font-size: 10px;
+    color: #3bb4f2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1;
+    margin-top: -15px;
+  }
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sidebar button.active, .sidebar button:hover {
+    color: #3bb4f2;
+  }
+  .main-container {
+    height: calc(100vh - 30px);
+    width: calc(100vw - 60px)
+    display: flex;
+    flex-direction: column;
+  }
+  .header-blue {
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .header-blue .appointments-count {
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .nav-tabs-custom {
+    background-color: #2196f3;
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+  .nav-tabs-custom .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-tabs-custom .nav-link.active {
+    background-color: #0b7dda;
+    color: white;
+  }
+  .filter-bar {
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-bar .btn {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .filter-bar select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+  }
+  .filter-bar .btn-print {
+    margin-left: auto;
+    max-width: 180px;
+    margin-right: 25px;
+  }
+  .content-area {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  .sidebar-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    user-select: none;
+  }
+  .sidebar-left .section-title {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sidebar-left .section-title i {
+    font-size: 14px;
+  }
+  .sidebar-left .checkbox-group {
+    margin-bottom: 15px;
+  }
+  .sidebar-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar-left label input[type="checkbox"] {
+    cursor: pointer;
+  }
+  .sidebar-left label .color-box {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .color-purple { background-color: #7f3fbf; }
+  .color-orange { background-color: #d18a00; }
+  .color-green { background-color: #3dbb00; }
+  .sidebar-left small.text-primary {
+    font-size: 12px;
+    color: #2196f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  .expandable {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .expandable i {
+    font-size: 10px;
+  }
+  .main-content {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white;
+  }
+  .date-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .date-bar .view-select {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    min-width: 130px;
+  }
+  .date-bar .btn-group {
+    margin-right: 10px;
+  }
+  .date-bar .btn {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .date-bar .btn.today {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  .date-bar .btn.today:hover {
+    background-color: #0b7dda;
+  }
+  .date-bar .search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+  }
+  .date-bar input[type="search"] {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    width: 120px;
+  }
+  .date-bar select.slot-select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    max-width: 130px;
+  }
+  table.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  table.schedule-table thead tr {
+    background-color: #d3d3d3;
+    color: #333;
+    user-select: none;
+  }
+  table.schedule-table thead th {
+    padding: 6px 8px;
+    border: 1px solid #bbb;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.schedule-table thead th.time-header {
+    cursor: pointer;
+  }
+  table.schedule-table thead th.time-header i {
+    margin-left: 4px;
+  }
+  table.schedule-table tbody tr {
+    height: 40px;
+  }
+  table.schedule-table tbody tr td {
+    border: 1px solid #eee;
+    padding: 6px 8px;
+    color: #666;
+  }
+  .no-appointments {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+  .advertisement {
+    width: 160px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .advertisement .ad-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  .advertisement .ad-text {
+    flex-grow: 1;
+  }
+  .advertisement .ad-text h5 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .advertisement .ad-text p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .advertisement .ad-button {
+    background-color: #f37021;
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .advertisement .ad-button:hover {
+    background-color: #d65c00;
+  }
+  .bottom-right-icons {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .bottom-right-icons button {
+    background-color: #f37021;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom-right-icons button:nth-child(2) {
+    background-color: #6f42c1;
+  }
+  /* Scrollbar for left sidebar */
+  .sidebar-left::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-left::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  /* Scrollbar for main content horizontal */
+  .main-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  /* Fix topbar and sidebar to top */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+  }
+  .main-container {
+    width: calc(100vw - 60px);
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area {
+    height: 100%;
+  }
+  /* Remove white space between sidebar and main content */
+  .content-area {
+    gap: 0;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .sidebar .logo-text {
+      display: none;
+    }
+    .sidebar-left {
+      display: none;
+    }
+    .advertisement {
+      display: none;
+    }
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1254px;
+      margin-top: 31px;
+  }
+  </style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .header-bar {
+      background-color: #2a8dd4;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    .search-container {
+      border-top: 1px solid #2a8dd4;
+      border-bottom: 1px solid #2a8dd4;
+      padding: 0.25rem 0.5rem;
+    }
+    .search-input-group {
+      border: none;
+    }
+    .search-input-group input {
+      border: none;
+      outline: none;
+      font-size: 0.875rem;
+    }
+    .search-input-group button {
+      border: none;
+      background: none;
+      padding: 0 0.5rem;
+      color: #2a8dd4;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .link-blue {
+      color: #2a8dd4;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+    .link-blue:hover {
+      text-decoration: underline;
+    }
+    .description-text {
+      font-size: 0.875rem;
+      color: #000;
+      margin-left: 0.25rem;
+    }
+    .line-break {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      color: #333;
+    }
+    .topbar {
+      background-color: #1e1e1e;
+      height: 24px;
+      line-height: 24px;
+      font-weight: 500;
+      font-size: 13px;
+      padding-left: 10px;
+      user-select: none;
+      color: #fff;
+    }
+    .topbar a {
+      color: #4a90e2;
+      text-decoration: none;
+      margin-left: 6px;
+      font-weight: 400;
+    }
+    .topbar a:hover {
+      text-decoration: underline;
+    }
+    .topbar .separator {
+      color: #666;
+      margin-left: 6px;
+    }
+    .topbar .close-x {
+      color: #666;
+      margin-left: 4px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .p-3 {
+          padding: 1rem!important;
+          margin-left: -51px;
+    }
+    .header-bar {
+      background-color: #2f88f0;
+      padding: 12px 20px 12px 20px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      margin-left: -48px;
+    }
+    .header-bar h1 {
+      font-weight: 400;
+      font-size: 24px;
+      color: #fff;
+      margin: 0;
+      margin-right: 12px;
+    }
+    .header-bar .subtext {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .btn-intake {
+      background-color: #ff8c00;
+      border: 1px solid #ff8c00;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .btn-intake:hover {
+      background-color: #e67e00;
+      border-color: #e67e00;
+      color: #fff;
+    }
+    .btn-intake .fa-chevron-down {
+      margin-left: 4px;
+      font-size: 12px;
+    }
+    .btn-intake:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.5);
+    }
+    .btn-intake-container {
+      margin-left: auto;
+    }
+    .btn-intake-container > * {
+      vertical-align: middle;
+    }
+    .btn-intake-container > .btn {
+      border-radius: 0;
+    }
+    .btn-intake-container > .btn:first-child {
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+    .btn-intake-container > .btn:last-child {
+      border-radius: 0 0.25rem 0.25rem 0;
+      border-left: 0;
+    }
+    .btn-intake-container > .btn:last-child i {
+      margin-left: 0;
+    }
+    .btn-intake-container {
+      display: flex;
+    }
+    .btn-intake-container .btn {
+      border: 1px solid #ff8c00;
+      background-color: #ff8c00;
+      color: white;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .btn-intake-container .btn:hover {
+      background-color: #e67e00;
+      border-color: #e67e00;
+    }
+    .btn-intake-container .btn:focus {
+      box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.5);
+    }
+    .btn-intake-container .btn.dropdown-toggle {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+    .btn-intake-container .btn.dropdown-toggle i {
+      margin-left: 0;
+    }
+    .btn-intake-container .btn.dropdown-toggle::after {
+      display: none;
+    }
+    .btn-intake-container .btn:first-child {
+      border-radius: 0.25rem 0 0 0.25rem;
+    }
+    .btn-intake-container .btn:last-child {
+      border-radius: 0 0.25rem 0.25rem 0;
+      border-left: 0;
+    }
+    .table thead tr {
+      background-color: #1f2e8a;
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .table thead tr th {
+      border: none;
+      vertical-align: middle;
+    }
+    .table thead tr th:last-child {
+      text-align: center;
+    }
+    .table tbody tr td {
+      border-top: 1px solid #ddd;
+      font-size: 13px;
+      color: #333;
+      vertical-align: middle;
+    }
+    .table tbody tr td a {
+      color: #1a3dbf;
+      text-decoration: none;
+    }
+    .table tbody tr td a:hover {
+      text-decoration: underline;
+    }
+    .table tbody tr td small {
+      color: #999;
+      font-weight: 400;
+      font-size: 11px;
+    }
+    .table tbody tr td.checkbox-cell {
+      text-align: center;
+      vertical-align: middle;
+    }
+    .table tbody tr td.checkbox-cell input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .section-label {
+      background-color: #d9d9d9;
+      color: #666;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      user-select: none;
+    }
+    .section-label.published {
+      text-transform: uppercase;
+    }
+    .text-red {
+      color: red;
+      font-size: 13px;
+      font-weight: 400;
+      margin-left: 6px;
+    }
+    .font-weight-bold {
+      font-weight: 700 !important;
+    }
+    .text-muted {
+      color: #999 !important;
+    }
+    @media (max-width: 575.98px) {
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .btn-intake-container {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .btn-intake-container .btn {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔐 Topbar -->
+  <div class="topbar">
+    <div class="help">Help <i class="fas fa-caret-down"></i></div>
+    <div class="user-info">
+      <div>Susan Martin</div>
+      <div>|</div>
+      <div>HeartWell Health <i class="fas fa-caret-down"></i></div>
+      <div>|</div>
+      <div><i class="fas fa-lock icon"></i></div>
+      <div><i class="fas fa-cog icon"></i></div>
+      <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger ms-2" do %>
+        <i class="fas fa-sign-out-alt me-2"></i>
+        <span>Log out</span>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar d-flex flex-column align-items-center">
+    <div class="logo">
+      <%= image_tag("unnamed.png", alt: "practice fusion image") %>
+    </div>
+    <div class="logo-text">practice fusion</div>
+
+    <%# Sidebar buttons %>
+    <% [["Home", "home"], ["Schedule", "calendar-alt"], ["Tasks", "tasks"], ["Charts", "file-medical-alt"], ["Messages", "envelope"], ["Reports", "chart-bar"]].each do |label, icon| %>
+      <button aria-label="<%= label %>" title="<%= label %>">
+        <i class="fas fa-<%= icon %>"></i>
+      </button>
+      <div class="logo-text"><%= label %></div>
+    <% end %>
+  </nav>
+
+  <!-- Header section -->
+  <div class="main-container ms-5">
+    <div class="topbar mt-4">
+      Settings <span class="separator">›</span> <a href="#">Patient intake forms</a>
+      <a href="/ehrsetting" class="close-x">×</a>
+    </div>
+    <div class="header-bar">
+      <h1>Patient intake forms</h1>
+      <div class="subtext">Manage patient intake forms</div>
+      <div class="btn-intake-container">
+        <button type="button" class="btn btn-intake" onclick="window.location.href='/intakenew'">
+          Create intake form <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Intake Forms Table -->
+    <div class="p-3">
+      <button type="button" class="btn btn-sm btn-outline-primary mb-3">Intake forms</button>
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>CREATED BY</th>
+            <th class="checkbox-cell">UPDATED AT</th>
+            <th class="checkbox-cell"><input type="checkbox" aria-label="Select all" /></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="section-label">PRACTICE INTAKE FORMS</td></tr>
+          <tr>
+            <td><a href="#">HeartWell Health New Patient Intake</a></td>
+            <td>Ian Persaud</td>
+            <td><span>July 8, 2025</span> <small>07:32am</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">Membership Agreement</a></td>
+            <td>Ian Persaud</td>
+            <td><span>April 7, 2025</span> <small>10:09am</small></td>
+            <td></td>
+          </tr>
+          <tr><td colspan="4" class="section-label published">PUBLISHED BY OTHERS</td></tr>
+          <tr>
+            <td><a href="/practicefusiondefaultform" class="fw-bold text-primary">Practice Fusion Default Form</a> <span class="text-red">Default</span></td>
+            <td class="fw-bold">Practice Fusion</td>
+            <td><span>January 9, 2015</span> <br><small>05:53pm</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">Intake Form United Medical</a></td>
+            <td>Tammy Bowers</td>
+            <td><span>July 8, 2025</span> <small>05:52pm</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">PATC: New patient intake and consent and financial agreement</a></td>
+            <td>Nkechi Ezirim</td>
+            <td><span>July 8, 2025</span> <small>08:47am</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">GJMNMC Patient Intake 2024 Anthonia</a></td>
+            <td>Anthonia Anuluoha</td>
+            <td><span>July 8, 2025</span> <small>03:22am</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">PHQ9 Groover</a></td>
+            <td>Tasha Bunch</td>
+            <td><span>July 8, 2025</span> <small>02:03am</small></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><a href="#">Pearl Psychiatry PLLC. Patient Consent Forms.</a></td>
+            <td>Amy Dendinger</td>
+            <td><span>July 8, 2025</span> <small>01:11am</small></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

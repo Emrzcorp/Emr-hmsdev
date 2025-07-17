@@ -1,0 +1,1089 @@
+
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Practice Fusion Schedule
+  </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  .topbar {
+    background-color: #333333;
+    color: #ccc;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    user-select: none;
+  }
+  .topbar .help {
+    margin-right: auto;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .user-info > * {
+    cursor: default;
+  }
+  .topbar .icon {
+    color: #ccc;
+    cursor: pointer;
+  }
+  .sidebar {
+    background-color: #1a1a1a;
+    width: 60px;
+    min-width: 60px;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+    user-select: none;
+  }
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .sidebar .logo-text {
+    font-size: 10px;
+    color: #3bb4f2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1;
+    margin-top: -15px;
+  }
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sidebar button.active, .sidebar button:hover {
+    color: #3bb4f2;
+  }
+  .main-container {
+    height: calc(100vh - 30px);
+    width: calc(100vw - 60px)
+    display: flex;
+    flex-direction: column;
+  }
+  .header-blue {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .header-blue .appointments-count {
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .nav-tabs-custom {
+    background-color: #2196f3;
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+  .nav-tabs-custom .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-tabs-custom .nav-link.active {
+    background-color: #0b7dda;
+    color: white;
+  }
+  .filter-bar {
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-bar .btn {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .filter-bar select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+  }
+  .filter-bar .btn-print {
+    margin-left: auto;
+    max-width: 180px;
+    margin-right: 25px;
+  }
+  .content-area {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  .sidebar-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    user-select: none;
+  }
+  .sidebar-left .section-title {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sidebar-left .section-title i {
+    font-size: 14px;
+  }
+  .sidebar-left .checkbox-group {
+    margin-bottom: 15px;
+  }
+  .sidebar-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar-left label input[type="checkbox"] {
+    cursor: pointer;
+  }
+  .sidebar-left label .color-box {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .color-purple { background-color: #7f3fbf; }
+  .color-orange { background-color: #d18a00; }
+  .color-green { background-color: #3dbb00; }
+  .sidebar-left small.text-primary {
+    font-size: 12px;
+    color: #2196f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  .expandable {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .expandable i {
+    font-size: 10px;
+  }
+  .main-content {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white;
+  }
+  .date-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .date-bar .view-select {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    min-width: 130px;
+  }
+  .date-bar .btn-group {
+    margin-right: 10px;
+  }
+  .date-bar .btn {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .date-bar .btn.today {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  .date-bar .btn.today:hover {
+    background-color: #0b7dda;
+  }
+  .date-bar .search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+  }
+  .date-bar input[type="search"] {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    width: 120px;
+  }
+  .date-bar select.slot-select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    max-width: 130px;
+  }
+  
+  .no-appointments {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+  .advertisement {
+    width: 160px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .advertisement .ad-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  .advertisement .ad-text {
+    flex-grow: 1;
+  }
+  .advertisement .ad-text h5 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .advertisement .ad-text p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .advertisement .ad-button {
+    background-color: #f37021;
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .advertisement .ad-button:hover {
+    background-color: #d65c00;
+  }
+  .bottom-right-icons {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .bottom-right-icons button {
+    background-color: #f37021;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom-right-icons button:nth-child(2) {
+    background-color: #6f42c1;
+  }
+  /* Scrollbar for left sidebar */
+  .sidebar-left::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-left::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  /* Scrollbar for main content horizontal */
+  .main-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  /* Fix topbar and sidebar to top */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+  }
+  .main-container {
+    width: calc(100vw - 60px);
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area {
+    height: 100%;
+  }
+  /* Remove white space between sidebar and main content */
+  .content-area {
+    gap: 0;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .sidebar .logo-text {
+      display: none;
+    }
+    .sidebar-left {
+      display: none;
+    }
+    .advertisement {
+      display: none;
+    }
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1254px;
+      margin-top: 31px;
+  }
+  </style>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      margin: 0;
+    }
+    .nav-tabs {
+      background-color: #222;
+      border-bottom: none;
+      padding-left: 10px;
+    }
+    .nav-tabs .nav-link {
+      color: white;
+      font-size: 14px;
+      padding: 0.25rem 0.5rem;
+      border: none;
+    }
+    .nav-tabs .nav-link.active {
+      color: #0d6efd;
+      background-color: transparent;
+      border: none;
+      font-weight: 500;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #0d6efd;
+      background-color: transparent;
+    }
+    .tasks-header {
+      background-color: #3a8ee6;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-actions {
+      background-color: transparent;
+      border: 1px solid #a9d1ff;
+      color: white;
+      font-size: 14px;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+    }
+    .btn-actions:hover, .btn-actions:focus {
+      background-color: #2a6edb;
+      border-color: #2a6edb;
+      color: white;
+    }
+    .btn-primary-custom {
+      background-color: #f58000;
+      border-color: #f58000;
+      font-size: 14px;
+      padding: 0.25rem 0.75rem;
+    }
+    .btn-primary-custom:hover, .btn-primary-custom:focus {
+      background-color: #d46f00;
+      border-color: #d46f00;
+      color: white;
+    }
+  </style>
+  <style>
+    a {
+      font-weight: 500;
+      font-size: 13px;
+      color: #2a5db0;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .prn {
+      font-weight: 400;
+      font-size: 11px;
+      color: #555;
+      line-height: 1.1;
+    }
+    .table thead th {
+      font-weight: 400;
+      font-size: 11px;
+      color: #555;
+      vertical-align: middle;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .table tbody td {
+      vertical-align: top;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+    }
+    .dob-line {
+      font-size: 11px;
+      color: #555;
+    }
+    .contact-info {
+      font-size: 12px;
+      color: #212529;
+    }
+    .contact-sub {
+      font-size: 11px;
+      color: #777;
+    }
+    .contact-sub .icon-h {
+      font-weight: 600;
+      font-size: 11px;
+      color: #777;
+      margin-left: 6px;
+    }
+    .accessed {
+      font-size: 12px;
+      color: #212529;
+      white-space: nowrap;
+    }
+    .accessed .sort-icon {
+      font-size: 10px;
+      vertical-align: middle;
+      margin-left: 3px;
+    }
+    .user-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #c0c0c0;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .user-cell {
+      white-space: nowrap;
+    }
+    .table-responsive {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="topbar">
+   <div class="help">
+    Help
+    <i class="fas fa-caret-down">
+    </i>
+   </div>
+   <div class="user-info">
+    <div>
+     Susan Martin
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     HeartWell Health
+     <i class="fas fa-caret-down">
+     </i>
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     <i class="fas fa-lock icon">
+     </i>
+    </div>
+    <div>
+      <%= link_to ehrsetting_path do %>
+        <i class="fas fa-cog icon"></i>
+      <% end %>
+    </div>
+    <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+      <i class="fas fa-sign-out-alt me-2"></i>
+      <span>Log out</span>
+    <% end %>
+   </div>
+  </div>
+  <nav class="sidebar d-flex flex-column align-items-center">
+    <div class="logo">
+      <%= image_tag("unnamed.png", alt: "practice fusion image") %>
+    </div>
+    <div class="logo-text">
+      practice fusion
+    </div>
+    <button aria-label="Home" style="color:#999999;" title="Home">
+      <i class="fas fa-home">
+      </i>
+    </button>
+    <div class="logo-text">
+      Home
+    </div>
+    <button aria-label="Schedule" style="color:#3bb4f2;" title="Schedule"  onclick="window.location.href='/ot'">
+      <i class="fas fa-calendar-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Schedule
+    </div>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
+    </button>
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts">
+      <i class="fas fa-file-medical-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Charts
+    </div>
+    <button aria-label="Messages" style="color:#999999;" title="Messages">
+      <i class="fas fa-envelope">
+      </i>
+    </button>
+    <div class="logo-text">
+      Messages
+    </div>
+    <button aria-label="Reports" style="color:#999999;" title="Reports">
+      <i class="fas fa-chart-bar">
+      </i>
+    </button>
+    <div class="logo-text">
+      Reports
+    </div>
+  </nav>
+  <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="main-container d-flex flex-column flex-grow-1">
+      <nav class="nav nav-tabs">
+        <a class="nav-link active" href="#" style="color:#0d6efd; font-weight: 500;">Patient lists <i class="fas fa-caret-down" style="font-size: 10px;"></i></a>
+      </nav>
+
+      <div class="tasks-header">
+        <div>138 recent patients</div>
+      </div>
+      <div class="filter-bar border-bottom d-flex align-items-center gap-2 flex-wrap w-100">
+
+        <!-- All providers search -->
+        <div class="input-group" style="max-width: 180px;">
+          <input type="search" class="form-control" placeholder="All providers" aria-label="All providers">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+
+        <!-- Scheduled / Recent toggle -->
+          <div class="btn-group" role="group" aria-label="Schedule Toggle">
+            <input type="radio" class="btn-check" name="scheduleToggle" id="scheduled" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="scheduled" onclick="window.location.href='/scheduled'">Scheduled</label>
+
+            <input type="radio" class="btn-check" name="scheduleToggle" id="recent" autocomplete="off">
+            <label class="btn btn-outline-primary" for="recent" onclick="window.location.href='/recentpatients'">Recent</label>
+          </div>
+
+        <!-- Show inactive checkbox -->
+        <div class="form-check ms-2">
+          <input class="form-check-input" type="checkbox" id="showInactive">
+          <label class="form-check-label" for="showInactive">Show inactive</label>
+        </div>
+
+        <!-- Search all patients -->
+        <div class="input-group" style="max-width: 220px;">
+          <input type="search" class="form-control" placeholder="Search all patients" aria-label="Search all patients">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+
+        <!-- Add patient button -->
+        <button type="button" class="btn btn-warning text-white ms-auto">
+          Add patient
+        </button>
+          <div class="container-fluid p-2">
+            <div class="table-responsive">
+              <table class="table table-borderless mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 12%;">
+                      FIRST
+                    </th>
+                    <th scope="col" style="width: 12%;">
+                      LAST
+                    </th>
+                    <th scope="col" style="width: 15%;">
+                      DOB
+                    </th>
+                    <th scope="col" style="width: 40%;">
+                      CONTACT INFO
+                    </th>
+                    <th scope="col" style="width: 21%;">
+                      ACCESSED
+                      <i class="fas fa-sort-down sort-icon">
+                      </i>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  <td class="user-cell" style="cursor: pointer;" onclick="window.location.href='/patientrecoad'">
+                    <span aria-hidden="true" class="user-img">
+                      <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#" onclick="event.preventDefault();">Avis</a>
+                    <br/>
+                    <span class="prn">PRN WA897199</span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Weber
+                    </a>
+                  </td>
+                  <td>
+                    Sep 20, 1923
+                    <br/>
+                    <span class="dob-line">
+                    Female
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    3100 Shore Drive, 207 A, Virginia Beach, ...
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    12:13 PM,
+                    <br/>
+                    07/14/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Mitchell
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN AM857099
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Austin
+                    </a>
+                  </td>
+                  <td>
+                    Jun 01, 1942
+                    <br/>
+                    <span class="dob-line">
+                    Male
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    3100 Shore Drive, Apt 1142, Virginia Beach...
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(757)217-2323">
+                      (757) 217-2323
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    12:12 PM,
+                    <br/>
+                    07/14/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    James Christian
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN RJ587802
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Reese
+                    </a>
+                  </td>
+                  <td>
+                    Mar 04, 1975
+                    <br/>
+                    <span class="dob-line">
+                    Male
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    615 Raleigh Avenue, Norfolk, VA 23507
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(757)373-2773">
+                      (757) 373-2773
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    12:33 AM,
+                    <br/>
+                    07/12/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Harry
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN BH900376
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Brown
+                    </a>
+                  </td>
+                  <td>
+                    Feb 23, 1972
+                    <br/>
+                    <span class="dob-line">
+                    Male
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    No current address recorded
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(757)995-4562">
+                      (757) 995-4562
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    12:26 AM,
+                    <br/>
+                    07/12/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Tejal
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN DT34888
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Desai
+                    </a>
+                  </td>
+                  <td>
+                    Sep 28, 1979
+                    <br/>
+                    <span class="dob-line">
+                    Male
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    334 W. Freemason St, Norfolk, VA 23510
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(757)287-9916">
+                      (757) 287-9916
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    12:26 AM,
+                    <br/>
+                    07/12/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Dorothy
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN DD586108
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Denault
+                    </a>
+                  </td>
+                  <td>
+                    Mar 27, 1945
+                    <br/>
+                    <span class="dob-line">
+                    Female
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    985 Fleet Drive, Apt 152 A, Virginia Beach,...
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(239)355-9975">
+                      (239) 355-9975
+                    </a>
+                    <span class="icon-h">
+                      H
+                    </span>
+                    <a class="text-decoration-none" href="tel:(757)716-3132">
+                      (757) 716-3132
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    2:55 AM, 07/10/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Andrew
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN HA699828
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Hook
+                    </a>
+                  </td>
+                  <td>
+                    Nov 29, 1949
+                    <br/>
+                    <span class="dob-line">
+                    Male
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    No current address recorded
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    7:41 AM, 07/08/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Maureen
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN HM723852
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Hook
+                    </a>
+                  </td>
+                  <td>
+                    Aug 08, 1950
+                    <br/>
+                    <span class="dob-line">
+                    Female
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    No current address recorded
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(757)617-8806">
+                      (757) 617-8806
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    7:40 AM, 07/08/25
+                  </td>
+                  </tr>
+                  <tr>
+                  <td class="user-cell">
+                    <span aria-hidden="true" class="user-img">
+                    <img alt="Gray circular user icon silhouette" height="32" src="https://storage.googleapis.com/a1aa/image/6d30a3fd-eaa0-4cb3-95fd-feb78a0550c5.jpg" width="32"/>
+                    </span>
+                    <a href="#">
+                    Mary
+                    </a>
+                    <br/>
+                    <span class="prn">
+                    PRN DM246920
+                    </span>
+                  </td>
+                  <td>
+                    <a href="#">
+                    Demersseman
+                    </a>
+                  </td>
+                  <td>
+                    Jun 01, 1944
+                    <br/>
+                    <span class="dob-line">
+                    Female
+                    </span>
+                  </td>
+                  <td>
+                    <span class="contact-info">
+                    761 Alliance Dr, Apt 417, Virginia Beach, V...
+                    </span>
+                    <br/>
+                    <span class="contact-sub">
+                    M
+                    <a class="text-decoration-none" href="tel:(727)505-9506">
+                      (727) 505-9506
+                    </a>
+                    <span class="icon-h">
+                      H
+                    </span>
+                    <a class="text-decoration-none" href="tel:(757)716-3039">
+                      (757) 716-3039
+                    </a>
+                    </span>
+                  </td>
+                  <td class="accessed">
+                    7:37 AM, 07/08/25
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+ </body>
+</html>

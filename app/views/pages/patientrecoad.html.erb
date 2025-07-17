@@ -1,0 +1,1367 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Practice Fusion Schedule
+  </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  .topbar {
+    background-color: #333333;
+    color: #ccc;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    user-select: none;
+  }
+  .topbar .help {
+    margin-right: auto;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .user-info > * {
+    cursor: default;
+  }
+  .topbar .icon {
+    color: #ccc;
+    cursor: pointer;
+  }
+  .sidebar {
+    background-color: #1a1a1a;
+    width: 60px;
+    min-width: 60px;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+    user-select: none;
+  }
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .sidebar .logo-text {
+    font-size: 10px;
+    color: #3bb4f2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1;
+    margin-top: -15px;
+  }
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sidebar button.active, .sidebar button:hover {
+    color: #3bb4f2;
+  }
+  .main-container {
+    height: calc(100vh - 30px);
+    width: calc(100vw - 60px)
+    display: flex;
+    flex-direction: column;
+  }
+  .header-blue {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .header-blue .appointments-count {
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .nav-tabs-custom {
+    background-color: #2196f3;
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+  .nav-tabs-custom .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-tabs-custom .nav-link.active {
+    background-color: #0b7dda;
+    color: white;
+  }
+  .filter-bar {
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-bar .btn {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .filter-bar select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+  }
+  .filter-bar .btn-print {
+    margin-left: auto;
+    max-width: 180px;
+    margin-right: 25px;
+  }
+  .content-area {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  .sidebar-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    user-select: none;
+  }
+  .sidebar-left .section-title {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sidebar-left .section-title i {
+    font-size: 14px;
+  }
+  .sidebar-left .checkbox-group {
+    margin-bottom: 15px;
+  }
+  .sidebar-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar-left label input[type="checkbox"] {
+    cursor: pointer;
+  }
+  .sidebar-left label .color-box {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .color-purple { background-color: #7f3fbf; }
+  .color-orange { background-color: #d18a00; }
+  .color-green { background-color: #3dbb00; }
+  .sidebar-left small.text-primary {
+    font-size: 12px;
+    color: #2196f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  .expandable {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .expandable i {
+    font-size: 10px;
+  }
+  .main-content {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white;
+  }
+  .date-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .date-bar .view-select {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    min-width: 130px;
+  }
+  .date-bar .btn-group {
+    margin-right: 10px;
+  }
+  .date-bar .btn {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .date-bar .btn.today {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  .date-bar .btn.today:hover {
+    background-color: #0b7dda;
+  }
+  .date-bar .search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+  }
+  .date-bar input[type="search"] {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    width: 120px;
+  }
+  .date-bar select.slot-select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    max-width: 130px;
+  }
+  table.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  table.schedule-table thead tr {
+    background-color: #d3d3d3;
+    color: #333;
+    user-select: none;
+  }
+  table.schedule-table thead th {
+    padding: 6px 8px;
+    border: 1px solid #bbb;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.schedule-table thead th.time-header {
+    cursor: pointer;
+  }
+  table.schedule-table thead th.time-header i {
+    margin-left: 4px;
+  }
+  table.schedule-table tbody tr {
+    height: 40px;
+  }
+  table.schedule-table tbody tr td {
+    border: 1px solid #eee;
+    padding: 6px 8px;
+    color: #666;
+  }
+  .no-appointments {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+  .advertisement {
+    width: 160px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .advertisement .ad-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  .advertisement .ad-text {
+    flex-grow: 1;
+  }
+  .advertisement .ad-text h5 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .advertisement .ad-text p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .advertisement .ad-button {
+    background-color: #f37021;
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .advertisement .ad-button:hover {
+    background-color: #d65c00;
+  }
+  .bottom-right-icons {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .bottom-right-icons button {
+    background-color: #f37021;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom-right-icons button:nth-child(2) {
+    background-color: #6f42c1;
+  }
+  /* Scrollbar for left sidebar */
+  .sidebar-left::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-left::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  /* Scrollbar for main content horizontal */
+  .main-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  /* Fix topbar and sidebar to top */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+  }
+  .main-container {
+    width: calc(100vw - 60px);
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area {
+    height: 100%;
+  }
+  /* Remove white space between sidebar and main content */
+  .content-area {
+    gap: 0;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .sidebar .logo-text {
+      display: none;
+    }
+    .sidebar-left {
+      display: none;
+    }
+    .advertisement {
+      display: none;
+    }
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1254px;
+      margin-top: 31px;
+  }
+  </style>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      margin: 0;
+    }
+    .nav-tabs {
+      background-color: #222;
+      border-bottom: none;
+      padding-left: 10px;
+    }
+    .nav-tabs .nav-link {
+      color: white;
+      font-size: 14px;
+      padding: 0.25rem 0.5rem;
+      border: none;
+    }
+    .nav-tabs .nav-link.active {
+      color: #0d6efd;
+      background-color: transparent;
+      border: none;
+      font-weight: 500;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #0d6efd;
+      background-color: transparent;
+    }
+    .tasks-header {
+      background-color: #3a8ee6;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-actions {
+      background-color: transparent;
+      border: 1px solid #a9d1ff;
+      color: white;
+      font-size: 14px;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+    }
+    .btn-actions:hover, .btn-actions:focus {
+      background-color: #2a6edb;
+      border-color: #2a6edb;
+      color: white;
+    }
+    .btn-primary-custom {
+      background-color: #f58000;
+      border-color: #f58000;
+      font-size: 14px;
+      padding: 0.25rem 0.75rem;
+    }
+    .btn-primary-custom:hover, .btn-primary-custom:focus {
+      background-color: #d46f00;
+      border-color: #d46f00;
+      color: white;
+    }
+    .btn-tab {
+      font-size: 14px;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      margin-right: 0.25rem;
+      white-space: nowrap;
+      background-color: #2a6edb;
+      border: 1px solid #2a6edb;
+      color: white;
+    }
+    .btn-tab.active {
+      background-color: #2a6edb;
+      border-color: #2a6edb;
+      color: white;
+    }
+    .btn-tab:hover {
+      background-color: #1f54a0;
+      border-color: #1f54a0;
+      color: white;
+    }
+    .btn-tab .fa-ellipsis-h,
+    .btn-tab .fa-wrench {
+      font-size: 16px;
+    }
+    .filter-bar {
+      background-color: white;
+      padding: 0.25rem 1rem 0.25rem 1rem;
+      border-bottom: 1px solid #dee2e6;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .filter-bar select.form-select, .filter-bar input.form-control {
+      font-size: 14px;
+      height: 32px;
+      min-width: 120px;
+    }
+    .filter-bar input.form-control {
+      min-width: 200px;
+    }
+    .input-group-text {
+      background-color: white;
+      border-left: none;
+    }
+    .table thead th {
+      font-weight: 600;
+      font-size: 12px;
+      color: #6c757d;
+      border-bottom: 1px solid #dee2e6;
+      padding: 0.25rem 0.5rem;
+      vertical-align: middle;
+    }
+    .table tbody td {
+      padding: 0.25rem 0.5rem;
+      vertical-align: top;
+      font-size: 13px;
+    }
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+    .text-nowrap {
+      white-space: nowrap;
+    }
+    .patient-name {
+      font-weight: 700;
+      color: #1a3e7a;
+    }
+    .link-blue {
+      color: #1a3e7a;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .link-blue:hover {
+      text-decoration: underline;
+    }
+    .btn-outline-primary-custom {
+      font-size: 13px;
+      padding: 0.15rem 0.75rem;
+      border-radius: 0.25rem;
+      border: 1px solid #1a3e7a;
+      color: #1a3e7a;
+      background-color: transparent;
+      white-space: nowrap;
+    }
+    .btn-outline-primary-custom:hover, .btn-outline-primary-custom:focus {
+      background-color: #1a3e7a;
+      color: white;
+      border-color: #1a3e7a;
+    }
+    .btn-outline-primary-custom .fa-caret-down {
+      margin-left: 0.25rem;
+    }
+    .scrollable-table {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .older-label {
+      font-weight: 700;
+      font-size: 13px;
+      padding-left: 0.5rem;
+      color: #000;
+    }
+    @media (max-width: 575.98px) {
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .filter-bar select.form-select, .filter-bar input.form-control {
+        min-width: 100%;
+      }
+      .btn-tab {
+        font-size: 12px;
+        padding: 0.25rem 0.5rem;
+        margin-right: 0.15rem;
+      }
+      .tasks-header {
+        font-size: 18px;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .btn-actions {
+        font-size: 12px;
+        padding: 0.25rem 0.5rem;
+      }
+      .btn-primary-custom {
+        font-size: 12px;
+        padding: 0.25rem 0.5rem;
+      }
+      .table thead th, .table tbody td {
+        font-size: 11px;
+        padding: 0.15rem 0.3rem;
+      }
+    }
+  </style>
+  <style>
+    body {
+      overflow-y: scroll;
+    }
+    .nav-tabs .nav-link {
+      background-color: #2a64d6;
+      color: white;
+      border: none;
+      margin-right: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #1a3dbd;
+      color: white;
+    }
+    .nav-tabs .nav-link:hover {
+      background-color: #1a3dbd;
+      color: white;
+    }
+    .btn-outline-primary {
+      color: #2a64d6;
+      border-color: #2a64d6;
+      font-size: 0.875rem;
+    }
+    .btn-outline-primary:hover, .btn-outline-primary:focus {
+      background-color: #2a64d6;
+      color: white;
+      border-color: #2a64d6;
+    }
+    .btn-primary {
+      background-color: #ff7a00;
+      border-color: #ff7a00;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: #e66a00;
+      border-color: #e66a00;
+    }
+    .btn-secondary {
+      background-color: #2a64d6;
+      border-color: #2a64d6;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .btn-secondary:hover, .btn-secondary:focus {
+      background-color: #1a3dbd;
+      border-color: #1a3dbd;
+    }
+    .form-select {
+      font-size: 0.875rem;
+      height: 30px;
+      padding: 0 0.5rem;
+    }
+    .form-select:focus {
+      box-shadow: none;
+      border-color: #2a64d6;
+    }
+    .form-label {
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+    .card {
+      font-size: 0.875rem;
+    }
+    .card-header {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .card-body small a {
+      color: #2a64d6;
+      text-decoration: none;
+    }
+    .card-body small a:hover {
+      text-decoration: underline;
+    }
+    .text-muted {
+      font-size: 0.75rem;
+    }
+    .text-primary {
+      font-size: 0.875rem;
+    }
+    .text-primary strong {
+      font-weight: 700;
+    }
+    .text-primary a {
+      color: #2a64d6;
+      text-decoration: none;
+    }
+    .text-primary a:hover {
+      text-decoration: underline;
+    }
+    .fa-print, .fa-plus, .fa-clock-rotate-left, .fa-thumbtack, .fa-file-medical, .fa-caret-down, .fa-caret-up, .fa-exclamation-triangle {
+      font-size: 0.85rem;
+    }
+    .fa-exclamation-triangle {
+      color: #f0c419;
+      margin-right: 0.15rem;
+    }
+    .patient-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+    }
+    .patient-info {
+      font-size: 0.875rem;
+      color: white;
+    }
+    .patient-info a {
+      color: #cce0ff;
+      text-decoration: none;
+    }
+    .patient-info a:hover {
+      text-decoration: underline;
+    }
+    .navbar-custom {
+      background-color: #2a64d6;
+      padding: 0.3rem 1rem;
+    }
+    .navbar-custom .btn {
+      font-size: 0.875rem;
+    }
+    .navbar-custom .dropdown-toggle::after {
+      margin-left: 0.3rem;
+    }
+    .tab-content {
+      margin-top: 0.5rem;
+    }
+    .card + .card {
+      margin-top: 0.75rem;
+    }
+    .card .card-header .fa-print, .card .card-header .fa-plus, .card .card-header .fa-caret-down, .card .card-header .fa-caret-up {
+      cursor: pointer;
+      margin-left: 0.3rem;
+    }
+    .card .card-header .fa-print:hover, .card .card-header .fa-plus:hover, .card .card-header .fa-caret-down:hover, .card .card-header .fa-caret-up:hover {
+      color: #2a64d6;
+    }
+    .card .card-header .fa-caret-up {
+      display: none;
+    }
+    .card.collapsed .card-header .fa-caret-down {
+      display: inline-block;
+    }
+    .card.collapsed .card-header .fa-caret-up {
+      display: none;
+    }
+    .card:not(.collapsed) .card-header .fa-caret-down {
+      display: none;
+    }
+    .card:not(.collapsed) .card-header .fa-caret-up {
+      display: inline-block;
+    }
+    .scrollable-container {
+      height: 600px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    @media (max-width: 575.98px) {
+      .nav-tabs .nav-link {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+      }
+      .btn-outline-primary, .btn-primary, .btn-secondary {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+      }
+      .form-select {
+        font-size: 0.75rem;
+        height: 28px;
+      }
+      .card {
+        font-size: 0.75rem;
+      }
+      .card-header {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="topbar">
+   <div class="help">
+    Help
+    <i class="fas fa-caret-down">
+    </i>
+   </div>
+   <div class="user-info">
+    <div>
+     Susan Martin
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     HeartWell Health
+     <i class="fas fa-caret-down">
+     </i>
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     <i class="fas fa-lock icon">
+     </i>
+    </div>
+    <div>
+      <%= link_to ehrsetting_path do %>
+        <i class="fas fa-cog icon"></i>
+      <% end %>
+    </div>
+    <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+      <i class="fas fa-sign-out-alt me-2"></i>
+      <span>Log out</span>
+    <% end %>
+   </div>
+  </div>
+  <nav class="sidebar d-flex flex-column align-items-center">
+    <div class="logo">
+      <%= image_tag("unnamed.png", alt: "practice fusion image") %>
+    </div>
+    <div class="logo-text">
+      practice fusion
+    </div>
+    <button aria-label="Home" style="color:#999999;" title="Home">
+      <i class="fas fa-home">
+      </i>
+    </button>
+    <div class="logo-text">
+      Home
+    </div>
+    <button aria-label="Schedule" style="color:#3bb4f2;" title="Schedule"  onclick="window.location.href='/ot'">
+      <i class="fas fa-calendar-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Schedule
+    </div>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
+    </button>
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts" onclick="window.location.href='/chart'">
+      <i class="fas fa-file-medical-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Charts
+    </div>
+    <button aria-label="Messages" style="color:#999999;" title="Messages">
+      <i class="fas fa-envelope">
+      </i>
+    </button>
+    <div class="logo-text">
+      Messages
+    </div>
+    <button aria-label="Reports" style="color:#999999;" title="Reports">
+      <i class="fas fa-chart-bar">
+      </i>
+    </button>
+    <div class="logo-text">
+      Reports
+    </div>
+  </nav>
+  <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="main-container d-flex flex-column flex-grow-1">
+      <nav class="nav nav-tabs">
+        <a class="nav-link" href="#" style="color:white;">Patient lists</a>
+        <a class="nav-link" href="#" style="color:white;">Maryanne Kristel</a>
+      </nav>
+        <nav class="navbar navbar-expand navbar-custom">
+          <div class="d-flex align-items-center flex-wrap gap-2">
+            <img alt="User avatar placeholder, gray circle with user icon" class="rounded-circle" height="24" src="https://storage.googleapis.com/a1aa/image/292418fb-34d5-4b5e-ff38-8481c2827cf9.jpg" width="24"/>
+            <span class="patient-name">
+            Maryanne Kristel
+            </span>
+            <span class="patient-info">
+            | PRN:
+            <a href="#">
+              KM901255
+            </a>
+            | 79 yrs F |
+            <a href="#">
+              Invite to Patient Portal
+            </a>
+            |
+            <a href="#">
+              Medicare
+            </a>
+            |
+            <a class="text-white" href="#">
+              <i class="fas fa-ellipsis-h">
+              </i>
+            </a>
+            </span>
+          </div>
+          <div class="ms-auto">
+            <div class="btn-group">
+              <div class="dropdown">
+                <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button">
+                  Actions
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Add imaging order</a></li>
+                  <li><a class="dropdown-item" href="#">Add lab order</a></li>
+                  <li><a class="dropdown-item" href="#">Add prior authorization</a></li>
+                  <li><a class="dropdown-item" href="#">Add referral</a></li>
+                  <li><a class="dropdown-item" href="#">Start video visit</a></li>
+                  <li><a class="dropdown-item" href="#">Copy link to patient</a></li>
+                  <li><a class="dropdown-item" href="#">Invite to patient portal</a></li>
+                  <li><a class="dropdown-item" href="#">Enter imaging results</a></li>
+                  <li><a class="dropdown-item" href="#">Enter lab results</a></li>
+                  <li><a class="dropdown-item" href="#">Create clinical document</a></li>
+                  <li><a class="dropdown-item" href="#">Print patient chart</a></li>
+                  <li><a class="dropdown-item" href="#">Refresh patient chart</a></li>
+                  <li><a class="dropdown-item" href="#">View access history</a></li>
+                  <li><a class="dropdown-item" href="#">Send message</a></li>
+                  <li><a class="dropdown-item" href="#">Create task</a></li>
+                  <li><a class="dropdown-item" href="#">View exported patient records</a></li>
+                  <li><a class="dropdown-item" href="#">View imaging orders</a></li>
+                  <li><a class="dropdown-item" href="#">View lab orders</a></li>
+                  <li><a class="dropdown-item" href="#">View recent activity</a></li>
+                  <li><a class="dropdown-item" href="#">View ePrescription history</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </nav>
+          <ul class="nav nav-tabs px-3" role="tablist" style="background-color:#2a64d6;">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              type="button"
+              onclick="window.location.href='/patientrecoad';">
+              Summary
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              href="/timeline"
+              role="tab"
+              id="timeline-tab"
+              aria-controls="timeline"
+              aria-selected="false">
+              Timeline
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button aria-controls="documents" aria-selected="false" class="nav-link" data-bs-target="#documents" data-bs-toggle="tab" id="documents-tab" role="tab" type="button">
+            Documents
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              href="/profile"
+              role="tab"
+              id="profile-tab"
+              aria-controls="profile"
+              aria-selected="false">
+              Profile
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button aria-controls="payment-collection" aria-selected="false" class="nav-link" data-bs-target="#payment-collection" data-bs-toggle="tab" id="payment-collection-tab" role="tab" type="button">
+            Payment collection
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button aria-controls="patient-ledger" aria-selected="false" class="nav-link" data-bs-target="#patient-ledger" data-bs-toggle="tab" id="patient-ledger-tab" role="tab" type="button">
+            Patient ledger
+            </button>
+          </li>
+          <li class="nav-item d-flex align-items-center ms-2" role="presentation" style="color:#cce0ff; font-size:1.25rem; cursor:pointer;">
+            <i class="fas fa-clock-rotate-left" title="History">
+            </i>
+          </li>
+          <li class="nav-item d-flex align-items-center ms-2" role="presentation" style="color:#cce0ff; font-size:1.25rem; cursor:pointer;">
+            <i class="fas fa-thumbtack" title="Pin">
+            </i>
+          </li>
+          </ul>
+          <div class="d-flex align-items-center px-3 py-2" style="background-color:#f8f9fa; gap:0.5rem;">
+          <div class="d-flex align-items-center text-primary" style="font-size:0.875rem;">
+            <i class="fas fa-cog me-1">
+            </i>
+            Display settings
+          </div>
+          <select aria-label="Go to" class="form-select form-select-sm w-auto">
+            <option selected="">
+            Go to...
+            </option>
+            <option value="1">
+            Option 1
+            </option>
+            <option value="2">
+            Option 2
+            </option>
+          </select>
+          <div class="ms-auto d-flex gap-2">
+            <button class="btn btn-outline-primary btn-sm" type="button">
+              Print chart
+            </button>
+            <div class="btn-group">
+              <button class="btn btn-primary btn-sm" type="button">
+                New encounter
+              </button>
+              <button aria-expanded="false" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" type="button">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">New patient SOAP</a></li>
+                <li><a class="dropdown-item" href="#">Patient Phone Message</a></li>
+                <li><a class="dropdown-item" href="#">SOAP Note</a></li>
+                <li><a class="dropdown-item" href="#">Telephone call</a></li>
+                <li><a class="dropdown-item" href="#">Test note type</a></li>
+                <li><a class="dropdown-item" href="#">Test type</a></li>
+                <li><a class="dropdown-item" href="#">Video visit</a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+          <div class="container-fluid scrollable-container px-3 pt-3">
+          <div class="row g-3">
+            <div class="col-12 col-md-4 col-lg-3">
+            <div class="card">
+              <div class="card-header d-flex align-items-center">
+              Flowsheets
+              <i class="fas fa-plus ms-2" title="Add flowsheet">
+              </i>
+              </div>
+              <div class="card-body">
+              <small>
+                <strong>
+                Practice
+                </strong>
+              </small>
+              <br/>
+              <small>
+                <a href="#">
+                Vitals
+                </a>
+              </small>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header">
+              Launch SMART app
+              </div>
+              <div class="card-body">
+              <small>
+                <a href="#">
+                Go to the app marketplace
+                </a>
+                to enable more applications for SMART launch.
+              </small>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header d-flex align-items-center justify-content-between">
+              <div>
+                Diagnoses
+                <i class="fas fa-file-medical ms-1" title="Diagnoses">
+                </i>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <small>
+                Show by
+                </small>
+                <select aria-label="Show by ICD-10" class="form-select form-select-sm" style="width: 110px;">
+                <option selected="">
+                  ICD-10
+                </option>
+                <option value="1">
+                  Option 1
+                </option>
+                </select>
+              </div>
+              </div>
+              <div class="card-body">
+              <small>
+                <strong>
+                Undefined
+                </strong>
+              </small>
+              <ul class="mb-0 ps-3">
+                <li>
+                <a href="#">
+                  (E78.5) Hyperlipidemia, unspecified
+                </a>
+                </li>
+                <li>
+                <a href="#">
+                  (F12.90) Cannabis use, unspecified, uncomplicated
+                </a>
+                </li>
+                <li>
+                <a href="#">
+                  (F41.9) Anxiety disorder, unspecified
+                </a>
+                </li>
+                <li>
+                <a href="#">
+                  (F43.20) Adjustment disorder, unspecified
+                </a>
+                </li>
+                <li>
+                <a href="#">
+                  (F43.21) Adjustment disorder with depressed mood
+                </a>
+                </li>
+                <li>
+                <a href="#">
+                  (G43.909) Migraine, unspecified, not intractable, without status migrainosus
+                </a>
+                </li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-6">
+            <div class="card">
+              <div class="card-header d-flex align-items-center">
+              Allergies
+              </div>
+              <div class="card-body">
+              <small>
+                <strong>
+                Drug
+                </strong>
+              </small>
+              <ul class="mb-1 ps-3">
+                <li>
+                <a href="#">
+                  Codeine
+                </a>
+                <br/>
+                <span class="text-warning">
+                  <i class="fas fa-exclamation-triangle">
+                  </i>
+                  Mild
+                </span>
+                -
+                </li>
+              </ul>
+              <small>
+                <strong>
+                Food
+                </strong>
+              </small>
+              <br/>
+              <small class="text-muted">
+                No food allergies recorded
+              </small>
+              <br/>
+              <small>
+                <strong>
+                Environmental
+                </strong>
+              </small>
+              <br/>
+              <small class="text-muted">
+                No environmental allergies recorded
+              </small>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header d-flex align-items-center justify-content-between">
+              <div>
+                Medications
+                <i class="fas fa-file-medical ms-1" title="Medications">
+                </i>
+              </div>
+              <div>
+                <i class="fas fa-print" title="Print">
+                </i>
+                <i class="fas fa-caret-down ms-1" title="Expand">
+                </i>
+                <i class="fas fa-caret-up ms-1" title="Collapse">
+                </i>
+              </div>
+              </div>
+              <div class="card-body">
+              <ul class="mb-0 ps-3">
+                <li>
+                <a href="#">
+                  Acetaminophen
+                </a>
+                325 MG Oral Tablet
+                </li>
+                <li>
+                <a href="#">
+                  Cyanocobalamin (B-12)
+                </a>
+                1000 MCG Oral Tablet
+                </li>
+                <li>
+                <a href="#">
+                  Losartan Potassium
+                </a>
+                100 MG Oral Tablet
+                </li>
+                <li>
+                <a href="#">
+                  Metoprolol Tartrate
+                </a>
+                25 MG Oral Tablet
+                </li>
+                <li>
+                <a href="#">
+                  Omeprazole
+                </a>
+                20 MG Oral Capsule Delayed Release
+                </li>
+                <li>
+                <a href="#">
+                  Polyethylene Glycol 3350 (Bulk) (Polyethylene Glycol 3350)
+                </a>
+                Powder
+                </li>
+              </ul>
+              </div>
+            </div>
+            </div>
+            <div class="col-12 col-lg-3">
+            <div class="card">
+              <div class="card-header d-flex align-items-center">
+              Health concerns
+              <i class="fas fa-print ms-2" title="Print">
+              </i>
+              <i class="fas fa-caret-down ms-1" title="Expand">
+              </i>
+              <i class="fas fa-caret-up ms-1" title="Collapse">
+              </i>
+              </div>
+              <div class="card-body">
+              <small class="text-muted">
+                No health concerns recorded
+              </small>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header d-flex align-items-center">
+              Goals
+              <i class="fas fa-plus ms-2" title="Add goal">
+              </i>
+              <i class="fas fa-print ms-2" title="Print">
+              </i>
+              <i class="fas fa-caret-down ms-1" title="Expand">
+              </i>
+              <i class="fas fa-caret-up ms-1" title="Collapse">
+              </i>
+              </div>
+              <div class="card-body">
+              <small class="text-muted">
+                No patient goals recorded
+              </small>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header">
+              Encounters
+              </div>
+              <div class="card-body">
+              <ul class="mb-0 ps-3">
+                <li>
+                <a class="text-primary" href="#">
+                  06/18/2025
+                  <strong>
+                  185349003 (SNOMED-CT)
+                  </strong>
+                </a>
+                <br/>
+                <small>
+                  Office Visit (SOAP Note)
+                  <br/>
+                  CC: falls
+                </small>
+                </li>
+                <li class="mt-2">
+                <a class="text-primary" href="#">
+                  06/13/2025
+                  <strong>
+                  185349003 (SNOMED-CT)
+                  </strong>
+                </a>
+                <br/>
+                <small>
+                  Office Visit (SOAP Note)
+                  <br/>
+                  CC: Echo at Atlantic Shores wellness clinic...
+                </small>
+                </li>
+              </ul>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header d-flex align-items-center">
+              Messages
+              <i class="fas fa-plus ms-2" title="Add message">
+              </i>
+              </div>
+              <div class="card-body">
+              <small class="text-muted">
+                No messages for this patient
+              </small>
+              <br/>
+              <small>
+                <a href="#">
+                Go to messages
+                </a>
+              </small>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+ </body>
+</html>
