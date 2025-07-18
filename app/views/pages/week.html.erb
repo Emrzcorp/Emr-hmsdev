@@ -1,0 +1,1037 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Practice Fusion Schedule
+  </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  .topbar {
+    background-color: #333333;
+    color: #ccc;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    user-select: none;
+  }
+  .topbar .help {
+    margin-right: auto;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .user-info > * {
+    cursor: default;
+  }
+  .topbar .icon {
+    color: #ccc;
+    cursor: pointer;
+  }
+  .sidebar {
+    background-color: #1a1a1a;
+    width: 60px;
+    min-width: 60px;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+    user-select: none;
+  }
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .sidebar .logo-text {
+    font-size: 10px;
+    color: #3bb4f2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1;
+    margin-top: -15px;
+  }
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sidebar button.active, .sidebar button:hover {
+    color: #3bb4f2;
+  }
+  .main-container {
+    height: calc(100vh - 30px);
+    width: calc(100vw - 60px)
+    display: flex;
+    flex-direction: column;
+  }
+  .header-blue {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .header-blue .appointments-count {
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .nav-tabs-custom {
+    background-color: #2196f3;
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+  .nav-tabs-custom .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-tabs-custom .nav-link.active {
+    background-color: #0b7dda;
+    color: white;
+  }
+  .filter-bar {
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-bar .btn {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .filter-bar select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+  }
+  .filter-bar .btn-print {
+    margin-left: auto;
+    max-width: 180px;
+    color: white;
+    margin-right: 26px;
+    background-color: #f37021;
+  }
+  .content-area {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  .sidebar-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    user-select: none;
+  }
+  .sidebar-left .section-title {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sidebar-left .section-title i {
+    font-size: 14px;
+  }
+  .sidebar-left .checkbox-group {
+    margin-bottom: 15px;
+  }
+  .sidebar-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar-left label input[type="checkbox"] {
+    cursor: pointer;
+  }
+  .sidebar-left label .color-box {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .color-purple { background-color: #7f3fbf; }
+  .color-orange { background-color: #d18a00; }
+  .color-green { background-color: #3dbb00; }
+  .sidebar-left small.text-primary {
+    font-size: 12px;
+    color: #2196f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  .expandable {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .expandable i {
+    font-size: 10px;
+  }
+  .main-content {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white;
+  }
+  .date-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .date-bar .view-select {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    min-width: 130px;
+  }
+  .date-bar .btn-group {
+    margin-right: 10px;
+  }
+  .date-bar .btn {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .date-bar .btn.today {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  .date-bar .btn.today:hover {
+    background-color: #0b7dda;
+  }
+  .date-bar .search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+  }
+  .date-bar input[type="search"] {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    width: 120px;
+  }
+  .date-bar select.slot-select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    max-width: 130px;
+  }
+  .schedule-table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    height: 600px;
+    overflow-y: scroll;
+    position: relative;
+  }
+
+  /* Full table settings */
+  table.schedule-table {
+    border-collapse: collapse;
+    font-size: 12px;
+    width: max-content;
+  }
+
+  /* Header styling */
+  .schedule-table thead tr {
+    background-color: #d3d3d3;
+    color: #333;
+  }
+
+  .schedule-table thead th,
+  .schedule-table tbody td {
+    padding: 6px 8px;
+    border: 1px solid #bbb;
+    white-space: nowrap;
+    width: 191px;
+  }
+
+  /* Make time column sticky (1st column) */
+  .schedule-table thead th:first-child,
+  .schedule-table tbody td:first-child {
+    position: sticky;
+    left: 0;
+    background: #f9f9f9;
+    z-index: 3;
+  }
+
+  /* Make header sticky on top (optional) */
+  .schedule-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    width: 122px;
+  }
+
+  /* Body row height */
+  .schedule-table tbody tr {
+    height: 40px;
+  }
+  .no-appointments {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+  .advertisement {
+    width: 160px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .advertisement .ad-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  .advertisement .ad-text {
+    flex-grow: 1;
+  }
+  .advertisement .ad-text h5 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .advertisement .ad-text p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .advertisement .ad-button {
+    background-color: #f37021;
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .advertisement .ad-button:hover {
+    background-color: #d65c00;
+  }
+  .bottom-right-icons {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .bottom-right-icons button {
+    background-color: #f37021;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom-right-icons button:nth-child(2) {
+    background-color: #6f42c1;
+  }
+  /* Scrollbar for left sidebar */
+  .sidebar-left::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-left::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  /* Scrollbar for main content horizontal */
+  .main-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  /* Fix topbar and sidebar to top */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+  }
+  .main-container {
+    width: calc(100vw - 60px);
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area {
+    height: 100%;
+  }
+  /* Remove white space between sidebar and main content */
+  .content-area {
+    gap: 0;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .sidebar .logo-text {
+      display: none;
+    }
+    .sidebar-left {
+      display: none;
+    }
+    .advertisement {
+      display: none;
+    }
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1254px;
+      margin-top: 31px;
+  }
+ 
+  .schedule-table tbody tr td {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    height: 60px;
+    width: 111px;
+  }
+  .time-col {
+    width: 80px;
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 10px;
+    font-size: 0.85rem;
+    color: #666;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none;
+  }
+  .scrollable-body {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  /* Remove border from time column cells except bottom border for separation */
+  .schedule-table tbody tr td.time-col {
+    border: none;
+    background-color: transparent;
+    vertical-align: middle;
+  }
+  /* Add dotted horizontal lines between rows except last */
+  .schedule-table tbody tr:not(:last-child) td {
+    border-bottom: 1px dotted #bbb;
+    width: 120px;
+  }
+  </style>
+ </head>
+ <body>
+  <div class="topbar">
+   <div class="help">
+    Help
+    <i class="fas fa-caret-down">
+    </i>
+   </div>
+   <div class="user-info">
+    <div>
+     Susan Martin
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     HeartWell Health
+     <i class="fas fa-caret-down">
+     </i>
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     <i class="fas fa-lock icon">
+     </i>
+    </div>
+    <div>
+      <%= link_to ehrsetting_path do %>
+        <i class="fas fa-cog icon"></i>
+      <% end %>
+    </div>
+    <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+      <i class="fas fa-sign-out-alt me-2"></i>
+      <span>Log out</span>
+    <% end %>
+   </div>
+  </div>
+  <nav class="sidebar d-flex flex-column align-items-center">
+   <div class="logo">
+     <%= image_tag("unnamed.png", alt: "practice fusion image") %>
+   </div>
+   <div class="logo-text">
+    practice fusion
+   </div>
+    <button aria-label="Home" style="color:#999999;" title="Home">
+      <i class="fas fa-home">
+      </i>
+    </button>
+    <div class="logo-text">
+      Home
+    </div>
+    <button aria-label="Schedule" style="color:#3bb4f2;" title="Schedule">
+      <i class="fas fa-calendar-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Schedule
+    </div>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks">
+      <i class="fas fa-tasks">
+      </i>
+    </button>
+    <div class="logo-text">
+      Task
+    </div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts">
+      <i class="fas fa-file-medical-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Charts
+    </div>
+    <button aria-label="Messages" style="color:#999999;" title="Messages">
+      <i class="fas fa-envelope">
+      </i>
+    </button>
+    <div class="logo-text">
+      Messages
+    </div>
+    <button aria-label="Reports" style="color:#999999;" title="Reports">
+      <i class="fas fa-chart-bar">
+      </i>
+    </button>
+    <div class="logo-text">
+      Reports
+    </div>
+  </nav>
+  <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="header-blue">
+      Schedule
+      <span class="appointments-count">
+      0 Appointments
+      </span>
+    </div>
+      <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+        <li class="nav-item" role="presentation">
+          <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
+        </li>
+        <li class="nav-item" role="presentation">
+          <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
+        </li>
+        <li class="nav-item" role="presentation">
+          <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
+        </li>
+        <li class="nav-item" role="presentation">
+          <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
+        </li>
+      </ul>
+    <div class="filter-bar">
+      <button class="btn btn-outline-primary btn-sm" type="button">
+      <i class="fas fa-filter">
+      </i>
+      Filter
+      </button>
+      <button class="btn btn-outline-primary btn-sm" type="button">
+      <i class="fas fa-sync-alt">
+      </i>
+      Refresh
+      </button>
+      <select aria-label="Select practice" class="form-select form-select-sm" style="max-width: 200px;">
+      <option selected="">
+        HeartWell Health
+      </option>
+      <option>
+        Practice 2
+      </option>
+      <option>
+        Practice 3
+      </option>
+      </select>
+        <!-- Your Add Appointment Button -->
+        <button type="button" class="btn btn-outline-secondary btn-sm btn-print" id="loadAppointmentModal">
+          Add appointment
+        </button>
+
+        <!-- Empty modal wrapper -->
+        <div class="modal fade" id="appointmentModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="appointmentModalContent">
+              <!-- Modal content will be loaded via AJAX -->
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="content-area d-flex">
+      <aside class="sidebar-left">
+      <div class="section-title">
+        <i class="fas fa-users">
+        </i>
+        USERS
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        All
+        </label>
+        <small class="text-primary ms-2">
+        Just me
+        </small>
+        <small class="text-primary ms-2">
+        Edit
+        </small>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        LOGGED IN AS
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-purple me-1">
+        </span>
+        Martin, Susan
+        </label>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        PHYS./MD/DO
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-orange me-1">
+        </span>
+        Persaud, Ian
+        </label>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        NURSE
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-green me-1">
+        </span>
+        Persaud, Jennifer
+        </label>
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        DISPLAY OPTIONS
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        APPOINTMENT TYPES
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        APPOINTMENT STATUS
+      </div>
+      </aside>
+      <main class="main-content">
+      <div class="date-bar">
+        Mon, Jun 23, 2025
+        <div aria-label="Date navigation" class="btn-group" role="group">
+        <button class="btn btn-outline-secondary btn-sm" type="button">
+          <i class="fas fa-calendar-alt">
+          </i>
+        </button>
+        <button class="btn btn-outline-secondary btn-sm" type="button">
+          <i class="fas fa-angle-left">
+          </i>
+        </button>
+        <button class="btn btn-outline-secondary btn-sm" type="button">
+          <i class="fas fa-angle-right">
+          </i>
+        </button>
+        <button class="btn btn-sm today" type="button">
+          Today
+        </button>
+        </div>
+        <div class="search-group d-flex align-items-center gap-1 me-3">
+        <input aria-label="Search" class="form-control form-control-sm" placeholder="Search" style="width:120px;" type="search"/>
+        <button class="btn btn-outline-secondary btn-sm" type="button">
+          <i class="fas fa-search">
+          </i>
+        </button>
+        <button class="btn btn-outline-secondary btn-sm" type="button">
+          <i class="fas fa-search-minus">
+          </i>
+        </button>
+        </div>
+        <select aria-label="Select slot duration" class="form-select form-select-sm slot-select" disabled="">
+        <option>
+          30 min slots
+        </option>
+        </select>
+      </div>
+      </table>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wen</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="scrollable-body">
+          <table class="schedule-table">
+            <tbody>
+              <tr>
+                <td class="time-col">12:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">1:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">2:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">3:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">4:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">5:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">6:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">7:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">8:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">9:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">10:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">11:00 AM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">12:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">1:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">2:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">3:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">4:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">5:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">6:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">7:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">8:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">9:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">10:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="time-col">11:00 PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+      
+      <aside class="advertisement">
+      <img alt="Cloud upload icon with an arrow pointing up and a document below the arrow" class="ad-image" height="120" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120"/>
+      <div class="ad-text">
+        <h5>
+        A better document experience is here
+        </h5>
+        <p>
+        Now you can upload files with our new drag and drop feature, see documents in a new chart tab, and more.
+        </p>
+      </div>
+      <button class="ad-button" type="button">
+        See what's new
+      </button>
+      </aside>
+    </div>
+    </div>
+    <div class="bottom-right-icons">
+    <button aria-label="Light bulb icon" type="button">
+      <i class="fas fa-lightbulb">
+      </i>
+    </button>
+    <button aria-label="Chat icon" type="button">
+      <i class="fas fa-comments">
+      </i>
+    </button>
+    </div>
+  </div>
+  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+ </body>
+</html>
+<script>
+  document.addEventListener('turbo:load', function () {
+    const btn = document.getElementById('loadAppointmentModal');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        fetch('/pages/appointment_modal')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('appointmentModalContent').innerHTML = html;
+            let modal = new bootstrap.Modal(document.getElementById('appointmentModal'));
+            modal.show();
+          });
+      });
+    }
+  });
+</script>
