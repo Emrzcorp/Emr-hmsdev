@@ -70,3 +70,4 @@ group :test do
 end
 
 gem 'devise'
+gem "rdoc", "~> 6.14.2"
