@@ -440,9 +440,57 @@
     }
   }
   .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1254px;
+      max-width: 1269px;
       margin-top: 31px;
   }
+ 
+    .header-bar {
+      background-color: #2a8af6;
+      color: white;
+      padding: 10px 15px;
+      font-weight: 400;
+      font-size: 18px;
+    }
+    .search-container {
+      border-bottom: 1px solid #ccc;
+      padding: 5px 15px 7px 15px;
+    }
+    .form-control-sm {
+      font-size: 13px;
+      height: 26px;
+      padding: 0 6px;
+    }
+    .input-group-text {
+      border-left: none;
+      background: transparent;
+      padding: 0 6px;
+    }
+    .input-group-sm > .form-control,
+    .input-group-sm > .input-group-text {
+      border-radius: 0;
+    }
+    a {
+      font-size: 13px;
+      color: #3b5cc4;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .text-orange {
+      color: #d2691e;
+      font-weight: 600;
+      font-size: 13px;
+      margin-left: 3px;
+    }
+    .report-line {
+      margin-bottom: 3px;
+    }
   </style>
  </head>
  <body>
@@ -489,7 +537,7 @@
     <div class="logo-text">
       practice fusion
     </div>
-    <button aria-label="Home" style="color:#999999;" title="Home"  onclick="window.location.href='/homepage'">
+    <button aria-label="Home" style="color:#999999;" title="Home">
       <i class="fas fa-home">
       </i>
     </button>
@@ -503,14 +551,11 @@
     <div class="logo-text">
       Schedule
     </div>
-    <button aria-label="Tasks" style="color:#999999;" title="Tasks"  onclick="window.location.href='/task'">
-      <i class="fas fa-tasks">
-      </i>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
     </button>
-    <div class="logo-text">
-      Task
-    </div>
-    <button aria-label="Charts" style="color:#999999;" title="Charts">
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts" onclick="window.location.href='/chart'">
       <i class="fas fa-file-medical-alt">
       </i>
     </button>
@@ -533,236 +578,74 @@
     </div>
   </nav>
   <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="header-blue">
-      Schedule
-      <span class="appointments-count">
-      0 Appointments
-      </span>
-    </div>
-      <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
-        </li>
-      </ul>
-    <div class="filter-bar">
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-filter">
-        </i>
-        Filter
-      </button>
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-sync-alt">
-        </i>
-        Refresh
-      </button>
-      <select aria-label="Select practice" class="form-select form-select-sm" style="max-width: 200px;">
-        <option selected="">
-          HeartWell Health
-        </option>
-        <option>
-          Practice 2
-        </option>
-        <option>
-          Practice 3
-        </option>
-      </select>
-      <button class="btn btn-outline-secondary btn-sm btn-print" type="button">
-        Print
-      </button>
-    </div>
-    <div class="content-area d-flex">
-      <aside class="sidebar-left">
-      <div class="section-title">
-        <i class="fas fa-users">
-        </i>
-        USERS
+    <div class="header-bar">Reports</div>
+      <div class="search-container">
+        <form role="search" autocomplete="off" class="mb-0">
+          <div class="input-group input-group-sm" style="max-width: 280px;">
+            <input type="search" class="form-control form-control-sm" placeholder="Search" aria-label="Search" />
+            <span class="input-group-text" id="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442 1.398a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+              </svg>
+            </span>
+          </div>
+        </form>
       </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        All
-        </label>
-        <small class="text-primary ms-2">
-        Just me
-        </small>
-        <small class="text-primary ms-2">
-        Edit
-        </small>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        LOGGED IN AS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-purple me-1">
-        </span>
-        Martin, Susan
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        PHYS./MD/DO
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-orange me-1">
-        </span>
-        Persaud, Ian
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        NURSE
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-green me-1">
-        </span>
-        Persaud, Jennifer
-        </label>
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        DISPLAY OPTIONS
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT TYPES
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT STATUS
-      </div>
-      </aside>
-      <main class="main-content">
-      <div class="date-bar">
-        Mon, Jun 23, 2025
-        <select aria-label="Select view" class="form-select form-select-sm view-select">
-        <option selected="">
-          Standard view
-        </option>
-        <option>
-          Compact view
-        </option>
-        </select>
-        <div aria-label="Date navigation" class="btn-group" role="group">
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-calendar-alt">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-left">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-right">
-          </i>
-        </button>
-        <button class="btn btn-sm today" type="button">
-          Today
-        </button>
+      <div style="max-height: 550px; overflow-y: auto; padding: 10px 15px;">
+        <div class="section-title">Quality reporting</div>
+        <div class="report-line">
+          <a href="#">eCQM Dashboard</a> Manage and report CQMs for incentive programs
         </div>
-        <div class="search-group d-flex align-items-center gap-1 me-3">
-        <input aria-label="Search" class="form-control form-control-sm" placeholder="Search" style="width:120px;" type="search"/>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search-minus">
-          </i>
-        </button>
+        <div class="report-line">
+          <a href="#">Meaningful Use Dashboard (Medicaid Promoting Interoperability)</a> Track progress towards meeting Medicaid Promoting Interoperability program requirements
         </div>
-        <select aria-label="Select slot duration" class="form-select form-select-sm slot-select" disabled="">
-        <option>
-          30 min slots
-        </option>
-        </select>
-      </div>
-      <table class="schedule-table">
-        <thead>
-        <tr>
-          <th>
-          NOTE
-          </th>
-          <th>
-          STATUS
-          </th>
-          <th>
-          PATIENT
-          </th>
-          <th class="time-header">
-          TIME
-          <i class="fas fa-sort-up">
-          </i>
-          </th>
-          <th>
-          PROVIDER
-          </th>
-          <th>
-          TYPE
-          </th>
-          <th>
-          CHIEF COMPLAINT
-          </th>
-          <th>
-          CONFIRMATION
-          </th>
-          <th>
-          COPAY
-          <i class="fas fa-info-circle" style="color:#999;">
-          </i>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="no-appointments" colspan="9">
-          No appointments scheduled for the day.
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      </main>
-      <aside class="advertisement">
-      <img alt="Cloud upload icon with an arrow pointing up and a document below the arrow" class="ad-image" height="120" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120"/>
-      <div class="ad-text">
-        <h5>
-        A better document experience is here
-        </h5>
-        <p>
-        Now you can upload files with our new drag and drop feature, see documents in a new chart tab, and more.
-        </p>
-      </div>
-      <button class="ad-button" type="button">
-        See what's new
-      </button>
-      </aside>
-    </div>
-    </div>
-    <div class="bottom-right-icons">
-    <button aria-label="Light bulb icon" type="button">
-      <i class="fas fa-lightbulb">
-      </i>
-    </button>
-    <button aria-label="Chat icon" type="button">
-      <i class="fas fa-comments">
-      </i>
-    </button>
+        <div class="report-line">
+          <a href="#">Meaningful Use Dashboard - Historic</a> Core and menu measure values for Meaningful Use 2011-2013
+        </div>
+        <div class="report-line">
+          <a href="#">MIPS Dashboard</a> Track progress and manage requirements for each of the MIPS performance categories
+        </div>
+
+        <div class="section-title mt-3">Clinical reporting</div>
+        <div class="report-line">
+          <a href="#">Chart notes report</a> Search all of your practice’s chart notes
+        </div>
+        <div class="report-line">
+          <a href="#">Diagnosis registry</a> Search patients that have a particular diagnosis
+        </div>
+        <div class="report-line">
+          <a href="#">Drug interactions report</a> Review the responses to Drug-Drug and Drug-Allergy interaction reports
+        </div>
+        <div class="report-line">
+          <a href="#">e-Prescription report</a> Retrieve a history of all e-Prescriptions per provider
+        </div>
+        <div class="report-line">
+          <a href="#">EHI export</a> Export electronic health information for individual patients or all patients
+        </div>
+        <div class="report-line">
+          <a href="#">Exported batch CCD files</a> Retrieve all exported CCDs from the Patient List Report and batch export CCDs for all your patients
+        </div>
+        <div class="report-line">
+          <a href="#">Medication report</a> Search patients that have been prescribed a particular medicine
+        </div>
+        <div class="report-line">
+          <a href="#">Patient list report</a> Search patients various combinations of criteria
+        </div>
+        <div class="report-line">
+          <a href="/patientlistreport">Patient list report <span class="text-orange">NEW</span></a> Create custom patient list reports by searching for patients based on various combinations of clinical and demographic data
+        </div>
+        <div class="report-line">
+          <a href="#">Patient prescription history</a> Search for a patient’s prescription history including those retrieved from PBMs, payers, and pharmacies.
+        </div>
+        <div class="report-line">
+          <a href="#">Prescription report</a> Retrieve a history of all prescriptions per provider
+        </div>
+        <div class="report-line">
+          <a href="#">Referrals report - Fax</a> View the fax referrals you have made
+        </div>
+        <div class="report-line">
+          <a href="#">Decision support intervention feedback report</a> View and export Decision support intervention report
+        </div>
     </div>
   </div>
   <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">

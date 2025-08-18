@@ -1,0 +1,62 @@
+<!-- Modal -->
+<div class="modal fade" id="sendIntakeModal" tabindex="-1" aria-labelledby="sendIntakeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="sendIntakeModalLabel">Send intake form on behalf of the following providers</h5>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="d-flex justify-content-end mb-2">
+          <span class="me-2 fw-bold">Turn all</span>
+          <a href="#" class="me-1">ON</a> | <a href="#" class="ms-1">OFF</a>
+        </div>
+
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Provider</th>
+              <th>Send Intake Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Julian Provider</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Alejandra Provider</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Amparo Staff</td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Trigger Button -->
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#sendIntakeModal">
+  Open Intake Form Modal
+</button>
