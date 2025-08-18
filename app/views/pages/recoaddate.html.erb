@@ -819,6 +819,42 @@
         font-size: 0.875rem;
       }
     }
+    .popup-box {
+      border: 1px solid #007bff;
+      border-top: 4px solid #007bff;
+      border-radius: 5px;
+      padding: 15px;
+      width: 400px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .popup-header {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 12px;
+      font-weight: bold;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    .popup-close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .form-section {
+      margin-top: 15px;
+    }
+    .link-blue {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .link-blue:hover {
+      text-decoration: underline;
+    }
   </style>
  </head>
  <body>
@@ -1066,11 +1102,72 @@
 
               <!-- Right Side: Buttons -->
               <div class="d-flex align-items-center gap-2">
-                <button class="btn btn-outline-primary btn-sm">Start video visit</button>
+                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#videoVisitModal">
+                  Start video visit
+                </button>
                 <button class="btn btn-outline-secondary btn-sm">Minimize all</button>
                 <button class="btn btn-outline-secondary btn-sm">Print</button>
                 <button class="btn btn-outline-success btn-sm">Save</button>
-                <button class="btn btn-warning btn-sm text-white">Sign</button>
+                <!-- Sign Button -->
+                <button class="btn btn-warning btn-sm text-white" data-bs-toggle="modal" data-bs-target="#signEncounterModal">
+                  Sign
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="videoVisitModal" tabindex="-1" aria-labelledby="videoVisitLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                  <h5 class="modal-title" id="videoVisitLabel">Alcohol use > Record</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Complete questionnaire to generate a score.</strong></p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="declineAll">
+                    <label class="form-check-label" for="declineAll">Patient declined to specify on all questions</label>
+                  </div>
+                  <hr>
+                  <p>1. How often do you have a drink containing alcohol?</p>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkFrequency" id="never"><label class="form-check-label" for="never">Never</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkFrequency" id="monthly"><label class="form-check-label" for="monthly">Monthly or less</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkFrequency" id="2to4"><label class="form-check-label" for="2to4">2–4 times a month</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkFrequency" id="2to3week"><label class="form-check-label" for="2to3week">2–3 times a week</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkFrequency" id="4plus"><label class="form-check-label" for="4plus">4 or more times a week</label></div>
+                  <hr>
+                  <p>2. How many standard drinks containing alcohol do you have on a typical day?</p>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="0"><label class="form-check-label" for="0">0</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="1or2"><label class="form-check-label" for="1or2">1 or 2</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="3or4"><label class="form-check-label" for="3or4">3 or 4</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="5or6"><label class="form-check-label" for="5or6">5 or 6</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="7to9"><label class="form-check-label" for="7to9">7 to 9</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="drinkAmount" id="10plus"><label class="form-check-label" for="10plus">10 or more</label></div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary btn-sm">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="signEncounterModal" tabindex="-1" aria-labelledby="signEncounterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                  <h5 class="modal-title" id="signEncounterModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill text-danger"></i> Sign encounter
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  This will permanently finalize this encounter as a legal document. You will not be able to make edits after signing.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary btn-sm">Sign</button>
+                </div>
               </div>
             </div>
           </div>
@@ -1156,12 +1253,80 @@
                           <div class="health-conc-header">
                             <div>Health concerns</div>
                             <div>
-                              <a href="#" class="me-2"><i class="fas fa-plus"></i> Add</a>
+                              <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#diagnosisModal">
+                                <i class="fas fa-plus"></i> Add Health concerns
+                              </a>
                               <a href="#"><i class="fas fa-print"></i> Print</a>
                             </div>
                           </div>
                           <textarea class="form-control form-textarea" maxlength="4000" placeholder="4000 characters maximum"></textarea>
                           <div class="minimize-link mt-1">Minimize</div>
+                        </div>
+                        <!-- Diagnosis Modal -->
+                        <div class="modal fade" id="diagnosisModal" tabindex="-1" aria-labelledby="diagnosisLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-lg">
+                              <div class="popup-box">
+                                <div class="popup-header">
+                                  Diagnosis > Review diagnosis
+                                  <span class="popup-close">&times;</span>
+                                </div>
+
+                                <div class="form-section">
+                                  <strong>J45.909</strong> Unspecified asthma, uncomplicated
+                                  <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="associateDiagnosis" checked>
+                                    <label class="form-check-label" for="associateDiagnosis">
+                                      Associate diagnosis with encounter
+                                    </label>
+                                  </div>
+                                </div>
+
+                                <div class="form-section">
+                                  <label class="d-block mb-1">ACUITY</label>
+                                  <a href="#" class="me-3">Clear</a>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="acuity" id="chronic" checked>
+                                    <label class="form-check-label" for="chronic">Chronic</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="acuity" id="acute">
+                                    <label class="form-check-label" for="acute">Acute</label>
+                                  </div>
+                                </div>
+
+                                <div class="form-section">
+                                  <div class="mb-2">
+                                    <label for="startDate" class="form-label">START DATE</label>
+                                    <div class="input-group">
+                                      <input type="date" class="form-control" id="startDate" value="2022-04-03">
+                                      <button class="btn btn-outline-secondary">Today</button>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <label for="stopDate" class="form-label">STOP DATE</label>
+                                    <div class="input-group">
+                                      <input type="date" class="form-control" id="stopDate">
+                                      <button class="btn btn-outline-secondary">Today</button>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-section">
+                                  <div>MEDICATIONS ASSOCIATED WITH DIAGNOSIS <a href="#" class="link-blue">Add</a></div>
+                                  <div>MAPPED CODES <a href="#" class="link-blue">Show</a></div>
+                                </div>
+
+                                <div class="form-section">
+                                  COMMENT <a href="#" class="link-blue">Edit</a><br>
+                                  ENCOUNTER COMMENT <a href="#" class="link-blue">Edit</a>
+                                </div>
+
+                                <div class="form-section">
+                                  <div>RESOURCES</div>
+                                  <a href="#" class="link-blue">Patient education materials</a>
+                                </div>
+                              </div>
+                          </div>
                         </div>
                       </form>
                     </div>

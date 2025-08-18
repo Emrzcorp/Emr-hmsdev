@@ -440,9 +440,156 @@
     }
   }
   .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1254px;
+      max-width: 1269px;
       margin-top: 31px;
-  }
+  } 
+  </style>
+  <style>
+    body {
+      background-color: #a9b0b9;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .nav-link.active {
+      color:hsl(210, 42.90%, 97.30%) !important;
+      font-weight: 600;
+    }
+    .nav-link {
+      color: white;
+      font-size: 14px;
+    }
+    .navbar {
+      background-color: #1a73e8;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .navbar-nav .nav-link {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .nav-link.active::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid #1a73e8;
+      margin: 0 auto;
+      margin-top: 2px;
+    }
+    .practice-header {
+      background-color: #1a73e8;
+      color: white;
+      padding: 0.75rem 1rem;
+      font-size: 22px;
+      font-weight: 400;
+    }
+    .progress-container {
+      position: absolute;
+      right: 1rem;
+      top: 0.75rem;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .progress-bar-green {
+      background-color: #5ed400;
+      height: 12px;
+      width: 180px;
+      border-radius: 0;
+    }
+    .progress {
+      height: 12px;
+      width: 200px;
+      background-color: #4a90e2;
+      border-radius: 0;
+    }
+    .card-pending-ribbon {
+      width: 90px;
+      height: 20px;
+      background: #d9d600;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 20px;
+      position: absolute;
+      right: -30px;
+      top: 10px;
+      transform: rotate(45deg);
+      box-shadow: 0 0 3px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+    }
+    .card-pending-ribbon i {
+      font-size: 10px;
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+    .card {
+      position: relative;
+      height: 180px;
+      min-height: unset;
+    }
+    .card-body {
+      padding: 1rem 1rem 1.5rem 1rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #2a3a9f;
+    }
+    .card-text {
+      font-size: 13px;
+      color: #000;
+      flex-grow: 1;
+    }
+    .btn-primary {
+      background-color: #2a3a9f;
+      border: none;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 0;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: #1f2a6f;
+    }
+    .link-video {
+      font-size: 12px;
+      color: #2a3a9f;
+      text-decoration: none;
+    }
+    .link-video:hover, .link-video:focus {
+      text-decoration: underline;
+    }
+    .icon-large {
+      font-size: 36px;
+      color: #2a3a9f;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+    .icon-shield {
+      font-size: 40px;
+      color: #2a3a9f;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+    .row-cols-1 > * {
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 768px) {
+      .row-cols-md-3 > * {
+        margin-bottom: 1rem;
+      }
+    }
   </style>
  </head>
  <body>
@@ -489,7 +636,7 @@
     <div class="logo-text">
       practice fusion
     </div>
-    <button aria-label="Home" style="color:#999999;" title="Home"  onclick="window.location.href='/homepage'">
+    <button aria-label="Home" style="color:#999999;" title="Home" onclick="window.location.href='/homepage'">
       <i class="fas fa-home">
       </i>
     </button>
@@ -503,14 +650,11 @@
     <div class="logo-text">
       Schedule
     </div>
-    <button aria-label="Tasks" style="color:#999999;" title="Tasks"  onclick="window.location.href='/task'">
-      <i class="fas fa-tasks">
-      </i>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
     </button>
-    <div class="logo-text">
-      Task
-    </div>
-    <button aria-label="Charts" style="color:#999999;" title="Charts">
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts" onclick="window.location.href='/chart'">
       <i class="fas fa-file-medical-alt">
       </i>
     </button>
@@ -533,236 +677,180 @@
     </div>
   </nav>
   <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="header-blue">
-      Schedule
-      <span class="appointments-count">
-      0 Appointments
-      </span>
-    </div>
-      <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
+    <nav class="navbar navbar-expand">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Dashboard</a>
         </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Documents</a>
         </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Directory</a>
         </li>
       </ul>
-    <div class="filter-bar">
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-filter">
-        </i>
-        Filter
-      </button>
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-sync-alt">
-        </i>
-        Refresh
-      </button>
-      <select aria-label="Select practice" class="form-select form-select-sm" style="max-width: 200px;">
-        <option selected="">
-          HeartWell Health
-        </option>
-        <option>
-          Practice 2
-        </option>
-        <option>
-          Practice 3
-        </option>
-      </select>
-      <button class="btn btn-outline-secondary btn-sm btn-print" type="button">
-        Print
-      </button>
-    </div>
-    <div class="content-area d-flex">
-      <aside class="sidebar-left">
-      <div class="section-title">
-        <i class="fas fa-users">
-        </i>
-        USERS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        All
-        </label>
-        <small class="text-primary ms-2">
-        Just me
-        </small>
-        <small class="text-primary ms-2">
-        Edit
-        </small>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        LOGGED IN AS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-purple me-1">
-        </span>
-        Martin, Susan
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        PHYS./MD/DO
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-orange me-1">
-        </span>
-        Persaud, Ian
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        NURSE
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-green me-1">
-        </span>
-        Persaud, Jennifer
-        </label>
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        DISPLAY OPTIONS
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT TYPES
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT STATUS
-      </div>
-      </aside>
-      <main class="main-content">
-      <div class="date-bar">
-        Mon, Jun 23, 2025
-        <select aria-label="Select view" class="form-select form-select-sm view-select">
-        <option selected="">
-          Standard view
-        </option>
-        <option>
-          Compact view
-        </option>
-        </select>
-        <div aria-label="Date navigation" class="btn-group" role="group">
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-calendar-alt">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-left">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-right">
-          </i>
-        </button>
-        <button class="btn btn-sm today" type="button">
-          Today
-        </button>
+    </nav>
+    <div class="practice-header position-relative">
+      Practice dashboard
+      <div class="progress-container">
+        <span class="me-2"><i class="fas fa-wrench"></i> PRACTICE SETUP</span>
+        <div class="progress">
+          <div class="progress-bar progress-bar-green" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <div class="search-group d-flex align-items-center gap-1 me-3">
-        <input aria-label="Search" class="form-control form-control-sm" placeholder="Search" style="width:120px;" type="search"/>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search-minus">
-          </i>
-        </button>
+        <span class="ms-2">100%</span>
+      </div>
+    </div>
+    <div class="container-fluid mt-3">
+      <div class="row row-cols-1 row-cols-md-3 g-3" style="max-height: 400px; overflow-y: auto;">
+        <div class="col">
+          <div class="card">
+            <div class="card-pending-ribbon">PENDING <i class="fas fa-wrench"></i></div>
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-flask me-2"></i>Labs</h6>
+              <p class="card-text">Send orders and receive results in your EHR</p>
+            </div>
+          </div>
         </div>
-        <select aria-label="Select slot duration" class="form-select form-select-sm slot-select" disabled="">
-        <option>
-          30 min slots
-        </option>
-        </select>
+        <div class="col">
+          <div class="card">
+            <div class="card-pending-ribbon">PENDING <i class="fas fa-wrench"></i></div>
+            <div class="card-body">
+              <h6 class="card-title"><i class="fas fa-network-wired me-2"></i>Imaging centers</h6>
+              <p class="card-text">Images and reports viewed in your EHR</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <h6 class="card-title">CPT codes license access</h6>
+              <p class="card-text">Get access to CPT code sets by purchasing a license from Optum360, an AMA authorized distributor</p>
+              <button class="btn btn-primary w-100 mt-auto" type="button">Learn more</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <h6 class="card-title"><i class="fas fa-file-invoice-dollar me-2"></i>Billing</h6>
+              <p class="card-text">Create and send superbills from your EHR</p>
+              <a href="#" class="link-video">Video tutorial</a>
+              <button class="btn btn-primary w-100 mt-2" type="button">Explore billing solutions</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body position-relative d-flex flex-column justify-content-between">
+              <h6 class="card-title">Insurance eligibility</h6>
+              <p class="card-text">Insurance eligibility is available for your practice, click here to learn more</p>
+              <i class="fas fa-shield-check icon-shield"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body position-relative d-flex flex-column justify-content-between">
+              <h6 class="card-title">Settings</h6>
+              <p class="card-text">Manage personal and practice-level settings</p>
+              <i class="fas fa-cog icon-large"></i>
+            </div>
+          </div>
+        </div>
       </div>
-      <table class="schedule-table">
-        <thead>
-        <tr>
-          <th>
-          NOTE
-          </th>
-          <th>
-          STATUS
-          </th>
-          <th>
-          PATIENT
-          </th>
-          <th class="time-header">
-          TIME
-          <i class="fas fa-sort-up">
-          </i>
-          </th>
-          <th>
-          PROVIDER
-          </th>
-          <th>
-          TYPE
-          </th>
-          <th>
-          CHIEF COMPLAINT
-          </th>
-          <th>
-          CONFIRMATION
-          </th>
-          <th>
-          COPAY
-          <i class="fas fa-info-circle" style="color:#999;">
-          </i>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="no-appointments" colspan="9">
-          No appointments scheduled for the day.
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      </main>
-      <aside class="advertisement">
-      <img alt="Cloud upload icon with an arrow pointing up and a document below the arrow" class="ad-image" height="120" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120"/>
-      <div class="ad-text">
-        <h5>
-        A better document experience is here
-        </h5>
-        <p>
-        Now you can upload files with our new drag and drop feature, see documents in a new chart tab, and more.
-        </p>
+      <div class="container py-3">
+        <div class="row g-3">
+          <div class="col-12 col-md-4 d-flex">
+          <div class="card p-3 w-100">
+            <h6 class="card-title">
+            Customer support
+            </h6>
+            <p class="card-text">
+            Learn about popular topics, and find resources for your practice
+            </p>
+            <div class="icon-bottom-right">
+            <i aria-hidden="true" class="fas fa-book icon-large">
+            </i>
+            <span class="visually-hidden">
+              Open book icon in blue
+            </span>
+            </div>
+          </div>
+          </div>
+          <div class="col-12 col-md-4 d-flex position-relative">
+          <div class="card p-3 w-100">
+            <div aria-hidden="true" class="ribbon">
+            <span class="ribbon-text">
+              INCOMPLETE
+            </span>
+            </div>
+            <h6 class="card-title">
+            <i aria-hidden="true" class="fas fa-comments icon-large me-2">
+            </i>
+            Direct Messaging
+            </h6>
+            <p class="card-text">
+            Register your unique Direct address
+            </p>
+            <button class="btn btn-primary w-100 mt-2" style="font-size: 13px;" type="button">
+            Set up Direct messaging
+            </button>
+          </div>
+          </div>
+          <div class="col-12 col-md-4 d-flex">
+          <div class="card p-3 w-100">
+            <h6 class="card-title">
+            Template community
+            </h6>
+            <p class="card-text">
+            Find, rate, and share charting templates with the community
+            </p>
+            <div class="icon-bottom-right">
+            <i aria-hidden="true" class="fas fa-copy icon-large">
+            </i>
+            <span class="visually-hidden">
+              Two overlapping document icons in blue
+            </span>
+            </div>
+          </div>
+          </div>
+          <div class="col-12 col-md-4 d-flex">
+          <div class="card p-3 d-flex flex-column justify-content-between w-100">
+            <h6 class="card-title">
+            Veradigm programs
+            </h6>
+            <p class="card-text">
+            Connect to a range of programs for your EHR through the Veradigm portal
+            </p>
+            <img alt="Veradigm logo with red and blue circular design and text" class="mt-2" height="40" src="https://storage.googleapis.com/a1aa/image/101b404d-325a-474f-4295-1f14fea7ac0a.jpg" style="height:40px; width:auto;" width="120"/>
+          </div>
+          </div>
+          <div class="col-12 col-md-4 d-flex">
+          <div class="card p-3 d-flex flex-column justify-content-between w-100">
+            <h6 class="card-title">
+            App Marketplace
+            </h6>
+            <p class="card-text">
+            Add new apps, and manage existing authorized apps
+            </p>
+            <button class="btn btn-primary w-100 mt-2" style="font-size: 13px;" type="button">
+            Open App Marketplace
+            </button>
+          </div>
+          </div>
+          <div class="col-12 col-md-4 d-flex">
+          <div class="card p-3 d-flex flex-column justify-content-between w-100">
+            <h6 class="card-title">
+            Telehealth
+            </h6>
+            <p class="card-text">
+            Register with Updox for an integrated Telehealth solution.
+            </p>
+            <img alt="Blue square with white letter U and a light blue underline representing Updox Telehealth logo" class="mt-2" height="60" src="https://storage.googleapis.com/a1aa/image/0a999a7c-03d4-4f94-8d6a-9c5df0192a35.jpg" style="height:60px; width:auto;" width="60"/>
+          </div>
+          </div>
+        </div>
       </div>
-      <button class="ad-button" type="button">
-        See what's new
-      </button>
-      </aside>
-    </div>
-    </div>
-    <div class="bottom-right-icons">
-    <button aria-label="Light bulb icon" type="button">
-      <i class="fas fa-lightbulb">
-      </i>
-    </button>
-    <button aria-label="Chat icon" type="button">
-      <i class="fas fa-comments">
-      </i>
-    </button>
     </div>
   </div>
   <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">

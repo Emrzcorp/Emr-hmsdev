@@ -1,0 +1,951 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Practice Fusion Schedule
+  </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+  }
+  .topbar {
+    background-color: #333333;
+    color: #ccc;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    user-select: none;
+  }
+  .topbar .help {
+    margin-right: auto;
+    cursor: pointer;
+    color: #ccc;
+  }
+  .topbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .user-info > * {
+    cursor: default;
+  }
+  .topbar .icon {
+    color: #ccc;
+    cursor: pointer;
+  }
+  .sidebar {
+    background-color: #1a1a1a;
+    width: 60px;
+    min-width: 60px;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
+    user-select: none;
+  }
+  .sidebar .logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+  .sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .sidebar .logo-text {
+    font-size: 10px;
+    color: #3bb4f2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1;
+    margin-top: -15px;
+  }
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #999999;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sidebar button.active, .sidebar button:hover {
+    color: #3bb4f2;
+  }
+  .main-container {
+    height: calc(100vh - 30px);
+    width: calc(100vw - 60px)
+    display: flex;
+    flex-direction: column;
+  }
+  .header-blue {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: 400;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .header-blue .appointments-count {
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .nav-tabs-custom {
+    background-color: #2196f3;
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+  .nav-tabs-custom .nav-link {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 0;
+  }
+  .nav-tabs-custom .nav-link.active {
+    background-color: #0b7dda;
+    color: white;
+  }
+  .filter-bar {
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .filter-bar .btn {
+    font-size: 13px;
+    padding: 3px 10px;
+  }
+  .filter-bar select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+  }
+  .filter-bar .btn-print {
+    margin-left: auto;
+    max-width: 180px;
+    margin-right: 25px;
+  }
+  .content-area {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+  .sidebar-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    user-select: none;
+  }
+  .sidebar-left .section-title {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .sidebar-left .section-title i {
+    font-size: 14px;
+  }
+  .sidebar-left .checkbox-group {
+    margin-bottom: 15px;
+  }
+  .sidebar-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .sidebar-left label input[type="checkbox"] {
+    cursor: pointer;
+  }
+  .sidebar-left label .color-box {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .color-purple { background-color: #7f3fbf; }
+  .color-orange { background-color: #d18a00; }
+  .color-green { background-color: #3dbb00; }
+  .sidebar-left small.text-primary {
+    font-size: 12px;
+    color: #2196f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  .expandable {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .expandable i {
+    font-size: 10px;
+  }
+  .main-content {
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: white;
+  }
+  .date-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .date-bar .view-select {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    min-width: 130px;
+  }
+  .date-bar .btn-group {
+    margin-right: 10px;
+  }
+  .date-bar .btn {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+  .date-bar .btn.today {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+  }
+  .date-bar .btn.today:hover {
+    background-color: #0b7dda;
+  }
+  .date-bar .search-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+  }
+  .date-bar input[type="search"] {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    width: 120px;
+  }
+  .date-bar select.slot-select {
+    font-size: 13px;
+    height: 28px;
+    padding: 2px 6px;
+    max-width: 130px;
+  }
+  table.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  table.schedule-table thead tr {
+    background-color: #d3d3d3;
+    color: #333;
+    user-select: none;
+  }
+  table.schedule-table thead th {
+    padding: 6px 8px;
+    border: 1px solid #bbb;
+    text-align: left;
+    white-space: nowrap;
+  }
+  table.schedule-table thead th.time-header {
+    cursor: pointer;
+  }
+  table.schedule-table thead th.time-header i {
+    margin-left: 4px;
+  }
+  table.schedule-table tbody tr {
+    height: 40px;
+  }
+  table.schedule-table tbody tr td {
+    border: 1px solid #eee;
+    padding: 6px 8px;
+    color: #666;
+  }
+  .no-appointments {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 14px;
+    user-select: none;
+  }
+  .advertisement {
+    width: 160px;
+    border-left: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .advertisement .ad-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  .advertisement .ad-text {
+    flex-grow: 1;
+  }
+  .advertisement .ad-text h5 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .advertisement .ad-text p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .advertisement .ad-button {
+    background-color: #f37021;
+    color: white;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-align: center;
+  }
+  .advertisement .ad-button:hover {
+    background-color: #d65c00;
+  }
+  .bottom-right-icons {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .bottom-right-icons button {
+    background-color: #f37021;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom-right-icons button:nth-child(2) {
+    background-color: #6f42c1;
+  }
+  /* Scrollbar for left sidebar */
+  .sidebar-left::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-left::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  /* Scrollbar for main content horizontal */
+  .main-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  /* Fix topbar and sidebar to top */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+  }
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+  }
+  .main-container {
+    width: calc(100vw - 60px);
+    display: flex;
+    flex-direction: column;
+  }
+  .content-area {
+    height: 100%;
+  }
+  /* Remove white space between sidebar and main content */
+  .content-area {
+    gap: 0;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .sidebar .logo-text {
+      display: none;
+    }
+    .sidebar-left {
+      display: none;
+    }
+    .advertisement {
+      display: none;
+    }
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1269px;
+      margin-top: 31px;
+  }
+    .topbarx {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-size: 14px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbarx .reports-text {
+      font-weight: 600;
+    }
+    .topbarx .patient-report-tab {
+      background-color: #0d6efd;
+      color: #7ab8ff;
+      font-size: 13px;
+      padding: 2px 8px 2px 8px;
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+    }
+    .topbarx .patient-report-tab span {
+      color: #7ab8ff;
+    }
+    .topbarx .patient-report-tab .close-icon {
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .header-bar {
+      background-color: #2a82e4;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-bar h2 {
+      font-weight: 400;
+      font-size: 20px;
+      margin: 0;
+    }
+    .btn-actions {
+      background-color: transparent;
+      border: 1px solid #5ea1ff;
+      color: #cce3ff;
+      font-size: 14px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .btn-actions:hover, .btn-actions:focus {
+      background-color: #1e6de0;
+      color: #e6f0ff;
+    }
+    .filters-bar {
+      background-color: #f8f9fa;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .filters-bar select {
+      font-size: 14px;
+      padding: 4px 8px;
+      border: 1px solid #ced4da;
+      border-radius: 2px;
+      min-width: 140px;
+    }
+    .btn-run-report {
+      margin-left: auto;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      color: #6c757d;
+      font-size: 14px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      cursor: not-allowed;
+    }
+    .table-container {
+      border-top: 1px solid #2a82e4;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      color: #2a2a2a;
+    }
+    thead tr {
+      background-color: #e9ecef;
+    }
+    thead th {
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid #dee2e6;
+      white-space: nowrap;
+    }
+    tbody tr {
+      height: 120px;
+    }
+    tbody td {
+      padding: 0 8px;
+      vertical-align: middle;
+    }
+    tbody td:first-child {
+      width: 30px;
+      text-align: center;
+    }
+    .empty-message {
+      text-align: center;
+      padding: 40px 16px;
+      color: #8c8c8c;
+      font-size: 14px;
+      user-select: none;
+    }
+    .empty-message strong {
+      color: #6c757d;
+      font-weight: 600;
+    }
+    @media (max-width: 575.98px) {
+      .header-bar h2 {
+        font-size: 18px;
+      }
+      .filters-bar {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .btn-run-report {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+    .filter-row {
+      background: #e9ecef;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .filter-label {
+      font-weight: 600;
+      min-width: 50px;
+    }
+    .filter-select, .filter-input, .filter-multiselect {
+      height: 30px;
+      font-size: 13px;
+      border-radius: 3px;
+      border: 1px solid #ced4da;
+      background: white;
+    }
+    .filter-select {
+      min-width: 110px;
+      padding: 0 6px;
+    }
+    .filter-input {
+      min-width: 90px;
+      padding: 0 6px;
+    }
+    .filter-multiselect {
+      min-width: 120px;
+      padding: 2px 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      border: 1px solid #ced4da;
+      background: white;
+    }
+    .filter-multiselect input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      min-width: 50px;
+    }
+    .filter-multiselect .tag {
+      background: #dee2e6;
+      border-radius: 2px;
+      padding: 2px 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .filter-multiselect .tag .fa-times {
+      cursor: pointer;
+      font-size: 10px;
+    }
+    .filter-date {
+      width: 110px;
+      height: 30px;
+      font-size: 13px;
+      border-radius: 3px;
+      border: 1px solid #ced4da;
+      padding: 0 6px;
+    }
+    .filter-link {
+      font-size: 12px;
+      color: #0d6efd;
+      cursor: pointer;
+      user-select: none;
+    }
+    .filter-search {
+      position: relative;
+      flex-grow: 1;
+    }
+    .filter-search input {
+      width: 100%;
+      height: 30px;
+      font-size: 13px;
+      border-radius: 3px;
+      border: 1px solid #ced4da;
+      padding-left: 28px;
+    }
+    .filter-search .fa-search {
+      position: absolute;
+      top: 7px;
+      left: 8px;
+      color: #6c757d;
+      font-size: 14px;
+    }
+    .filter-icon {
+      color: #6c757d;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    @media (max-width: 575.98px) {
+      .filter-row {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .filter-label {
+        min-width: auto;
+        flex-basis: 100%;
+      }
+      .filter-select, .filter-input, .filter-multiselect, .filter-date, .filter-search {
+        min-width: 100%;
+        flex-grow: 1;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <div class="topbar">
+   <div class="help">
+    Help
+    <i class="fas fa-caret-down">
+    </i>
+   </div>
+   <div class="user-info">
+    <div>
+     Susan Martin
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     HeartWell Health
+     <i class="fas fa-caret-down">
+     </i>
+    </div>
+    <div>
+     |
+    </div>
+    <div>
+     <i class="fas fa-lock icon">
+     </i>
+    </div>
+    <div>
+      <%= link_to ehrsetting_path do %>
+        <i class="fas fa-cog icon"></i>
+      <% end %>
+    </div>
+    <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+      <i class="fas fa-sign-out-alt me-2"></i>
+      <span>Log out</span>
+    <% end %>
+   </div>
+  </div>
+  <nav class="sidebar d-flex flex-column align-items-center">
+    <div class="logo">
+      <%= image_tag("unnamed.png", alt: "practice fusion image") %>
+    </div>
+    <div class="logo-text">
+      practice fusion
+    </div>
+    <button aria-label="Home" style="color:#999999;" title="Home">
+      <i class="fas fa-home">
+      </i>
+    </button>
+    <div class="logo-text">
+      Home
+    </div>
+    <button aria-label="Schedule" style="color:#3bb4f2;" title="Schedule"  onclick="window.location.href='/ot'">
+      <i class="fas fa-calendar-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Schedule
+    </div>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
+    </button>
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts" onclick="window.location.href='/chart'">
+      <i class="fas fa-file-medical-alt">
+      </i>
+    </button>
+    <div class="logo-text">
+      Charts
+    </div>
+    <button aria-label="Messages" style="color:#999999;" title="Messages">
+      <i class="fas fa-envelope">
+      </i>
+    </button>
+    <div class="logo-text">
+      Messages
+    </div>
+    <button aria-label="Reports" style="color:#999999;" title="Reports" onclick="window.location.href='/report'">
+      <i class="fas fa-chart-bar">
+      </i>
+    </button>
+    <div class="logo-text">
+      Reports
+    </div>
+  </nav>
+  <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="topbarx">
+      <div class="reports-text">Reports</div>
+      <div class="patient-report-tab">
+        <span>Patient list report</span>
+        <i class="fas fa-times close-icon" aria-label="Close tab" onclick="window.location.href='/report'"></i>
+      </div>
+    </div>
+    <div class="header-bar">
+      <h2>Patient list report</h2>
+      <button class="btn-actions" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Actions dropdown">
+        Actions <i class="fas fa-caret-down"></i>
+      </button>
+      <div class="dropdown-menu">
+          <a href="#">Open saved queries</a>
+          <a href="#">View FHIR Groups</a>
+          <a href="#">Export to CSV</a>
+          <a href="#">Export as CCD</a>
+        </div>
+    </div>
+    <div class="filters-bar">
+      <select aria-label="Select patient group">
+        <option>All patients</option>
+        <option>Active patients</option>
+        <option>inactive patients</option>
+      </select>
+      <select aria-label="Add criteria" id="addCriteriaSelect">
+        <option>Add criteria</option>
+          <optgroup label="Demographic">
+            <option value="age">Age</option>
+            <option value="sex">Sex</option>
+          </optgroup>
+
+          <optgroup label="Clinical">
+            <option value="diagnoses">Diagnoses</option>
+            <option value="encounters_signed">Encounters (signed)</option>
+            <option value="procedures">Procedures</option>
+            <option value="medications">Medications</option>
+            <option value="lab_test_results">Lab test results</option>
+          </optgroup>
+
+          <optgroup label="Other">
+            <option value="patient_risk_score">Patient risk score</option>
+            <option value="care_team">Care team</option>
+            <option value="race">Race</option>
+            <option value="ethnicity">Ethnicity</option>
+            <option value="smoking_status">Smoking status</option>
+          </optgroup>
+      </select>
+      <button class="btn-run-report" type="button" disabled>Run report</button>
+    </div>
+    <div class="filter-row align-items-center" id="age-form" style="display: none;">
+            <div class="container py-3">
+              <div class="filter-row">
+                <select class="filter-select form-select form-select-sm" aria-label="All patients">
+                  <option selected>All patients</option>
+                </select>
+                <i class="fas fa-cog filter-icon ms-auto" title="Settings"></i>
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">AND</div>
+                <select class="filter-select form-select form-select-sm" aria-label="Age">
+                  <option>Age</option>
+                </select>
+                <select class="filter-select form-select form-select-sm" aria-label="Operator">
+                  <option>=</option>
+                </select>
+                <input type="number" class="filter-input form-control form-control-sm" value="20" aria-label="Age value" />
+                <select class="filter-select form-select form-select-sm" aria-label="Years">
+                  <option>Years</option>
+                </select>
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">AND</div>
+                <select class="filter-select form-select form-select-sm" aria-label="Sex">
+                  <option>Sex</option>
+                </select>
+                <div class="filter-multiselect" aria-label="Sex multi select" role="list">
+                  <div class="tag" role="listitem">Female <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">Male <i class="fas fa-times"></i></div>
+                  <input type="text" placeholder="Select sex" aria-label="Select sex" />
+                </div>
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">AND</div>
+                <select class="filter-select form-select form-select-sm" aria-label="Encounters (sign)">
+                  <option>Encounters (sign...)</option>
+                </select>
+                <input type="date" class="filter-date form-control form-control-sm" value="2021-06-25" aria-label="From date" />
+                <span class="mx-1">to</span>
+                <input type="date" class="filter-date form-control form-control-sm" value="2021-08-31" aria-label="To date" />
+                <div class="btn-group btn-group-sm ms-2" role="group" aria-label="Date range quick select">
+                  <button type="button" class="btn btn-outline-secondary">Last 3 mos</button>
+                  <button type="button" class="btn btn-outline-secondary">6 mos</button>
+                  <button type="button" class="btn btn-outline-secondary">1 yr</button>
+                </div>
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">&nbsp;</div>
+                <input type="text" class="filter-input form-control form-control-sm" value="185349003 (SNO..." aria-label="Encounter types" />
+                <input type="text" class="filter-input form-control form-control-sm ms-2" placeholder="Select one or more encounter types" aria-label="Select encounter types" />
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">AND</div>
+                <select class="filter-select form-select form-select-sm" aria-label="Diagnoses">
+                  <option>Diagnoses</option>
+                </select>
+                <select class="filter-select form-select form-select-sm" aria-label="Status">
+                  <option>Active</option>
+                </select>
+                <div class="filter-multiselect" aria-label="Diagnosis codes multi select" role="list" style="min-width: 350px;">
+                  <div class="tag" role="listitem">E11.9 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">E10.9 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">E11.59 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">E11.8 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">R82.99 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">O24.919 <i class="fas fa-times"></i></div>
+                  <div class="tag" role="listitem">O24.92 <i class="fas fa-times"></i></div>
+                  <input type="text" placeholder="Search for one ..." aria-label="Search diagnosis codes" />
+                </div>
+              </div>
+
+              <div class="filter-row align-items-center">
+                <div class="filter-label">AND</div>
+                <select class="filter-select form-select form-select-sm" aria-label="Add criteria">
+                  <option>Add criteria</option>
+                </select>
+              </div>
+            </div>
+    </div>
+    <div class="table-container">
+      <table aria-label="Patient list report table">
+        <thead>
+          <tr>
+            <th scope="col"><input type="checkbox" aria-label="Select all patients" disabled /></th>
+            <th scope="col">FIRST NAME</th>
+            <th scope="col">LAST NAME</th>
+            <th scope="col">PATIENT ID</th>
+            <th scope="col">DOB</th>
+            <th scope="col">AGE</th>
+            <th scope="col">SEX</th>
+            <th scope="col">PREFERRED CONTACT</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">EXPAND</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="10" class="empty-message">
+              <div><strong>Select one or more search parameters and then run the report.</strong></div>
+              <div>From the results, one or more patients can be selected in order to export the search results.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script>
+    document.getElementById('addCriteriaSelect').addEventListener('change', function () {
+      const selectedValue = this.value;
+      const ageForm = document.getElementById('age-form');
+
+      if (selectedValue === 'age') {
+        ageForm.style.display = 'flex';
+      } else {
+        ageForm.style.display = 'none';
+      }
+    });
+  </script>
+ </body>
+</html>

@@ -87,6 +87,30 @@ class PagesController < ApplicationController
   def displaysetting
   end
 
+  def report
+  end
+
+  def patientlistreport
+  end
+
+  def savepatient
+  end
+
+  def homepage
+  end
+
+  def sendintakeform
+  end
+
+  def message
+  end
+
+  def messagesent
+  end
+
+  def messagearchive
+  end
+
   def appointment_modal
     render partial: 'pages/appointment' # This will use app/views/pages/_appointment.html.erb
   end

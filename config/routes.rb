@@ -32,6 +32,14 @@ Rails.application.routes.draw do
   get "profile", to: "pages#profile"
   get "recoaddate", to: "pages#recoaddate"
   get "displaysetting", to: "pages#displaysetting"
+  get "report", to: "pages#report"
+  get "patientlistreport", to: "pages#patientlistreport"
+  get "savepatient", to: "pages#savepatient"
+  get "homepage", to: "pages#homepage"
+  get "sendintakeform", to: "pages#sendintakeform"
+  get "message", to: "pages#message"
+  get "messagesent", to: "pages#messagesent"
+  get "messagearchive", to: "pages#messagearchive"
   get 'pages/appointment_modal', to: 'pages#appointment_modal'
    
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

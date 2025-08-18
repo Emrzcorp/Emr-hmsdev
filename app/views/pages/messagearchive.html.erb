@@ -442,6 +442,151 @@
   .container, .container-lg, .container-md, .container-sm, .container-xl {
       max-width: 1254px;
       margin-top: 31px;
+  } 
+ 
+  .header-bar {
+    background-color: #2a7ae2;
+    color: white;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-bar h5 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1.25rem;
+  }
+  .btn-actions {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+  }
+  .nav-tabs .nav-link {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+    color: white;
+    background-color: #2a7ae2;
+    border: none;
+    margin-right: 0.25rem;
+  }
+  .nav-tabs .nav-link.active {
+    background-color: white;
+    color: #2a7ae2;
+    border: 1px solid #2a7ae2;
+    border-bottom-color: white;
+  }
+  .nav-tabs .nav-link:not(.active):hover {
+    background-color: #1e5ec9;
+    color: white;
+  }
+  .subnav-bar {
+    background-color: white;
+    border-bottom: 3px solid #2a7ae2;
+    padding: 0.375rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-refresh {
+    border: 1px solid #2a7ae2;
+    color: #2a7ae2;
+    background-color: white;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .btn-refresh:hover {
+    background-color: #e6f0ff;
+  }
+  .select-show {
+    font-size: 0.875rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.25rem;
+  }
+  .message-settings {
+    font-size: 0.875rem;
+    color: #2a7ae2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .message-settings:hover {
+    text-decoration: underline;
+  }
+  .btn-new-message {
+    background-color: #f47900;
+    border: none;
+    color: white;
+    font-size: 0.875rem;
+    padding: 0.375rem 1rem;
+    border-radius: 0.25rem;
+    margin-left: auto;
+  }
+  .btn-new-message:hover {
+    background-color: #d96a00;
+  }
+  .content-area {
+    display: flex;
+    height: calc(100vh - 96px);
+    border-top: 3px solid #2a7ae2;
+  }
+  .left-panel {
+    flex: 1 1 50%;
+    border-right: 3px solid #2a7ae2;
+    overflow-y: auto;
+  }
+  .right-panel {
+    flex: 1 1 50%;
+    padding: 1rem;
+  }
+  table {
+    width: 100%;
+    font-size: 0.75rem;
+    border-collapse: collapse;
+  }
+  thead tr {
+    border-bottom: 1px solid #ccc;
+  }
+  thead th {
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    text-align: left;
+    color: #666;
+  }
+  tbody tr {
+    height: 2.5rem;
+  }
+  tbody td {
+    padding: 0 0.5rem;
+  }
+  .checkbox-cell {
+    width: 1.5rem;
+    text-align: center;
+  }
+  @media (max-width: 575.98px) {
+    .content-area {
+      flex-direction: column;
+      height: auto;
+    }
+    .left-panel, .right-panel {
+      flex: none;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 3px solid #2a7ae2;
+    }
+    .right-panel {
+      border-bottom: none;
+    }
   }
   </style>
  </head>
@@ -489,7 +634,7 @@
     <div class="logo-text">
       practice fusion
     </div>
-    <button aria-label="Home" style="color:#999999;" title="Home"  onclick="window.location.href='/homepage'">
+    <button aria-label="Home" style="color:#999999;" title="Home">
       <i class="fas fa-home">
       </i>
     </button>
@@ -503,21 +648,18 @@
     <div class="logo-text">
       Schedule
     </div>
-    <button aria-label="Tasks" style="color:#999999;" title="Tasks"  onclick="window.location.href='/task'">
-      <i class="fas fa-tasks">
-      </i>
+    <button aria-label="Tasks" style="color:#999999;" title="Tasks" onclick="window.location.href='/task'">
+      <i class="fas fa-tasks"></i>
     </button>
-    <div class="logo-text">
-      Task
-    </div>
-    <button aria-label="Charts" style="color:#999999;" title="Charts">
+    <div class="logo-text">Task</div>
+    <button aria-label="Charts" style="color:#999999;" title="Charts" onclick="window.location.href='/chart'">
       <i class="fas fa-file-medical-alt">
       </i>
     </button>
     <div class="logo-text">
       Charts
     </div>
-    <button aria-label="Messages" style="color:#999999;" title="Messages">
+    <button aria-label="Messages" style="color:#999999;" title="Messages" onclick="window.location.href='/message'">
       <i class="fas fa-envelope">
       </i>
     </button>
@@ -533,237 +675,147 @@
     </div>
   </nav>
   <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="header-blue">
-      Schedule
-      <span class="appointments-count">
-      0 Appointments
-      </span>
-    </div>
-      <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
-        </li>
-      </ul>
-    <div class="filter-bar">
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-filter">
-        </i>
-        Filter
-      </button>
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-sync-alt">
-        </i>
-        Refresh
-      </button>
-      <select aria-label="Select practice" class="form-select form-select-sm" style="max-width: 200px;">
-        <option selected="">
-          HeartWell Health
-        </option>
-        <option>
-          Practice 2
-        </option>
-        <option>
-          Practice 3
-        </option>
-      </select>
-      <button class="btn btn-outline-secondary btn-sm btn-print" type="button">
-        Print
-      </button>
-    </div>
-    <div class="content-area d-flex">
-      <aside class="sidebar-left">
-      <div class="section-title">
-        <i class="fas fa-users">
-        </i>
-        USERS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        All
-        </label>
-        <small class="text-primary ms-2">
-        Just me
-        </small>
-        <small class="text-primary ms-2">
-        Edit
-        </small>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        LOGGED IN AS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-purple me-1">
-        </span>
-        Martin, Susan
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        PHYS./MD/DO
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-orange me-1">
-        </span>
-        Persaud, Ian
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        NURSE
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-green me-1">
-        </span>
-        Persaud, Jennifer
-        </label>
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        DISPLAY OPTIONS
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT TYPES
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT STATUS
-      </div>
-      </aside>
-      <main class="main-content">
-      <div class="date-bar">
-        Mon, Jun 23, 2025
-        <select aria-label="Select view" class="form-select form-select-sm view-select">
-        <option selected="">
-          Standard view
-        </option>
-        <option>
-          Compact view
-        </option>
-        </select>
-        <div aria-label="Date navigation" class="btn-group" role="group">
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-calendar-alt">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-left">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-right">
-          </i>
-        </button>
-        <button class="btn btn-sm today" type="button">
-          Today
-        </button>
+      <header class="header-bar">
+        <h5>Messages</h5>
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-light btn-actions dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                <span>New message</span>
+                <kbd>N</kbd> + <kbd>M</kbd>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Patient Messages Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+                <span>Create task</span>
+                <kbd>N</kbd> + <kbd>T</kbd>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Set up Direct messaging</a>
+            </li>
+          </ul>
         </div>
-        <div class="search-group d-flex align-items-center gap-1 me-3">
-        <input aria-label="Search" class="form-control form-control-sm" placeholder="Search" style="width:120px;" type="search"/>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search">
-          </i>
+      </header>
+      <nav class="px-3 pt-2">
+        <ul class="nav nav-tabs" role="tablist" style="border-bottom:none;">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false" onclick="window.location.href='/message'">Inbox</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false" onclick="window.location.href='/messagesent'">Sent</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false" onclick="window.location.href='/messagearchive'">Archive</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" aria-selected="false">Referrals</button>
+          </li>
+        </ul>
+      </nav>
+      <div class="subnav-bar">
+        <button class="btn-refresh" type="button" aria-label="Refresh messages">
+          <i class="fas fa-sync-alt"></i>
         </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search-minus">
-          </i>
-        </button>
-        </div>
-        <select aria-label="Select slot duration" class="form-select form-select-sm slot-select" disabled="">
-        <option>
-          30 min slots
-        </option>
+        <label for="showSelect" class="mb-0" style="font-size:0.875rem; color:#2a7ae2;">Show</label>
+        <select id="showSelect" class="select-show" aria-label="Show messages filter">
+          <option>Show all</option>
+          <option>📋 Show all</option>
+          <option>🚨 Urgent</option>
+          <option>⏳ Non urgent</option>
+          <option>🔒 Private</option>
+          <option>👥 Shared</option>
+          <option>📤 Referrals</option>
         </select>
+        <div class="message-settings" role="button" tabindex="0" aria-label="Message settings">
+          <i class="fas fa-cog"></i> Message settings
+        </div>
+        <button class="btn-new-message" data-bs-toggle="modal" data-bs-target="#newMessageModal">
+          New Message
+        </button>
       </div>
-      <table class="schedule-table">
-        <thead>
-        <tr>
-          <th>
-          NOTE
-          </th>
-          <th>
-          STATUS
-          </th>
-          <th>
-          PATIENT
-          </th>
-          <th class="time-header">
-          TIME
-          <i class="fas fa-sort-up">
-          </i>
-          </th>
-          <th>
-          PROVIDER
-          </th>
-          <th>
-          TYPE
-          </th>
-          <th>
-          CHIEF COMPLAINT
-          </th>
-          <th>
-          CONFIRMATION
-          </th>
-          <th>
-          COPAY
-          <i class="fas fa-info-circle" style="color:#999;">
-          </i>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="no-appointments" colspan="9">
-          No appointments scheduled for the day.
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="modal fade" id="newMessageModal" tabindex="-1" aria-labelledby="newMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="newMessageModalLabel">New message</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- TO Dropdown -->
+              <div class="mb-2">
+                <label class="form-label">To <span class="text-danger">*</span></label>
+                <select class="form-select">
+                  <option>In practice</option>
+                  <option>Outside provider</option>
+                </select>
+                <input type="text" class="form-control mt-1" placeholder="Search">
+              </div>
+
+              <!-- Regarding Patient -->
+              <div class="mb-2">
+                <label class="form-label">Regarding Patient</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search patient name, record number, phone, DOB or SSN">
+                  <button class="btn btn-outline-secondary" type="button">🔍</button>
+                </div>
+                <div class="form-check mt-1">
+                  <input class="form-check-input" type="checkbox" id="addToChart">
+                  <label class="form-check-label" for="addToChart">Add to chart</label>
+                </div>
+              </div>
+
+              <!-- Subject -->
+              <div class="mb-2">
+                <label class="form-label">Subject <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" placeholder="Enter a subject">
+              </div>
+
+              <!-- Message -->
+              <div class="mb-2">
+                <label class="form-label">Message <span class="text-danger">*</span></label>
+                <textarea class="form-control" rows="4" placeholder="Enter a message"></textarea>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer justify-content-between">
+              <button class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+              <div>
+                <input type="checkbox" id="urgentCheck">
+                <label for="urgentCheck">Urgent</label>
+                <button class="btn btn-primary ms-2">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main class="content-area" role="main">
+        <section class="left-panel" aria-label="Message list">
+          <table>
+            <thead>
+              <tr>
+                <th class="checkbox-cell"><input type="checkbox" aria-label="Select all messages" /></th>
+                <th>FROM</th>
+                <th>PATIENT</th>
+                <th>ARCHIVED</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Empty body as in screenshot -->
+            </tbody>
+          </table>
+        </section>
+        <section class="right-panel" aria-label="Message content">
+          <p style="font-size:1rem; color:#000;">Click a message to show it here.</p>
+        </section>
       </main>
-      <aside class="advertisement">
-      <img alt="Cloud upload icon with an arrow pointing up and a document below the arrow" class="ad-image" height="120" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120"/>
-      <div class="ad-text">
-        <h5>
-        A better document experience is here
-        </h5>
-        <p>
-        Now you can upload files with our new drag and drop feature, see documents in a new chart tab, and more.
-        </p>
-      </div>
-      <button class="ad-button" type="button">
-        See what's new
-      </button>
-      </aside>
-    </div>
-    </div>
-    <div class="bottom-right-icons">
-    <button aria-label="Light bulb icon" type="button">
-      <i class="fas fa-lightbulb">
-      </i>
-    </button>
-    <button aria-label="Chat icon" type="button">
-      <i class="fas fa-comments">
-      </i>
-    </button>
-    </div>
   </div>
   <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
   </script>
