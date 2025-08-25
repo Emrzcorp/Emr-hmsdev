@@ -1,0 +1,35 @@
+    body {
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .modal-header {
+      background: #5a2ddb;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 0.5rem 1rem;
+    }
+    .nav-tabs .nav-link.active {
+      color: #5a2ddb;
+      border-color: #5a2ddb #5a2ddb transparent;
+      font-weight: 700;
+    }
+    .form-label {
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .form-control, .form-select {
+      font-size: 12px;
+      height: 30px;
+    }
+    .scrollable-body {
+      max-height: 430px;
+      overflow-y: auto;
+    }
+    .tab-pane .form-actions {
+      text-align: right;
+      margin-top: 1rem;
+    }
+    .tab-pane .form-actions .btn {
+      margin-left: 0.5rem;
+    }

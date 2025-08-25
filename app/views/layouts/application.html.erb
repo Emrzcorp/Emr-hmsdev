@@ -16,7 +16,14 @@
   </head>
 
   <body>
+    <div class="topbar">
+        <%= render "shared/topbar" %>
+    </div>
+
     <main class="container mx-auto mt-28 px-5 flex">
+      <nav class="sidebar">
+        <%= render "shared/sidebar" %>
+      </nav>
       <%= yield %>
     </main>
     <% flash.each do |type, message| %>
