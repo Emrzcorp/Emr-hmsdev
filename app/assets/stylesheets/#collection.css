@@ -1,0 +1,97 @@
+  body {
+    background: #fff;
+    font-family: Arial, sans-serif;
+  }
+  .modal-custom {
+    width: 420px;
+    max-width: 100%;
+    border: 1px solid #0a5cb5;
+    border-radius: 0;
+  }
+  .modal-header-custom {
+    background-color: #0a5cb5;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-bottom: none;
+  }
+  .modal-header-custom .fa-times {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .info-line {
+    font-size: 12px;
+    color: #333;
+    padding: 4px 12px 8px 12px;
+    border-bottom: 1px solid #ccc;
+  }
+  .info-line .fa-exclamation-circle {
+    color: #f0ad4e;
+    margin-right: 6px;
+  }
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+  }
+  .form-control, .form-select {
+    font-size: 12px;
+    height: 26px;
+    padding: 2px 6px;
+  }
+  .form-control[readonly] {
+    background-color: #e9ecef;
+  }
+  .btn-sm {
+    font-size: 12px;
+    padding: 2px 10px;
+  }
+  .btn-cancel {
+    color: #0a5cb5;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    padding: 0;
+  }
+  .btn-cancel:hover {
+    text-decoration: underline;
+    background: transparent;
+  }
+  .btn-save-print {
+    font-size: 12px;
+    padding: 2px 10px;
+  }
+  .btn-save {
+    font-size: 12px;
+    padding: 2px 10px;
+  }
+  .form-group {
+    margin-bottom: 8px;
+  }
+  .form-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .form-row > div {
+    flex: 1;
+  }
+  .form-row .col-auto {
+    flex: 0 0 auto;
+  }
+  .copay-status {
+    font-size: 12px;
+    padding-top: 4px;
+  }
+  textarea.form-control {
+    font-size: 12px;
+    height: 50px;
+    resize: none;
+  }
+  /* Prevent text overflow in COPAY SOURCE input */
+  #copaySource {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

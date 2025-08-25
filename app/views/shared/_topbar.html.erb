@@ -1,0 +1,21 @@
+<div class="help">
+  Help <i class="fas fa-caret-down"></i>
+</div>
+<div class="user-info">
+  <div>Susan Martin</div>
+  <div>|</div>
+  <div>
+    HeartWell Health <i class="fas fa-caret-down"></i>
+  </div>
+  <div>|</div>
+  <div><i class="fas fa-lock icon"></i></div>
+  <div>
+    <%= link_to ehrsetting_path do %>
+      <i class="fas fa-cog icon"></i>
+    <% end %>
+  </div>
+  <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+    <i class="fas fa-sign-out-alt me-2"></i>
+    <span>Log out</span>
+  <% end %>
+</div>
