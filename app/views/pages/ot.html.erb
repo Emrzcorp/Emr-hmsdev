@@ -1,248 +1,132 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Practice Fusion Schedule
-  </title>
-  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="main-container d-flex flex-column flex-grow-1">
+    <div class="container-fluid py-3">
     <div class="header-blue">
       Schedule
-      <span class="appointments-count">
-      0 Appointments
-      </span>
+      <span class="appointments-count">0 Appointments</span>
     </div>
-      <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
-        </li>
-        <li class="nav-item" role="presentation">
-          <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
-        </li>
-      </ul>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+      <li class="nav-item" role="presentation">
+        <%= link_to 'Appointments', ot_path, class: "nav-link #{'active' if current_page?(ot_path)}", role: 'tab' %>
+      </li>
+      <li class="nav-item" role="presentation">
+        <%= link_to 'Day', day_path, class: "nav-link #{'active' if current_page?(day_path)}", role: 'tab' %>
+      </li>
+      <li class="nav-item" role="presentation">
+        <%= link_to 'Week', week_path, class: "nav-link #{'active' if current_page?(week_path)}", role: 'tab' %>
+      </li>
+      <li class="nav-item" role="presentation">
+        <%= link_to 'Settings', settings_path, class: "nav-link #{'active' if current_page?(settings_path)}", role: 'tab' %>
+      </li>
+    </ul>
+
+    <!-- Filter bar -->
     <div class="filter-bar">
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-filter">
-        </i>
-        Filter
-      </button>
-      <button class="btn btn-outline-primary btn-sm" type="button">
-        <i class="fas fa-sync-alt">
-        </i>
-        Refresh
-      </button>
-      <select aria-label="Select practice" class="form-select form-select-sm" style="max-width: 200px;">
-        <option selected="">
-          HeartWell Health
-        </option>
-        <option>
-          Practice 2
-        </option>
-        <option>
-          Practice 3
-        </option>
+      <button class="btn btn-outline-primary btn-sm"><i class="fas fa-filter"></i> Filter</button>
+      <button class="btn btn-outline-primary btn-sm"><i class="fas fa-sync-alt"></i> Refresh</button>
+      <select class="form-select form-select-sm" style="max-width: 200px;">
+        <option selected>HeartWell Health</option>
+        <option>Practice 2</option>
+        <option>Practice 3</option>
       </select>
-      <button class="btn btn-outline-secondary btn-sm btn-print" type="button">
-        Print
-      </button>
+      <button class="btn btn-outline-secondary btn-sm btn-print">Print</button>
     </div>
-    <div class="content-area d-flex">
+
+    <!-- Layout -->
+    <div class="content-area">
+      <!-- Sidebar -->
       <aside class="sidebar-left">
-      <div class="section-title">
-        <i class="fas fa-users">
-        </i>
-        USERS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        All
-        </label>
-        <small class="text-primary ms-2">
-        Just me
-        </small>
-        <small class="text-primary ms-2">
-        Edit
-        </small>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        LOGGED IN AS
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-purple me-1">
-        </span>
-        Martin, Susan
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        PHYS./MD/DO
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-orange me-1">
-        </span>
-        Persaud, Ian
-        </label>
-      </div>
-      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
-        NURSE
-      </div>
-      <div class="checkbox-group">
-        <label>
-        <input checked="" type="checkbox"/>
-        <span class="color-box color-green me-1">
-        </span>
-        Persaud, Jennifer
-        </label>
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        DISPLAY OPTIONS
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT TYPES
-      </div>
-      <div class="expandable">
-        <i class="fas fa-caret-right">
-        </i>
-        APPOINTMENT STATUS
-      </div>
+        <div class="section-title"><i class="fas fa-users"></i> USERS</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" checked /> All</label>
+          <small class="text-primary ms-2">Just me</small>
+          <small class="text-primary ms-2">Edit</small>
+        </div>
+
+        <div class="section-title">LOGGED IN AS</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" checked /> <span class="color-box color-purple me-1"></span> Martin, Susan</label>
+        </div>
+
+        <div class="section-title">PHYS./MD/DO</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" checked /> <span class="color-box color-orange me-1"></span> Persaud, Ian</label>
+        </div>
+
+        <div class="section-title">NURSE</div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" checked /> <span class="color-box color-green me-1"></span> Persaud, Jennifer</label>
+        </div>
+
+        <div class="expandable"><i class="fas fa-caret-right"></i> DISPLAY OPTIONS</div>
+        <div class="expandable"><i class="fas fa-caret-right"></i> APPOINTMENT TYPES</div>
+        <div class="expandable"><i class="fas fa-caret-right"></i> APPOINTMENT STATUS</div>
       </aside>
+
+      <!-- Main content -->
       <main class="main-content">
-      <div class="date-bar">
-        Mon, Jun 23, 2025
-        <select aria-label="Select view" class="form-select form-select-sm view-select">
-        <option selected="">
-          Standard view
-        </option>
-        <option>
-          Compact view
-        </option>
-        </select>
-        <div aria-label="Date navigation" class="btn-group" role="group">
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-calendar-alt">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-left">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-angle-right">
-          </i>
-        </button>
-        <button class="btn btn-sm today" type="button">
-          Today
-        </button>
+        <div class="date-bar">
+          Mon, Jun 23, 2025
+          <select class="form-select form-select-sm view-select" style="max-width:150px;">
+            <option selected>Standard view</option>
+            <option>Compact view</option>
+          </select>
+
+          <div class="btn-group">
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-calendar-alt"></i></button>
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-angle-left"></i></button>
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-angle-right"></i></button>
+            <button class="btn btn-sm btn-primary">Today</button>
+          </div>
+
+          <div class="search-group d-flex align-items-center gap-1">
+            <input class="form-control form-control-sm" type="search" placeholder="Search" style="width:120px;">
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-search"></i></button>
+            <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-search-minus"></i></button>
+          </div>
+
+          <select class="form-select form-select-sm slot-select" disabled style="max-width:120px;">
+            <option>30 min slots</option>
+          </select>
         </div>
-        <div class="search-group d-flex align-items-center gap-1 me-3">
-        <input aria-label="Search" class="form-control form-control-sm" placeholder="Search" style="width:120px;" type="search"/>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search">
-          </i>
-        </button>
-        <button class="btn btn-outline-secondary btn-sm" type="button">
-          <i class="fas fa-search-minus">
-          </i>
-        </button>
-        </div>
-        <select aria-label="Select slot duration" class="form-select form-select-sm slot-select" disabled="">
-        <option>
-          30 min slots
-        </option>
-        </select>
-      </div>
-      <table class="schedule-table">
-        <thead>
-        <tr>
-          <th>
-          NOTE
-          </th>
-          <th>
-          STATUS
-          </th>
-          <th>
-          PATIENT
-          </th>
-          <th class="time-header">
-          TIME
-          <i class="fas fa-sort-up">
-          </i>
-          </th>
-          <th>
-          PROVIDER
-          </th>
-          <th>
-          TYPE
-          </th>
-          <th>
-          CHIEF COMPLAINT
-          </th>
-          <th>
-          CONFIRMATION
-          </th>
-          <th>
-          COPAY
-          <i class="fas fa-info-circle" style="color:#999;">
-          </i>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="no-appointments" colspan="9">
-          No appointments scheduled for the day.
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>NOTE</th>
+              <th>STATUS</th>
+              <th>PATIENT</th>
+              <th class="time-header">TIME <i class="fas fa-sort-up"></i></th>
+              <th>PROVIDER</th>
+              <th>TYPE</th>
+              <th>CHIEF COMPLAINT</th>
+              <th>CONFIRMATION</th>
+              <th>COPAY <i class="fas fa-info-circle" style="color:#999;"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="no-appointments" colspan="9">No appointments scheduled for the day.</td>
+            </tr>
+          </tbody>
+        </table>
       </main>
+
+      <!-- Advertisement -->
       <aside class="advertisement">
-      <img alt="Cloud upload icon with an arrow pointing up and a document below the arrow" class="ad-image" height="120" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120"/>
-      <div class="ad-text">
-        <h5>
-        A better document experience is here
-        </h5>
-        <p>
-        Now you can upload files with our new drag and drop feature, see documents in a new chart tab, and more.
-        </p>
-      </div>
-      <button class="ad-button" type="button">
-        See what's new
-      </button>
+        <img class="ad-image" src="https://storage.googleapis.com/a1aa/image/5f9659c1-d1f2-498e-f866-e9d477e8e1ab.jpg" width="120" height="120" alt="Ad">
+        <div class="ad-text">
+          <h5>A better document experience is here</h5>
+          <p>Now you can upload files with drag and drop, see documents in a new chart tab, and more.</p>
+        </div>
+        <button class="ad-button">See what's new</button>
       </aside>
-    </div>
-    </div>
-    <div class="bottom-right-icons">
-    <button aria-label="Light bulb icon" type="button">
-      <i class="fas fa-lightbulb">
-      </i>
-    </button>
-    <button aria-label="Chat icon" type="button">
-      <i class="fas fa-comments">
-      </i>
-    </button>
     </div>
   </div>
-  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-  </script>
- </body>
-</html>
+
+  <!-- Floating Icons -->
+  <div class="bottom-right-icons">
+    <button><i class="fas fa-lightbulb"></i></button>
+    <button><i class="fas fa-comments"></i></button>
+  </div>
+

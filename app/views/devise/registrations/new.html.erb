@@ -1,44 +1,44 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-body-tertiary">
-  <div class="card shadow-lg border-0 p-4 rounded-4" style="max-width: 480px; width: 100%;">
-    <div class="card-body">
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-body-tertiary px-3">
+  <div class="card-body">
 
-      <div class="text-center mb-4">
-        <h2 class="fw-bold">Sign Up</h2>
-        <p class="text-muted">Create your account to get started</p>
+    <!-- Title -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">Sign Up</h2>
+      <p class="text-muted">Create your account to get started</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <!-- Email Field -->
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+        <%= f.label :email %>
       </div>
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <!-- Email Field -->
-        <div class="form-floating mb-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
-          <%= f.label :email %>
-        </div>
-
-        <!-- Password Field -->
-        <div class="form-floating mb-3 position-relative">
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "password", placeholder: "Password" %>
-          <%= f.label :password %>
-          <i class="fa fa-eye toggle-password position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor: pointer;" id="togglePassword"></i>
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="form-floating mb-3">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
-          <%= f.label :password_confirmation %>
-        </div>
-
-        <!-- Submit -->
-        <div class="d-grid">
-          <%= f.submit "Create Account", class: "btn btn-primary btn-lg rounded-pill" %>
-        </div>
-      <% end %>
-
-      <div class="text-center mt-3">
-        <small class="text-muted">Already have an account?</small><br />
-        <%= link_to "Log in", new_session_path(resource_name), class: "fw-semibold text-decoration-none" %>
+      <!-- Password Field -->
+      <div class="form-floating mb-3 position-relative">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "password", placeholder: "Password" %>
+        <%= f.label :password %>
+        <i class="fa fa-eye toggle-password position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor: pointer;" id="togglePassword"></i>
       </div>
+
+      <!-- Confirm Password -->
+      <div class="form-floating mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password" %>
+        <%= f.label :password_confirmation %>
+      </div>
+
+      <!-- Submit -->
+      <div class="d-grid">
+        <%= f.submit "Create Account", class: "btn btn-primary btn-lg rounded-pill" %>
+      </div>
+    <% end %>
+
+    <!-- Already have account -->
+    <div class="text-center mt-3">
+      <small class="text-muted">Already have an account?</small><br />
+      <%= link_to "Log in", new_session_path(resource_name), class: "fw-semibold text-decoration-none" %>
     </div>
   </div>
 </div>
@@ -79,5 +79,23 @@
 
   .toggle-password {
     font-size: 1rem;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 576px) {
+    .card {
+      padding: 1rem !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+    .btn-lg {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+    }
   }
 </style>
