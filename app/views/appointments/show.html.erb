@@ -1,0 +1,18 @@
+<div class="container">
+  <h4 class="mb-3">Appointment</h4>
+  <p>
+    <strong>Patient:</strong>
+    <%= @appointment.patient.try(:full_name) %>
+  </p>
+  <p>
+    <strong>Doctor:</strong>
+    <%= @appointment.doctor.try(:full_name) %>
+  </p>
+  <p>
+    <strong>Scheduled Date:</strong>
+    <%= @appointment.scheduled_date.strftime("%d-%m-%Y") %>
+  </p>
+  <%= link_to 'Edit', edit_appointment_path(@appointment), class: 'btn btn-primary p-2 text-decoration-none' %>
+  <%= link_to '<- Back', appointments_path, class: 'btn btn-outline-primary text-decoration-none' %>
+
+</div>

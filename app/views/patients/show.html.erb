@@ -1,0 +1,143 @@
+<div class="container mt-3 mb-5">
+  <div class="">
+    <h3 class="mb-3">Patient Profile</h3>
+  </div>
+
+  <div class="">
+    <p class="mb-2 fs-5">
+      <strong>Patient:</strong>
+      <%= @patient.full_name %> (<%= @patient.age %> years old)
+    </p>
+
+    <p class="mb-2 fs-5">
+      <strong>Doctor:</strong>
+      <%= @patient.doctor.present? ? @patient.doctor.full_name : "Not assigned" %>
+    </p>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <strong>Date of Birth:</strong>
+        <p><i class="bi bi-calendar-fill"></i> <%= @patient.date_of_birth&.strftime('%B %d, %Y') %></p>
+      </div>
+      <% if @patient.status? ? 'Active' : 'Inactive' %>
+        <div class="col-md-6">
+          <strong>Status:</strong>
+          <p>
+            <span class="badge bg-<%= @patient.status? ? 'success' : 'secondary' %>">
+              <%= @patient.status? ? 'Active' : 'Inactive' %>
+            </span>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <strong>Gender:</strong>
+        <p><i class="bi bi-person-fill"></i> <%= @patient.gender %></p>
+      </div>
+      <% if @patient.email_address.present? %>
+        <div class="col-md-6">
+          <strong>Email Address:</strong>
+          <p><i class="bi bi-envelope-fill"></i> <%= @patient.email_address %></p>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <strong>Phone Number:</strong>
+        <p><i class="bi bi-telephone-fill"></i> <%= @patient.phone_number %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Emergency Contact:</strong>
+        <p><i class="bi bi-person-lines-fill"></i> <%= @patient.emergency_contact %></p>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Address 1:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.address_1 %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Address 2:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.address_2 %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>City:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.city %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>State:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.state %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Country:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.country %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>ZipCode:</strong>
+        <p><i class="bi bi-geo-alt-fill"></i> <%= @patient.zip_code %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Insurance Information:</strong>
+        <p><%= @patient.insurance_information.presence || "Not provided." %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Medical History:</strong>
+        <p><%= @patient.medical_history.presence || "No history provided." %></p>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-md-6">
+        <strong>Current Medications:</strong>
+        <p><%= @patient.current_medications.presence || "None listed." %></p>
+      </div>
+
+      <div class="col-md-6">
+        <strong>Allergies:</strong>
+        <p><%= @patient.allergies.presence || "None reported." %></p>
+      </div>
+    </div>
+
+    <h5>Documents</h5>
+    <% if @patient.documents.attached? %>
+      <ul>
+        <% @patient.documents.each do |doc| %>
+          <li><%= link_to doc.filename.to_s, url_for(doc), target: '_blank', class: 'text-decoration-none fs-6' %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No documents uploaded.</p>
+    <% end %>
+
+    <%= link_to 'Edit Patient Profile', edit_patient_path(@patient), class: "btn btn-primary mt-3 p-2 text-decoration-none" %>
+    <%= link_to "← Back to Patients", patients_path, class: "btn btn-outline-primary mt-3 p-2 text-decoration-none" %>
+
+    <%# if @invoices.present? %>
+    <%# unless @patient.invoices.where(status: "paid").exists? %>
+      <%#= link_to new_doctor_patient_invoice_path(@doctor, @patient), class: "btn btn-success mt-3" do %>
+        <!-- <i class="bi bi-file-earmark-plus-fill"></i> Generate Invoice -->
+      <%# end %>
+    <%# else %>
+      <!-- <p class="text-danger fw-bold mt-3"><i class="bi bi-file-earmark-check-fill"></i> Invoice already generated.</p> -->
+    <%# end %>
+  </div>
+</div>

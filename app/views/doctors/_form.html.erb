@@ -1,0 +1,149 @@
+<div class="container border py-3">
+	<%= form_with model: @doctor do |form| %>
+		<div class="row">
+	  	<div class="form-group col-lg-4">
+		  	<%= form.label :first_name, class: 'form-label' %>
+		  	<%= form.text_field :first_name, placeholder: "First Name", class: "form-control #{'is-invalid' if @doctor.errors[:first_name].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:first_name).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+		  </div>
+
+		  <div class="form-group col-lg-4">
+		  	<%= form.label :middle_name, class: 'form-label' %>
+		  	<%= form.text_field :middle_name, placeholder: "Middle Name", class: "form-control #{'is-invalid' if @doctor.errors[:middle_name].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:middle_name).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+		  </div>
+
+		  <div class="form-group col-lg-4">
+		  	<%= form.label :last_name, class: 'form-label' %>
+		  	<%= form.text_field :last_name, placeholder: "Last Name", class: "form-control #{'is-invalid' if @doctor.errors[:last_name].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:last_name).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+		  </div>
+	  </div>
+
+	  <div class="row">
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :specialty, class: 'form-label' %>
+		  	<%= form.text_field :specialty, placeholder: "Specialty", class: "form-control #{'is-invalid' if @doctor.errors[:specialty].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:specialty).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :license_number, class: 'form-label' %>
+		  	<%= form.text_field :license_number, placeholder: "License Number", class: "form-control #{'is-invalid' if @doctor.errors[:license_number].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:license_number).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+	  </div>
+
+	  <div class="row">
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :email, class: 'form-label' %>
+		  	<%= form.text_field :email, placeholder: "Email", class: "form-control #{'is-invalid' if @doctor.errors[:email].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:email).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :phone_number, class: 'form-label' %>
+		  	<%= form.text_field :phone_number, placeholder: "Phone Number", class: "form-control #{'is-invalid' if @doctor.errors[:phone_number].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:phone_number).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+	  </div>
+
+	  <div class="row">
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :address_1, class: 'form-label' %>
+		  	<%= form.text_field :address_1, placeholder: "Address 1", class: "form-control #{'is-invalid' if @doctor.errors[:address_1].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:address_1).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :address_2, class: 'form-label'%>
+		  	<%= form.text_field :address_2, placeholder: "Address 2", class: "form-control #{'is-invalid' if @doctor.errors[:address_2].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:address_2).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+	  </div>
+
+	  <div class="row">
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :city, class: 'form-label' %>
+		  	<%= form.text_field :city, placeholder: "City", class: "form-control #{'is-invalid' if @doctor.errors[:city].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:city).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :state, class: 'form-label' %>
+		  	<%= form.text_field :state, placeholder: "State", class: "form-control #{'is-invalid' if @doctor.errors[:state].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:state).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+	  </div>
+
+	  <div class="row">
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :country, class: 'form-label' %>
+		  	<%= form.text_field :country, placeholder: "Country", class: "form-control #{'is-invalid' if @doctor.errors[:country].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:country).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+
+	  	<div class="form-group col-lg-6">
+	  		<%= form.label :zip_code, class: 'form-label' %>
+		  	<%= form.text_field :zip_code, placeholder: "Zip Code", class: "form-control #{'is-invalid' if @doctor.errors[:zip_code].any?}", autocomplete: "off" %>
+          <% @doctor.errors.full_messages_for(:zip_code).each do |msg| %>
+            <div class="invalid-feedback">
+              <%= msg %>
+            </div>
+          <% end %>
+	  	</div>
+	  </div>
+
+	  <div>
+	  	<%= form.submit class: 'btn btn-primary p-2 mt-2' %>
+	  </div>
+	<% end %>
+</div>

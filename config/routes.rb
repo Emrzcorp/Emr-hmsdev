@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   root "pages#ot"
   get 'pages/home'
   devise_for :users
@@ -50,4 +51,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+
+
+  resources :patients do
+    resources :appointments, only: [:index, :new, :create] 
+    resources :medical_records, only: [:index, :new, :create]
+  end
+
+  resources :doctors do
+    resources :appointments, only: [:index]               
+  end
+  
+  resources :appointments
+  resources :medical_records
 end
