@@ -1,21 +1,47 @@
-<div class="help">
-  Help <i class="fas fa-caret-down"></i>
-</div>
-<div class="user-info">
-  <div>Susan Martin</div>
-  <div>|</div>
-  <div>
-    HeartWell Health <i class="fas fa-caret-down"></i>
+<div class="d-flex justify-content-between align-items-center p-2 bg-dark text-white border-bottom">
+  
+  <!-- Left: (blank placeholder / ya logo daal sakte ho) -->
+  <div></div>
+
+  <!-- Right: Toggle + User Info -->
+  <div class="d-flex align-items-center">
+    
+    <!-- Mobile Toggle Button (Right side) -->
+    <button class="btn d-md-none border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#userMenu" aria-expanded="false" aria-controls="userMenu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- User Info -->
+    <div id="userMenu" class="collapse d-md-flex ms-3">
+      <div class="user-info d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3 mt-2 mt-md-0 text-white bg-dark p-3 p-md-0 rounded">
+        
+        <!-- Help -->
+        <div class="help fw-semibold">
+          Help <i class="fas fa-caret-down"></i>
+        </div>
+
+        <div class="fw-semibold">Susan Martin</div>
+        <div class="text-muted d-none d-md-block">|</div>
+
+        <div>
+          HeartWell Health <i class="fas fa-caret-down ms-1"></i>
+        </div>
+        <div class="text-muted d-none d-md-block">|</div>
+
+        <div><i class="fas fa-lock icon"></i></div>
+
+        <div>
+          <%= link_to ehrsetting_path do %>
+            <i class="fas fa-cog icon"></i>
+          <% end %>
+        </div>
+
+        <%= button_to destroy_user_session_path, method: :delete, 
+          class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
+          <i class="fas fa-sign-out-alt me-1"></i>
+          <span>Log out</span>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div>|</div>
-  <div><i class="fas fa-lock icon"></i></div>
-  <div>
-    <%= link_to ehrsetting_path do %>
-      <i class="fas fa-cog icon"></i>
-    <% end %>
-  </div>
-  <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger" do %>
-    <i class="fas fa-sign-out-alt me-2"></i>
-    <span>Log out</span>
-  <% end %>
 </div>

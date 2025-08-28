@@ -1,35 +1,65 @@
-    body {
-      background: #fff;
-      font-family: Arial, sans-serif;
-    }
-    .modal-header {
-      background: #5a2ddb;
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      padding: 0.5rem 1rem;
-    }
-    .nav-tabs .nav-link.active {
-      color: #5a2ddb;
-      border-color: #5a2ddb #5a2ddb transparent;
-      font-weight: 700;
-    }
-    .form-label {
-      font-weight: 600;
-      font-size: 12px;
-    }
-    .form-control, .form-select {
-      font-size: 12px;
-      height: 30px;
-    }
-    .scrollable-body {
-      max-height: 430px;
-      overflow-y: auto;
-    }
-    .tab-pane .form-actions {
-      text-align: right;
-      margin-top: 1rem;
-    }
-    .tab-pane .form-actions .btn {
-      margin-left: 0.5rem;
-    }
+  .modal-container {
+    max-width: 700px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    background: #fff;
+    overflow: hidden;
+  }
+  .modal-header {
+    background: #4f46e5;
+    color: #fff;
+    padding: 15px 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header .close-btn {
+    font-size: 22px;
+    cursor: pointer;
+    color: #fff;
+  }
+  .nav-tabs {
+    border: none;
+    display: flex;
+    background: #f9fafb;
+    padding: 10px;
+  }
+  .nav-tabs .nav-link {
+    border: none;
+    border-radius: 20px;
+    margin: 0 5px;
+    padding: 8px 18px;
+    font-weight: 500;
+    color: #4b5563;
+    background: #e5e7eb;
+    transition: all 0.2s ease;
+  }
+  .nav-tabs .nav-link.active {
+    background: #4f46e5;
+    color: #fff;
+  }
+  .tab-content {
+    padding: 20px;
+  }
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .form-control, .form-select {
+    border-radius: 8px;
+  }
+  .input-group .btn {
+    border-radius: 6px;
+  }
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .form-actions .btn {
+    border-radius: 8px;
+    padding: 8px 18px;
+  }
