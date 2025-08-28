@@ -1,0 +1,30 @@
+<div class="container mt-3 mb-5">
+  <h2>Doctor's</h2>
+  <%= link_to "New Doctor", new_doctor_path, class: 'btn btn-primary mt-2 p-2 mb-2 text-decoration-none' %>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Doctor Name</th>
+        <th>Specialty</th>
+        <th>License Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @doctors.each do |doctor| %>
+        <tr>
+          <th><%= doctor.id %></th>
+          <th><%= doctor.full_name %></th>
+          <th><%= doctor.specialty %></th>
+          <th><%= doctor.license_number %></th>
+          <th>
+            <%= link_to 'View', doctor_path(doctor), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Edit', edit_doctor_path(doctor), class: 'btn btn-secondary btn-sm' %>
+            <%= button_to 'Destroy', doctor_path(doctor), method: :delete, class: 'btn btn-danger btn-sm mt-1' %>
+          </th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

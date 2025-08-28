@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8">
+      <h1>Profile of Dr. <%= @doctor.full_name %></h1>
+    </div>
+   
+  </div>
+
+
+  <table class="table table-hover table-bordered">
+    <tr>
+      <th>First Name</th>
+      <td><%= @doctor.first_name || "NA" %></td>
+    </tr>
+    <tr>
+      <th>Middle Name</th>
+      <td><%= @doctor.middle_name || "NA" %></td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td><%= @doctor.last_name || "NA" %></td>
+    </tr>
+    <tr>
+      <th>Specialty</th>
+      <td><%= @doctor.specialty || "NA" %></td>
+    </tr>
+    <tr>
+      <th>License Number</th>
+      <td><%= @doctor.license_number || "NA" %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @doctor.email || "NA" %></td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td><%= @doctor.phone_number || "NA" %></td>
+    </tr>
+  </table>
+  <%= link_to 'Edit Profile', edit_doctor_path(@doctor), class: "btn btn-primary p-2 text-decoration-none" %>
+  <%= link_to '<- Back', doctors_path, class: "btn btn-outline-secondary text-decoration-none" %>
+</div>

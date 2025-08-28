@@ -36,31 +36,71 @@
     <div class="content-area">
       <!-- Sidebar -->
       <aside class="sidebar-left">
-        <div class="section-title"><i class="fas fa-users"></i> USERS</div>
-        <div class="checkbox-group">
-          <label><input type="checkbox" checked /> All</label>
-          <small class="text-primary ms-2">Just me</small>
-          <small class="text-primary ms-2">Edit</small>
-        </div>
-
-        <div class="section-title">LOGGED IN AS</div>
-        <div class="checkbox-group">
-          <label><input type="checkbox" checked /> <span class="color-box color-purple me-1"></span> Martin, Susan</label>
-        </div>
-
-        <div class="section-title">PHYS./MD/DO</div>
-        <div class="checkbox-group">
-          <label><input type="checkbox" checked /> <span class="color-box color-orange me-1"></span> Persaud, Ian</label>
-        </div>
-
-        <div class="section-title">NURSE</div>
-        <div class="checkbox-group">
-          <label><input type="checkbox" checked /> <span class="color-box color-green me-1"></span> Persaud, Jennifer</label>
-        </div>
-
-        <div class="expandable"><i class="fas fa-caret-right"></i> DISPLAY OPTIONS</div>
-        <div class="expandable"><i class="fas fa-caret-right"></i> APPOINTMENT TYPES</div>
-        <div class="expandable"><i class="fas fa-caret-right"></i> APPOINTMENT STATUS</div>
+      <div class="section-title">
+        <i class="fas fa-users">
+        </i>
+        USERS
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        All
+        </label>
+        <small class="text-primary ms-2">
+        Just me
+        </small>
+        <small class="text-primary ms-2">
+        Edit
+        </small>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        LOGGED IN AS
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-purple me-1">
+        </span>
+        <%= current_user.full_name %>
+        </label>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        PHYS./MD/DO
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-orange me-1">
+        </span>
+        Persaud, Ian
+        </label>
+      </div>
+      <div class="section-title" style="font-weight:600; font-size:11px; margin-bottom:3px;">
+        NURSE
+      </div>
+      <div class="checkbox-group">
+        <label>
+        <input checked="" type="checkbox"/>
+        <span class="color-box color-green me-1">
+        </span>
+        Persaud, Jennifer
+        </label>
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        DISPLAY OPTIONS
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        APPOINTMENT TYPES
+      </div>
+      <div class="expandable">
+        <i class="fas fa-caret-right">
+        </i>
+        APPOINTMENT STATUS
+      </div>
       </aside>
 
       <!-- Main content -->
