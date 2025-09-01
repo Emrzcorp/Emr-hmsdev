@@ -1,647 +1,283 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Patient Fusion Form Preview Improved
-  </title>
-  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="preview-full">
-    <div class="alert-custom" role="alert">
-      <strong>
-        Preview of your form:
-      </strong>
-      Your patients will see your questions in the format shown below. Any edits you make in "preview" will not be reflected in the form. To edit this form, go back to the form editor in your Practice Fusion intake form library.
-    </div>
-      <nav class="navbar navbar-custom">
-      <a class="d-flex align-items-center" href="#">
-        <img alt="Patient Fusion logo with blue and black text on dark background" height="24" src="https://storage.googleapis.com/a1aa/image/2a67d256-3246-4576-23f7-ab098d1e3fff.jpg" width="120"/>
-      </a>
-      </nav>
-      <header class="header-blue d-flex align-items-center">
-      <div class="btn-picture">
-        <img alt="Human face photo placeholder, smiling adult with neutral background" height="60" src="https://storage.googleapis.com/a1aa/image/5677ae04-c6f9-4d01-6c70-93f6c064ded3.jpg" width="60"/>
-        <span>
-        Add a picture
-        <br/>
-        to your EHR
-        <br/>
-        profile
-        </span>
-        <span class="edit-text">
-        <i class="fas fa-plus">
-        </i>
-        Edit
-        </span>
-      </div>
-      <div class="flex-grow-1 ps-3">
-        <div class="appointment-text">
-        Appointment with &lt;doctor name&gt; | &lt;appointment date&gt;
-        </div>
-        <div style="font-size: 20px; font-weight: 400;">
-        Review and submit patient information
-        </div>
-      </div>
-      <div class="questions-count ms-auto fw-bold" style="font-size: 14px;">
-        <strong>
-        11
-        </strong>
-        questions
-      </div>
-      </header><br>
-      <main class="questions-list">
-        <ol>
-          <li>
-              <div class="row align-items-center">
-                <div class="col col-question">
-                 1. What is the patient's name, date of birth and sex?
-                </div>
-                <div class="col-auto col-dash">-</div>
-                <div class="col-auto col-edit">
-                  <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-                </div>
-              </div>
-          <!-- Hidden form below the question -->
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div class="mb-2">
-                  <input type="text" class="form-control" placeholder="Patient first name" />
-                </div>
-                <div class="mb-2">
-                  <input type="text" class="form-control" placeholder="Patient last name" />
-                </div>
-                <div class="mb-2">
-                  <label class="form-label small">Date of birth (MM/DD/YYYY)</label>
-                  <input type="text" class="form-control" placeholder="MM/DD/YYYY" />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label small">Patient sex</label><br />
-                  <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary">Female</button>
-                    <button type="button" class="btn btn-outline-primary">Male</button>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Continue</button>
-              </form>
-            </div>
-          </li>
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                2. What is the patient's contact information?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div class="form-row">
-                  <input type="text" class="form-control" placeholder="Patient street address" aria-label="Patient street address" />
-                </div>
-                <div class="form-row d-flex gap-3">
-                  <input type="text" class="form-control flex-grow-1" placeholder="City" aria-label="City" />
-                  <select class="form-select" aria-label="State">
-                    <option selected disabled>State</option>
-                    <option>Alabama</option>
-                    <option>Alaska</option>
-                    <option>Arizona</option>
-                    <option>Arkansas</option>
-                    <option>California</option>
-                    <option>Colorado</option>
-                    <option>Connecticut</option>
-                    <option>Delaware</option>
-                    <option>Florida</option>
-                    <option>Georgia</option>
-                    <option>Hawaii</option>
-                    <option>Idaho</option>
-                    <option>Illinois</option>
-                    <option>Indiana</option>
-                    <option>Iowa</option>
-                    <option>Kansas</option>
-                    <option>Kentucky</option>
-                    <option>Louisiana</option>
-                    <option>Maine</option>
-                    <option>Maryland</option>
-                    <option>Massachusetts</option>
-                    <option>Michigan</option>
-                    <option>Minnesota</option>
-                    <option>Mississippi</option>
-                    <option>Missouri</option>
-                    <option>Montana</option>
-                    <option>Nebraska</option>
-                    <option>Nevada</option>
-                    <option>New Hampshire</option>
-                    <option>New Jersey</option>
-                    <option>New Mexico</option>
-                    <option>New York</option>
-                    <option>North Carolina</option>
-                    <option>North Dakota</option>
-                    <option>Ohio</option>
-                    <option>Oklahoma</option>
-                    <option>Oregon</option>
-                    <option>Pennsylvania</option>
-                    <option>Rhode Island</option>
-                    <option>South Carolina</option>
-                    <option>South Dakota</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Utah</option>
-                    <option>Vermont</option>
-                    <option>Virginia</option>
-                    <option>Washington</option>
-                    <option>West Virginia</option>
-                    <option>Wisconsin</option>
-                    <option>Wyoming</option>
-                  </select>
-                </div>
-                <div class="form-row d-flex gap-3 align-items-center">
-                  <input type="text" class="form-control" style="max-width: 150px;" placeholder="Zip code" aria-label="Zip code" />
-                  <select class="form-select flex-grow-1" aria-label="Country">
-                    <option selected disabled>Country</option>
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
-                    <option>United Kingdom</option>
-                    <option>Australia</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div class="form-row">
-                  <input type="email" class="form-control" placeholder="Patient email address" aria-label="Patient email address" />
-                </div>
-                <div class="form-row">
-                  <label for="phone" class="phone-label">Patient phone number</label>
-                  <input type="tel" id="phone" class="form-control" placeholder="___-___-____" aria-label="Patient phone number" />
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                  <a href="#" class="btn-back">« Back</a>
-                  <button type="submit" class="btn btn-continue">Continue</button>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-               3. What are the patient's symptoms?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <h5 class="text-muted mb-3">Choose one or more symptoms</h5>
-
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="symptom1" name="symptoms[]" value="Dizziness">
-                  <label class="form-check-label" for="symptom1">Dizziness</label>
-                </div>
-
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="symptom2" name="symptoms[]" value="Ear ache">
-                  <label class="form-check-label" for="symptom2">Ear ache</label>
-                </div>
-
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="symptom3" name="symptoms[]" value="Fainting">
-                  <label class="form-check-label" for="symptom3">Fainting</label>
-                </div>
-
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="symptom4" name="symptoms[]" value="Cough">
-                  <label class="form-check-label" for="symptom4">Cough</label>
-                </div>
-
-                <div class="form-check mb-4">
-                  <input class="form-check-input" type="checkbox" id="symptom5" name="symptoms[]" value="Chest pain">
-                  <label class="form-check-label" for="symptom5">Chest pain</label>
-                </div>
-
-                <!-- Search box -->
-                <div class="input-group mb-4">
-                  <input type="text" class="form-control" placeholder="Search for other symptoms" aria-label="Search symptoms">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-
-                <!-- Navigation buttons -->
-                <div class="d-flex justify-content-between">
-                  <button class="btn btn-link">&laquo; Back</button>
-                  <button type="submit" class="btn btn-continue">Continue</button>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-               4. What are the patient's medications?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <h5 class="text-muted mb-3">Add a medication</h5>
-
-                <!-- Medication input with search icon -->
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Add a medication" aria-label="Add medication">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-
-                <!-- Checkbox for current medication -->
-                <div class="form-check mb-4">
-                  <input class="form-check-input" type="checkbox" value="1" id="currentlyTaking" checked>
-                  <label class="form-check-label" for="currentlyTaking">
-                    Patient is taking this medication currently
-                  </label>
-                </div>
-
-                <!-- Navigation buttons -->
-                <div class="d-flex justify-content-between">
-                  <button class="btn btn-link">&laquo; Back</button>
-                  <button class="btn btn-primary">Continue</button>
-                </div>
-              </div>
-            </form>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-               5. What allergies does the patient have?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 600px; margin: auto;">
-                  <h5 class="text-muted mb-3">Add an allergy</h5>
-
-                  <!-- Allergy input with search icon -->
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Add an allergy" aria-label="Add allergy">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                  </div>
-
-                  <!-- Checkbox for active allergy -->
-                  <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" value="1" id="activeAllergy" checked>
-                    <label class="form-check-label" for="activeAllergy">
-                      This is an active allergy
-                    </label>
-                  </div>
-
-                  <!-- Navigation buttons -->
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Continue</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                6. What is the patient's smoking status?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 600px; margin: auto;">
-                  <h5 class="text-muted mb-3">Choose one smoking status</h5>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="never" value="Never smoker">
-                    <label class="form-check-label" for="never">Never smoker</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="former" value="Former smoker">
-                    <label class="form-check-label" for="former">Former smoker</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="light" value="Light tobacco smoker">
-                    <label class="form-check-label" for="light">Light tobacco smoker</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="someday" value="Current some day smoker">
-                    <label class="form-check-label" for="someday">Current some day smoker</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="everyday" value="Current every day smoker">
-                    <label class="form-check-label" for="everyday">Current every day smoker</label>
-                  </div>
-
-                  <div class="form-check mb-4">
-                    <input class="form-check-input" type="radio" name="smoking_status" id="heavy" value="Heavy tobacco smoker">
-                    <label class="form-check-label" for="heavy">Heavy tobacco smoker</label>
-                  </div>
-
-                  <!-- Navigation buttons -->
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Continue</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                7. What is the patient's insurance?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 600px; margin: auto;">
-                  <h5 class="text-muted mb-3">What is the patient's insurance?</h5>
-
-                  <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" id="selfPay" name="self_pay" value="true" checked>
-                    <label class="form-check-label" for="selfPay">Self pay</label>
-                  </div>
-
-                  <div class="input-group mb-4">
-                    <input type="text" class="form-control" placeholder="Insurance company" aria-label="Insurance company" name="insurance_company">
-                    <span class="input-group-text">
-                      <i class="bi bi-search"></i> <!-- You can use Font Awesome or Bootstrap icon here -->
-                    </span>
-                  </div>
-
-                  <!-- Navigation buttons -->
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Continue</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                8. What is the patient's preferred language?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                  <div style="max-width: 600px; margin: auto;">
-                    <h5 class="text-muted mb-3">What is the patient's preferred language?</h5>
-
-                    <p>Select one language</p>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="preferred_language" id="langEnglish" value="English">
-                      <label class="form-check-label" for="langEnglish">English</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="preferred_language" id="langSpanish" value="Spanish">
-                      <label class="form-check-label" for="langSpanish">Spanish</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="preferred_language" id="langGerman" value="German">
-                      <label class="form-check-label" for="langGerman">German</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="preferred_language" id="langFrench" value="French">
-                      <label class="form-check-label" for="langFrench">French</label>
-                    </div>
-
-                    <div class="form-check mb-3">
-                      <input class="form-check-input" type="radio" name="preferred_language" id="langChinese" value="Chinese">
-                      <label class="form-check-label" for="langChinese">Chinese</label>
-                    </div>
-
-                    <div class="input-group mb-4">
-                      <input type="text" class="form-control" placeholder="Search for other language" name="other_language">
-                      <span class="input-group-text">
-                        <i class="bi bi-search"></i> <!-- You can use Bootstrap or FontAwesome icons -->
-                      </span>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                      <button class="btn btn-link">&laquo; Back</button>
-                      <button class="btn btn-primary">Continue</button>
-                    </div>
-                  </div>
-              </form>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                9. What is the patient's race?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-             <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 600px; margin: auto;">
-                  <h5 class="text-muted mb-3">What is the patient's race?</h5>
-
-                  <p>Choose one or more races</p>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="raceNative" value="American Indian or Alaska Native">
-                    <label class="form-check-label" for="raceNative">American Indian or Alaska Native</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="raceAsian" value="Asian">
-                    <label class="form-check-label" for="raceAsian">Asian</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="raceBlack" value="Black or African American">
-                    <label class="form-check-label" for="raceBlack">Black or African American</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="racePacific" value="Native Hawaiian or Other Pacific Islander">
-                    <label class="form-check-label" for="racePacific">Native Hawaiian or Other Pacific Islander</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="raceWhite" value="White">
-                    <label class="form-check-label" for="raceWhite">White</label>
-                  </div>
-
-                  <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" name="patient_race[]" id="raceDecline" value="Decline to specify">
-                    <label class="form-check-label" for="raceDecline">Decline to specify</label>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Continue</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-                10. What is the patient's ethnicity?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 600px; margin: auto;">
-                  <h5 class="text-muted mb-3">What is the patient's ethnicity?</h5>
-
-                  <p>Choose one ethnicity</p>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ethnicity" id="ethnicityHispanic" value="Hispanic or Latino">
-                    <label class="form-check-label" for="ethnicityHispanic">Hispanic or Latino</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ethnicity" id="ethnicityNotHispanic" value="Not Hispanic or Latino">
-                    <label class="form-check-label" for="ethnicityNotHispanic">Not Hispanic or Latino</label>
-                  </div>
-
-                  <div class="form-check mb-4">
-                    <input class="form-check-input" type="radio" name="ethnicity" id="ethnicityDecline" value="Decline to specify">
-                    <label class="form-check-label" for="ethnicityDecline">Decline to specify</label>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Continue</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-
-          <li>
-            <div class="row align-items-center">
-              <div class="col col-question">
-               11. What is the patient's emergency contact information?
-              </div>
-              <div class="col-auto col-dash">-</div>
-              <div class="col-auto col-edit">
-                <a href="#" onclick="toggleQuestionForm(event)">Edit answer</a>
-              </div>
-            </div>
-            <div class="question-form mt-3" style="display: none;">
-              <form>
-                <div style="max-width: 700px; margin: auto;">
-                  <h5 class="text-muted mb-3">Emergency Contact Information</h5>
-
-                  <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Emergency contact last name" name="emergency_last_name">
-                  </div>
-
-                  <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Emergency contact street address" name="emergency_address">
-                  </div>
-
-                  <div class="row g-2 mb-3">
-                    <div class="col-md-6">
-                      <input type="text" class="form-control" placeholder="City" name="emergency_city">
-                    </div>
-                    <div class="col-md-6">
-                      <select class="form-select" name="emergency_state">
-                        <option value="">State</option>
-                        <!-- Add state options here -->
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="row g-2 mb-3">
-                    <div class="col-md-6">
-                      <input type="text" class="form-control" placeholder="Zip code" name="emergency_zip">
-                    </div>
-                    <div class="col-md-6">
-                      <select class="form-select" name="emergency_country">
-                        <option value="">Country</option>
-                        <!-- Add country options here -->
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Emergency contact email address" name="emergency_email">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="emergency_phone" class="form-label">Emergency phone number</label>
-                    <input type="tel" class="form-control" name="emergency_phone" id="emergency_phone" placeholder="___-___-____">
-                  </div>
-
-                  <div class="mb-4">
-                    <select class="form-select" name="emergency_relationship">
-                      <option value="">Relationship</option>
-                      <option value="Parent">Parent</option>
-                      <option value="Sibling">Sibling</option>
-                      <option value="Spouse">Spouse</option>
-                      <option value="Friend">Friend</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-link">&laquo; Back</button>
-                    <button class="btn btn-primary">Review &amp; Submit</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li>
-        </ol>
-      </main>
+<div class="preview-full">
+  <!-- Alert -->
+  <div class="alert-custom">
+    <strong>Preview of your form: </strong> 
+    Your patients will see your questions in the format shown below.
   </div>
- </body>
-</html>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-custom">
+    <a class="d-flex align-items-center" href="#">
+      <img src="https://storage.googleapis.com/a1aa/image/2a67d256-3246-4576-23f7-ab098d1e3fff.jpg" alt="Logo">
+    </a>
+  </nav>
+
+  <!-- Header -->
+  <header class="header-blue">
+    <div class="btn-picture">
+      <img src="https://storage.googleapis.com/a1aa/image/5677ae04-c6f9-4d01-6c70-93f6c064ded3.jpg" alt="Profile">
+      <span>Add a picture<br>to your EHR<br>profile</span>
+      <div class="edit-text"><i class="fas fa-plus"></i> Edit</div>
+    </div>
+    <div>
+      <div class="appointment-text">Appointment with &lt;doctor name&gt; | &lt;appointment date&gt;</div>
+      <div style="font-size: 20px; font-weight: 400;">Review and submit patient information</div>
+    </div>
+    <div class="questions-count"><strong>11</strong> questions</div>
+  </header>
+
+  <!-- Questions -->
+  <main class="questions-list">
+    <ol>
+      <!-- Q1 -->
+      <li>
+        <div class="row">
+          <div class="col">1. What is the patient's name, date of birth and sex?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <input type="text" class="form-control mb-2" placeholder="Patient first name">
+            <input type="text" class="form-control mb-2" placeholder="Patient last name">
+            <input type="text" class="form-control mb-2" placeholder="MM/DD/YYYY">
+            <div class="mb-3">
+              <label>Patient sex:</label><br>
+              <button type="button" class="btn btn-outline-primary btn-sm">Female</button>
+              <button type="button" class="btn btn-outline-primary btn-sm">Male</button>
+            </div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q2 -->
+      <li>
+        <div class="row">
+          <div class="col">2. What is the patient's contact information?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <input type="text" class="form-control mb-2" placeholder="Street address">
+            <div class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" placeholder="City">
+              <select class="form-select">
+                <option disabled selected>State</option>
+                <option>California</option>
+                <option>Texas</option>
+                <option>Florida</option>
+                <option>New York</option>
+                <!-- more states... -->
+              </select>
+            </div>
+            <div class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" placeholder="Zip code">
+              <select class="form-select">
+                <option disabled selected>Country</option>
+                <option>United States</option>
+                <option>Canada</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <input type="email" class="form-control mb-2" placeholder="Email address">
+            <input type="tel" class="form-control mb-3" placeholder="Phone number">
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q3 -->
+      <li>
+        <div class="row">
+          <div class="col">3. What are the patient's symptoms?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <h6 class="text-muted">Choose one or more symptoms</h6>
+            <div class="form-check"><input type="checkbox" class="form-check-input"> Dizziness</div>
+            <div class="form-check"><input type="checkbox" class="form-check-input"> Ear ache</div>
+            <div class="form-check"><input type="checkbox" class="form-check-input"> Fainting</div>
+            <div class="form-check"><input type="checkbox" class="form-check-input"> Cough</div>
+            <div class="form-check mb-3"><input type="checkbox" class="form-check-input"> Chest pain</div>
+            <input type="text" class="form-control mb-3" placeholder="Search for other symptoms">
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q4 -->
+      <li>
+        <div class="row">
+          <div class="col">4. What are the patient's medications?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <input type="text" class="form-control mb-2" placeholder="Add a medication">
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" checked>
+              <label>Patient is taking this medication currently</label>
+            </div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q5 -->
+      <li>
+        <div class="row">
+          <div class="col">5. What allergies does the patient have?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <input type="text" class="form-control mb-2" placeholder="Add an allergy">
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" checked>
+              <label>This is an active allergy</label>
+            </div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q6 -->
+      <li>
+        <div class="row">
+          <div class="col">6. What is the patient's smoking status?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <div class="form-check"><input type="radio" name="smoking"> Never smoker</div>
+            <div class="form-check"><input type="radio" name="smoking"> Former smoker</div>
+            <div class="form-check"><input type="radio" name="smoking"> Light tobacco smoker</div>
+            <div class="form-check"><input type="radio" name="smoking"> Current some day smoker</div>
+            <div class="form-check"><input type="radio" name="smoking"> Current every day smoker</div>
+            <div class="form-check mb-3"><input type="radio" name="smoking"> Heavy tobacco smoker</div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q7 -->
+      <li>
+        <div class="row">
+          <div class="col">7. What is the patient's insurance?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <div class="form-check mb-2"><input type="checkbox" checked> Self pay</div>
+            <input type="text" class="form-control mb-3" placeholder="Insurance company">
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q8 -->
+      <li>
+        <div class="row">
+          <div class="col">8. What is the patient's preferred language?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <div class="form-check"><input type="radio" name="lang"> English</div>
+            <div class="form-check"><input type="radio" name="lang"> Spanish</div>
+            <div class="form-check"><input type="radio" name="lang"> German</div>
+            <div class="form-check"><input type="radio" name="lang"> French</div>
+            <div class="form-check mb-3"><input type="radio" name="lang"> Chinese</div>
+            <input type="text" class="form-control mb-3" placeholder="Search for other language">
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q9 -->
+      <li>
+        <div class="row">
+          <div class="col">9. What is the patient's race?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <div class="form-check"><input type="checkbox"> American Indian or Alaska Native</div>
+            <div class="form-check"><input type="checkbox"> Asian</div>
+            <div class="form-check"><input type="checkbox"> Black or African American</div>
+            <div class="form-check"><input type="checkbox"> Native Hawaiian or Pacific Islander</div>
+            <div class="form-check"><input type="checkbox"> White</div>
+            <div class="form-check mb-3"><input type="checkbox"> Decline to specify</div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q10 -->
+      <li>
+        <div class="row">
+          <div class="col">10. What is the patient's ethnicity?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <div class="form-check"><input type="radio" name="ethnicity"> Hispanic or Latino</div>
+            <div class="form-check"><input type="radio" name="ethnicity"> Not Hispanic or Latino</div>
+            <div class="form-check mb-3"><input type="radio" name="ethnicity"> Decline to specify</div>
+            <button type="submit" class="btn btn-continue w-100">Continue</button>
+          </form>
+        </div>
+      </li>
+
+      <!-- Q11 -->
+      <li>
+        <div class="row">
+          <div class="col">11. What is the patient's emergency contact information?</div>
+          <div class="col-auto">-</div>
+          <div class="col-auto col-edit"><a href="#" onclick="toggleQuestionForm(event)">Edit answer</a></div>
+        </div>
+        <div class="question-form mt-3" style="display:none;">
+          <form>
+            <input type="text" class="form-control mb-2" placeholder="Emergency contact last name">
+            <input type="text" class="form-control mb-2" placeholder="Street address">
+            <div class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" placeholder="City">
+              <select class="form-select"><option>State</option></select>
+            </div>
+            <div class="d-flex gap-2 mb-2">
+              <input type="text" class="form-control" placeholder="Zip code">
+              <select class="form-select"><option>Country</option></select>
+            </div>
+            <input type="email" class="form-control mb-2" placeholder="Email">
+            <input type="tel" class="form-control mb-2" placeholder="Phone number">
+            <select class="form-select mb-3">
+              <option disabled selected>Relationship</option>
+              <option>Parent</option>
+              <option>Sibling</option>
+              <option>Spouse</option>
+              <option>Friend</option>
+              <option>Other</option>
+            </select>
+            <button type="submit" class="btn btn-continue w-100">Review & Submit</button>
+          </form>
+        </div>
+      </li>
+
+    </ol>
+  </main>
+</div>
+
 <script>
   function toggleQuestionForm(event) {
     event.preventDefault();
@@ -649,3 +285,4 @@
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
   }
 </script>
+

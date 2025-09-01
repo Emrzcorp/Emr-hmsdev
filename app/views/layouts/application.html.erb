@@ -34,15 +34,10 @@
       </div>
     <% end %>
 
-
-    <main class="container mx-auto mt-28 px-5 flex">
-      <% unless devise_controller? %>
-          <nav class="sidebar">
-            <%= render "shared/sidebar" %>
-          </nav>
-    <% end %>
+      <nav class="sidebar">
+        <%= render "shared/sidebar" %>
+      </nav>
       <%= yield %>
-    </main>
     <% flash.each do |type, message| %>
       <% alert_class = case type.to_sym
         when :notice then "alert-success"

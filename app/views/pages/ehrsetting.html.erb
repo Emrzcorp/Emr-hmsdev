@@ -1,253 +1,238 @@
-<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Practice Fusion Schedule
-  </title>
-  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body>
-  <div class="main-container d-flex flex-column flex-grow-1">
-    <div class="main-container d-flex flex-column flex-grow-1">
+  <div class="main-container d-flex flex-column flex-grow-1 my-4">
     <div class="header-blue">
-      <span class="appointments-count">
-        Settings
-      </span>
+      <span class="appointments-count">Settings</span>
     </div>
     <div class="header-bar">EHR Settings</div>
-      <div class="search-container">
-        <div class="search-input-group d-flex align-items-center">
-          <input type="text" class="flex-grow-1" placeholder="Search settings" aria-label="Search settings" />
-          <button type="button" aria-label="Search">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#2a8dd4" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442 0a5 5 0 1 1 0-7.07 5 5 0 0 1 0 7.07z"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="container-fluid px-3 pt-2">
-        <!-- Billing -->
-        <div class="section-title">Billing</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Account setup</a>
-          <span class="description-text">Connect your billing solutions to your EHR</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Billing charges and templates</a>
-          <span class="description-text">Create a charge list and templates for billable services.</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Billing solutions</a>
-          <span class="description-text">Learn and request information about supported billing solutions</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Coverage types</a>
-          <span class="description-text">Select a default coverage type for your practice</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Eligibility</a>
-          <span class="description-text">Enable and customize scheduling for insurance eligibility checks</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Payer list</a>
-          <span class="description-text">Review, add or edit the payers associated with your practice</span>
-        </div>
 
-        <!-- Charting -->
-        <div class="section-title">Charting</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Charting templates</a>
-          <span class="description-text">Browse, add, edit and share your templates</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Chart note types</a>
-          <span class="description-text">Add, edit and delete chart note types</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Encounter types</a>
-          <span class="description-text">Add, edit and delete encounter types</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Flowsheets</a>
-          <span class="description-text">Create, claim, and edit flowsheets</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Patient list default</a>
-          <span class="description-text">Choose your default tab when accessing a patient from the Patient list</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Patient Summary</a>
-          <span class="description-text">Customize your view of the patient summary for all patients</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Timeline default</a>
-          <span class="description-text">Choose your default type of data when accessing the Timeline</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Diagnoses List</a>
-          <span class="description-text">Add and edit your frequently used Diagnoses</span>
-        </div>
-
-        <!-- Data sharing apps -->
-        <div class="section-title">Data sharing apps</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">App marketplace</a>
-          <span class="description-text">Add new apps, and manage existing authorized apps</span>
-        </div>
-
-        <!-- e-Prescribing -->
-        <div class="section-title">e-Prescribing</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Electronic Prescriptions for Controlled Substances (EPCS)</a>
-          <span class="description-text">Set permissions</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Electronic Prior Authorization</a>
-          <span class="description-text">Manage electronic prior authorization settings</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">e-Prescribing</a>
-          <span class="description-text">Send prescriptions directly to a patient's preferred pharmacy</span>
-        </div>
-
-        <!-- Labs and imaging -->
-        <div class="section-title">Labs and imaging</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Imaging connections</a>
-          <span class="description-text">Review your practice's existing connections or connect with additional imaging centers</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Lab connections</a>
-          <span class="description-text">Review your practice's existing connections or connect with additional labs</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Lab ordering specimen collection settings</a>
-          <span class="description-text">Determines whether or not specimen collection features are automatically displayed when you place a lab order</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Imaging templates</a>
-          <span class="description-text">Browse, add and edit your imaging order templates</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Lab templates</a>
-          <span class="description-text">Browse, add and edit your lab order templates</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Imaging appropriate use criteria</a>
-          <span class="description-text">Configure the appropriate use criteria tool</span>
-        </div>
-
-        <!-- Messaging -->
-        <div class="section-title">Messaging</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Message settings</a>
-          <span class="description-text">Adjust settings for including messages in patient chart and archiving group messages</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Inbound C-CDA display preferences</a>
-          <span class="description-text">Select order in which you want to see the content of inbound C-CDA</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Direct Messaging</a>
-          <span class="description-text">Register your unique Direct address</span>
-        </div>
-
-        <!-- Notifications and alerts -->
-        <div class="section-title">Notifications and alerts</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">CDS and Surveillance</a>
-          <span class="description-text">Choose Clinical Decision Support (CDS) notifications for your practice</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Drug alerts</a>
-          <span class="description-text">Configure drug allergy and drug interaction alerts</span>
-        </div>
-
-        <!-- Patient communications -->
-        <div class="section-title">Patient communications</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Appointment reminders and notifications</a>
-          <span class="description-text">Enable / manage appointment reminders and notifications for providers</span>
-        </div>
-        <div class="line-break">
-          <a href="/intake" class="link-blue">Intake forms</a>
-          <span class="description-text">Create, edit, publish and browse patient intake forms.</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">PHR invite and PHR messaging</a>
-          <span class="description-text">Invite patients to Patient Portal (PHR) and adjust settings for sending messages to patients from the EHR</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Result release settings</a>
-          <span class="description-text">Enable the automatic release of results to the patient's portal account at the time they are made available to the provider in the electronic health record (EHR).</span>
-        </div>
-
-        <!-- Practice settings -->
-        <div class="section-title">Practice settings</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Emergency access</a>
-          <span class="description-text">Manage emergency access settings in the EHR</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Facilities</a>
-          <span class="description-text">Add and edit additional practice facilities</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">CPT license information</a>
-          <span class="description-text">Manage your practice's CPT license and related alerts</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Import patient demographics</a>
-          <span class="description-text">Import patient demographic data from another EHR.</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Practice details</a>
-          <span class="description-text">Edit your contact info, practice identifiers, and infobutton configuration</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Prescription task delegation</a>
-          <span class="description-text">Enable the ability to assign trusted members of your practice to complete specified prescription-related administrative tasks</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Schedule</a>
-          <span class="description-text">Set up your calendar display, facility hours, and appointment types</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Users</a>
-          <span class="description-text">Add users and update their profiles for the EHR and Patient Fusion</span>
-        </div>
-
-        <!-- Registries and integrations -->
-        <div class="section-title">Registries and integrations</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Clinical data integrations</a>
-          <span class="description-text">View and manage clinical data exchange connections</span>
-        </div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Immunization registry</a>
-          <span class="description-text">Manage immunization registry settings</span>
-        </div>
-
-        <!-- Tasks -->
-        <div class="section-title">Tasks</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Task Types</a>
-          <span class="description-text">Choose the task types you would like to display by default and set your tab order</span>
-        </div>
-
-        <!-- Vaccines -->
-        <div class="section-title">Vaccines</div>
-        <div class="line-break">
-          <a href="#" class="link-blue">Vaccine inventory</a>
-          <span class="description-text">Create and edit vaccine inventory for your practice</span>
-        </div>
+    <!-- Search -->
+    <div class="search-container">
+      <div class="search-input-group d-flex align-items-center">
+        <input type="text" class="flex-grow-1" placeholder="Search settings" aria-label="Search settings" />
+        <button type="button" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2a8dd4" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 
+            1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442 
+            0a5 5 0 1 1 0-7.07 5 5 0 0 1 0 7.07z"/>
+          </svg>
+        </button>
       </div>
     </div>
-  <script crossorigin="anonymous" integrity="sha384-ENjdO4Dr2bkBIFxQpeoY9l+Y1NQZ6jIW3" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-  </script>
- </body>
-</html>
 
+    <div class="container-fluid px-3 pt-3 pb-4">
+      <!-- Billing -->
+      <div class="section-title">Billing</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Account setup</a>
+        <span class="description-text">Connect your billing solutions to your EHR</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Billing charges and templates</a>
+        <span class="description-text">Create a charge list and templates for billable services.</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Billing solutions</a>
+        <span class="description-text">Learn and request information about supported billing solutions</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Coverage types</a>
+        <span class="description-text">Select a default coverage type for your practice</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Eligibility</a>
+        <span class="description-text">Enable and customize scheduling for insurance eligibility checks</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Payer list</a>
+        <span class="description-text">Review, add or edit the payers associated with your practice</span>
+      </div>
 
+      <!-- Charting -->
+      <div class="section-title">Charting</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Charting templates</a>
+        <span class="description-text">Browse, add, edit and share your templates</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Chart note types</a>
+        <span class="description-text">Add, edit and delete chart note types</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Encounter types</a>
+        <span class="description-text">Add, edit and delete encounter types</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Flowsheets</a>
+        <span class="description-text">Create, claim, and edit flowsheets</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Patient list default</a>
+        <span class="description-text">Choose your default tab when accessing a patient from the Patient list</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Patient Summary</a>
+        <span class="description-text">Customize your view of the patient summary for all patients</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Timeline default</a>
+        <span class="description-text">Choose your default type of data when accessing the Timeline</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Diagnoses List</a>
+        <span class="description-text">Add and edit your frequently used Diagnoses</span>
+      </div>
+
+      <!-- Data sharing apps -->
+      <div class="section-title">Data sharing apps</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">App marketplace</a>
+        <span class="description-text">Add new apps, and manage existing authorized apps</span>
+      </div>
+
+      <!-- e-Prescribing -->
+      <div class="section-title">e-Prescribing</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Electronic Prescriptions for Controlled Substances (EPCS)</a>
+        <span class="description-text">Set permissions</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Electronic Prior Authorization</a>
+        <span class="description-text">Manage electronic prior authorization settings</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">e-Prescribing</a>
+        <span class="description-text">Send prescriptions directly to a patient's preferred pharmacy</span>
+      </div>
+
+      <!-- Labs and imaging -->
+      <div class="section-title">Labs and imaging</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Imaging connections</a>
+        <span class="description-text">Review existing connections or connect with more imaging centers</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Lab connections</a>
+        <span class="description-text">Review existing connections or connect with additional labs</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Lab ordering specimen collection settings</a>
+        <span class="description-text">Show specimen collection features when placing lab orders</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Imaging templates</a>
+        <span class="description-text">Browse, add and edit your imaging order templates</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Lab templates</a>
+        <span class="description-text">Browse, add and edit your lab order templates</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Imaging appropriate use criteria</a>
+        <span class="description-text">Configure the appropriate use criteria tool</span>
+      </div>
+
+      <!-- Messaging -->
+      <div class="section-title">Messaging</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Message settings</a>
+        <span class="description-text">Adjust settings for including messages in patient chart and archiving group messages</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Inbound C-CDA display preferences</a>
+        <span class="description-text">Select order in which you want to see inbound C-CDA content</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Direct Messaging</a>
+        <span class="description-text">Register your unique Direct address</span>
+      </div>
+
+      <!-- Notifications -->
+      <div class="section-title">Notifications and alerts</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">CDS and Surveillance</a>
+        <span class="description-text">Choose CDS notifications for your practice</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Drug alerts</a>
+        <span class="description-text">Configure drug allergy and interaction alerts</span>
+      </div>
+
+      <!-- Patient communications -->
+      <div class="section-title">Patient communications</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Appointment reminders and notifications</a>
+        <span class="description-text">Enable and manage appointment reminders</span>
+      </div>
+      <div class="line-break">
+        <a href="/intake" class="link-blue">Intake forms</a>
+        <span class="description-text">Create, edit, publish and browse patient intake forms</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">PHR invite and messaging</a>
+        <span class="description-text">Invite patients to Patient Portal (PHR) and adjust messaging settings</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Result release settings</a>
+        <span class="description-text">Enable automatic release of results to the patient portal</span>
+      </div>
+
+      <!-- Practice settings -->
+      <div class="section-title">Practice settings</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Emergency access</a>
+        <span class="description-text">Manage emergency access settings</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Facilities</a>
+        <span class="description-text">Add and edit additional practice facilities</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">CPT license information</a>
+        <span class="description-text">Manage your practice's CPT license and related alerts</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Import patient demographics</a>
+        <span class="description-text">Import demographic data from another EHR</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Practice details</a>
+        <span class="description-text">Edit contact info, identifiers, and configuration</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Prescription task delegation</a>
+        <span class="description-text">Assign members for prescription-related tasks</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Schedule</a>
+        <span class="description-text">Set calendar, facility hours, and appointment types</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Users</a>
+        <span class="description-text">Add and update user profiles for EHR and Patient Fusion</span>
+      </div>
+
+      <!-- Registries -->
+      <div class="section-title">Registries and integrations</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Clinical data integrations</a>
+        <span class="description-text">Manage clinical data exchange connections</span>
+      </div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Immunization registry</a>
+        <span class="description-text">Manage immunization registry settings</span>
+      </div>
+
+      <!-- Tasks -->
+      <div class="section-title">Tasks</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Task Types</a>
+        <span class="description-text">Choose default task types and tab order</span>
+      </div>
+
+      <!-- Vaccines -->
+      <div class="section-title">Vaccines</div>
+      <div class="line-break">
+        <a href="#" class="link-blue">Vaccine inventory</a>
+        <span class="description-text">Create and edit vaccine inventory</span>
+      </div>
+    </div>
+  </div>
