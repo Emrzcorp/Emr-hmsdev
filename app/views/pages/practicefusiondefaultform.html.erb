@@ -1,54 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Practice Fusion Schedule</title>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" crossorigin="anonymous" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <!-- 🔐 Topbar -->
-  <div class="topbar">
-    <div class="help">Help <i class="fas fa-caret-down"></i></div>
-    <div class="user-info">
-      <div>Susan Martin</div>
-      <div>|</div>
-      <div>HeartWell Health <i class="fas fa-caret-down"></i></div>
-      <div>|</div>
-      <div><i class="fas fa-lock icon"></i></div>
-      <div><i class="fas fa-cog icon"></i></div>
-      <%= button_to destroy_user_session_path, method: :delete, class: "border-0 bg-transparent p-0 d-flex align-items-center text-danger ms-2" do %>
-        <i class="fas fa-sign-out-alt me-2"></i>
-        <span>Log out</span>
-      <% end %>
-    </div>
-  </div>
-
-  <!-- Sidebar -->
-  <nav class="sidebar d-flex flex-column align-items-center">
-    <div class="logo">
-      <%= image_tag("unnamed.png", alt: "practice fusion image") %>
-    </div>
-    <div class="logo-text">practice fusion</div>
-
-    <%# Sidebar buttons %>
-    <% [["Home", "home"], ["Schedule", "calendar-alt"], ["Tasks", "tasks"], ["Charts", "file-medical-alt"], ["Messages", "envelope"], ["Reports", "chart-bar"]].each do |label, icon| %>
-      <button aria-label="<%= label %>" title="<%= label %>">
-        <i class="fas fa-<%= icon %>"></i>
-      </button>
-      <div class="logo-text"><%= label %></div>
-    <% end %>
-  </nav>
-
   <!-- Header section -->
   <div class="main-container ms-5">
     <div class="topbar mt-4">
@@ -91,12 +40,12 @@
         <div id="customModal" class="custom-modal">
           <div class="custom-modal-content">
             <span class="close-btn" id="closeModal">&times;</span>
-            <h5 class="mb-3">Make a copy</h5>
+            <h5>Make a copy</h5>
             
             <label for="copyFormName" class="form-label text-uppercase">
               New Name of Intake Form <span class="text-danger">*</span>
             </label>
-            <input type="text" id="copyFormName" class="form-control mb-3" placeholder="Enter new form name..." />
+            <input type="text" id="copyFormName" class="form-control" placeholder="Enter new form name..." /><br>
             
             <div class="d-flex justify-content-end gap-2">
               <button class="btn btn-outline-primary" id="cancelBtn">Cancel</button>
@@ -279,11 +228,6 @@
 
       </div>
   </div>
-
-  <!-- Bootstrap Bundle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
-</html>
 <script>
   // Show modal
   document.getElementById('openModalBtn').addEventListener('click', function() {

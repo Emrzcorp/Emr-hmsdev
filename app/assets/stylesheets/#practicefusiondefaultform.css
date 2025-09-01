@@ -9,6 +9,10 @@
     font-family: Arial, sans-serif;
     background-color: #fff;
   }
+  .p-3 {
+    padding: 1rem!important;
+        margin-left: 4px;
+    }
   .topbar {
     background-color: #333333;
     color: #ccc;

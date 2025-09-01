@@ -1,5 +1,6 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-body-tertiary px-3">
-  <div class="card-body">
+<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-body-tertiary">
+  <div class="card shadow-lg border-0 p-4 rounded-4" style="max-width: 480px; width: 100%; min-height: 520px;">
+    <div class="card-body">
 
     <!-- Title -->
     <div class="text-center mb-4">
@@ -67,6 +68,16 @@
     background-color: #3b82f6;
     border: none;
   }
+   
+
+  .form-control-lg {
+    height: calc(3.5rem + 2px); /* Button ke barabar */
+    font-size: 1rem;
+  }
+  .btn-lg {
+    height: calc(3.5rem + 2px);
+    font-size: 1rem;
+  }
 
   .btn-primary:hover {
     background-color: #2563eb;
@@ -80,22 +91,44 @@
   .toggle-password {
     font-size: 1rem;
   }
-
-  /* Mobile adjustments */
-  @media (max-width: 576px) {
-    .card {
-      padding: 1rem !important;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      font-size: 1.4rem;
-    }
-    p {
-      font-size: 0.9rem;
-    }
-    .btn-lg {
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-    }
+  
+  .form-floating>.form-control, .form-floating>.form-control-plaintext {
+      padding: 1rem 0.75rem;
+      width: 392px;
+      margin-left: -40px;
   }
+
+    @media (min-width: 320px) and (max-width: 320px) {
+      .card {
+        padding: 2rem 1.2rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+      .btn-lg {
+        font-size: 1rem;
+      }
+      .form-floating>.form-control,
+      .form-floating>.form-control-plaintext {
+        padding: 1rem 0.75rem;
+        width: 217px;
+        margin-left: -62px;
+      }
+    }
+    @media (min-width: 375px) and (max-width: 375px) {
+      .form-floating > .form-control,
+      .form-floating > .form-control-plaintext {
+        padding: 1rem 0.75rem;
+        width: 134%; 
+        margin-left: -57px; 
+      }
+    }
+    @media (min-width: 425px) and (max-width: 575px) {
+      .form-floating > .form-control,
+      .form-floating > .form-control-plaintext {
+        padding: 1rem 0.75rem;
+        width: 119%;
+        margin-left: -46px;
+      }
+    }
 </style>
