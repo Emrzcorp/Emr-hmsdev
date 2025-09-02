@@ -1,0 +1,20 @@
+<div class="container row g-3">
+  <% [
+      ["Doctors", @doctor_count, "bi-people-fill"],
+      ["Patients", @patient_count, "bi-people-fill"],
+      ["Today’s Appts", @today_appts, "bi-calendar-event"],
+      ["Open Encounters", @open_encounters, "bi-file-earmark-medical"],
+      ["Unread Docs", @unread_docs, "bi-inbox"]].each do |title, val, icon| %>
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow-sm">
+        <div class="card-body d-flex align-items-center gap-3">
+          <i class="bi <%= icon %> fs-3"></i>
+          <div>
+            <div class="text-muted small"><%= title %></div>
+            <div class="fs-4 fw-bold text-center"><%= val %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

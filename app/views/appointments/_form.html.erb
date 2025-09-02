@@ -1,41 +1,69 @@
 <div class="container border py-3">
-	<%= form_with(model: appointment, local: true) do |f| %>
+	<%= form_with model: @appointment, local: true do |f| %>
 
-    <% unless params[:patient_id] %>
-	    <div class="form-group">
-	      <%= f.label :patient_id, "Patient", class: "form-label" %>
-	      <%= f.collection_select :patient_id, Patient.all, :id, :full_name, {prompt: "Select a Patient"}, class: "form-select #{'is-invalid' if @appointment.errors[:patient_id].any?}" %>
-	        <% @appointment.errors.full_messages_for(:patient_id).each do |msg| %>
-	          <div class="invalid-feedback">
-	            <%= msg %>
-	          </div>
-	        <% end %>
-	    </div>
-	  <% end %>
-		
-		<div class="form-group">
-      <%= f.label :doctor_id, "Doctor", class: "form-label" %>
-      <%= f.collection_select :doctor_id, Doctor.all, :id, :full_name, {prompt: "Select a doctor"}, class: "form-select #{'is-invalid' if @appointment.errors[:doctor_id].any?}" %>
-      <% @appointment.errors.full_messages_for(:doctor_id).each do |msg| %>
+    <div class="mb-3">
+      <%= f.label :patient_id, "Patient" %>
+      <%= f.collection_select :patient_id, Patient.all, :id, :full_name,
+            { prompt: "Select Patient" },
+            class: "form-select #{'is-invalid' if f.object.errors[:patient_id].any?}" %>
+
+      <% f.object.errors.full_messages_for(:patient_id).each do |msg| %>
         <div class="invalid-feedback">
           <%= msg %>
         </div>
       <% end %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :scheduled_date, "Scheduled Date", class: "form-label" %>
-      <%= f.date_field :scheduled_date, class: "form-control #{'is-invalid' if @appointment.errors[:scheduled_date].any?}", autocomplete: "off" %>
-      <% @appointment.errors.full_messages_for(:scheduled_date).each do |msg| %>
+    <div class="mb-3">
+      <%= f.label :doctor_id, "Doctor" %>
+      <%= f.collection_select :doctor_id, Patient.all, :id, :full_name,
+            { prompt: "Select Doctor" },
+            class: "form-select #{'is-invalid' if f.object.errors[:doctor_id].any?}" %>
+
+      <% f.object.errors.full_messages_for(:doctor_id).each do |msg| %>
         <div class="invalid-feedback">
           <%= msg %>
         </div>
       <% end %>
     </div>
 
-    <div>
-    	<%= f.submit  class: "btn btn-primary mt-2 p-2 mb-2 text-decoration-none" %>
-			<%= link_to "← Back to Appointments", appointments_path, class: "btn btn-outline-primary p-2 text-decoration-none" %>
+    <div class="mb-3">
+      <%= f.label :scheduled_at, "Scheduled At" %>
+      <div class="<%= 'is-invalid' if f.object.errors[:scheduled_at].any? %>">
+        <%= f.datetime_select :scheduled_at, { default: Time.current }, { class: "form-select d-inline w-auto" } %>
+      </div>
+
+      <% f.object.errors.full_messages_for(:scheduled_at).each do |msg| %>
+        <div class="invalid-feedback d-block">
+          <%= msg %>
+        </div>
+      <% end %>
     </div>
-	<% end %>
+
+
+    <div class="mb-3">
+      <%= f.label :status %>
+      <%= f.select :status, [["Scheduled", "scheduled"], ["Completed", "completed"], ["Cancelled", "cancelled"]], {prompt: "Select Status"}, { class: "form-select #{'is-invalid' if f.object.errors[:status].any?}" } %>
+
+      <% f.object.errors.full_messages_for(:status).each do |msg| %>
+        <div class="invalid-feedback">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, placeholder: "Add notes", class: "form-select #{'is-invalid' if f.object.errors[:notes].any?}" %>
+
+      <% f.object.errors.full_messages_for(:notes).each do |msg| %>
+        <div class="invalid-feedback">
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "<- Back", appointments_path, class: 'btn btn-secondary' %>
+  <% end %>
 </div>

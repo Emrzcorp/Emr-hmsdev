@@ -3,7 +3,8 @@ class Doctor < ApplicationRecord
   has_many :appointments, dependent: :destroy 
 
   def full_name
-    "#{first_name} #{middle_name} #{last_name}"
+    # "#{first_name} #{middle_name} #{last_name}"
+    [first_name, middle_name, last_name].compact.join(" ")
   end
 
   validates :first_name, :middle_name, :last_name, :specialty, :license_number, :address_1, :address_2, :city, :state, :country, :zip_code, presence: true

@@ -1,0 +1,16 @@
+<div class="container">
+	<h1>Appointments Calendar</h1>
+	<div id="calendar"></div>
+
+	<%= javascript_include_tag "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js" %>
+	<script>
+	  document.addEventListener("DOMContentLoaded", function() {
+	    var calendarEl = document.getElementById("calendar");
+	    var calendar = new FullCalendar.Calendar(calendarEl, {
+	      initialView: "dayGridMonth",
+	      events: <%= @appointments.map { |a| { title: "Appt with #{a.patient.full_name}", start: a.scheduled_at } }.to_json.html_safe %>
+	    });
+	    calendar.render();
+	  });
+	</script>
+</div>

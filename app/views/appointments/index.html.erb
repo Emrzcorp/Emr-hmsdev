@@ -1,29 +1,45 @@
 <div class="container mt-3">
-  <h1>Appointments</h1>
-  <%= link_to 'New Appointment', new_appointment_path unless params[:patient_id] %>
-  <table>
-    <thead>
-      <tr>
-        <th>Patient Name</th>
-        <th>Doctor Name</th>
-        <th>Scheduled Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @appointments.each do |appointment| %>
-        <tr>
-          <td><%= appointment.patient.try(:full_name) %></td>
-          <td><%= appointment.doctor.try(:full_name) %></td>
-          <td><%= appointment.scheduled_date.strftime("%d-%m-%Y") %></td>
-          <td>
-            <%= link_to 'Show', appointment, class: 'btn btn-primary p-2 text-decoration-none' %>
-            <%= link_to 'Edit', edit_appointment_path(appointment), class: 'btn btn-secondary p-2 text-decoration-none' %>
-            <%= button_to 'Destroy', appointment, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger text-decoration-none mt-1' %>
+  <div class="d-flex justify-content-between mb-3">
+  <h3>Appointments</h3>
+    <%= link_to "New Appointment", new_appointment_path, class: "btn btn-primary" %>
+  </div>
 
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Scheduled At</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @appointments.each do |appt| %>
+            <tr>
+              <td><%= appt.patient.full_name %></td>
+              <td><%= appt.doctor.full_name %></td>
+              <td><%= appt.scheduled_at.strftime("%B %d, %Y %I:%M %p") %></td>
+             <td>
+                <% status = appt.status.presence || "unscheduled" %>
+                <span class="badge 
+                  <%= status == "scheduled" ? "bg-info" : status == "completed" ? "bg-success" : "bg-danger" %>">
+                  <%= status.capitalize %>
+                </span>
+              </td>
+
+              <td><%= appt.notes %></td>
+              <td>
+                <%= link_to "Edit", edit_appointment_path(appt), class: "btn btn-sm btn-warning" %>
+                <%= link_to "Delete", appointment_path(appt), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
