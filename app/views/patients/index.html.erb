@@ -1,34 +1,56 @@
-<div class="container mt-3">
-  <h2>Patients</h2>
-  <%= link_to "Add New Patient", new_patient_path, class: "btn btn-primary mb-3 p-2" %>
-  <% if @patients.present? %>
-    <table class="table table-hover table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>DOB</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @patients.each do |patient| %>
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex gap-2">
+      <%= form_with url: patients_path, method: :get, class: "d-flex gap-2" do |f| %>
+        <%= f.text_field :q, value: params[:q], placeholder: "Search name/email", class: "form-control" %>
+        <%= f.collection_select :doctor_id, Doctor.order(:last_name), :id, :full_name, { prompt: "All Doctors" }, class: "form-select" %>
+        <%= f.submit "Filter", class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+    <%= link_to raw('<i class="bi bi-plus-circle me-1"></i>New Patient'), new_patient_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead class="table-light">
           <tr>
-            <td><%= patient.id %></td>
-            <td><%= patient.full_name %></td>
-            <td><%= patient.date_of_birth %></td>
-            <td><%= patient.active? ? 'Active' : 'Inactive' %></td>
-            <td>
-              <%= link_to 'View', patient_path(patient), class: "btn btn-primary p-2 text-decoration-none text-white" %>
-              <%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-secondary p-2 text-decoration-none text-white" %>
-              <%= button_to 'Destroy', patient_path(patient), method: :delete, class: "btn btn-danger p-2 mt-1 text-decoration-none text-white" %>
-            </td>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Status</th>
+            <th>Documents</th>
+            <th class="text-end">Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="fs-5 text-center bg-warning p-1 fw-bold text-dark">No patients found.</p>
-  <% end %>
+        </thead>
+        <tbody>
+          <% @patients.each do |p| %>
+            <tr id="<%= dom_id(p) %>">
+              <td>
+                <div class="fw-semibold"><%= p.full_name %></div>
+                <div class="text-muted small"><i class="bi bi-envelope me-1"></i><%= p.email_address %></div>
+              </td>
+              <td><%= p.doctor&.full_name || "-" %></td>
+              <td><span class="badge <%= p.active? ? 'bg-success' : 'bg-secondary' %>"><%= p.active? ? "Active" : "Inactive" %></span></td>
+              <td>
+                <% if p.documents.attached? %>
+                  <div class="d-flex gap-2">
+                    <% p.documents.first(3).each do |doc| %>
+                      <%= link_to image_tag(doc.representation(resize_to_limit: [48,48])), rails_blob_path(doc, disposition: "attachment"), class: "border rounded" %>
+                    <% end %>
+                    <% if p.documents.count > 3 %><span class="text-muted small">+<%= p.documents.count - 3 %></span><% end %>
+                  </div>
+                <% else %>
+                  <span class="text-muted">—</span>
+                <% end %>
+              </td>
+              <td class="text-end">
+                <%= link_to raw('<i class="bi bi-eye"></i>'), patient_path(p), class: "btn btn-outline-secondary" %>
+                <%= link_to raw('<i class="bi bi-pencil"></i>'), edit_patient_path(p), class: "btn btn-outline-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

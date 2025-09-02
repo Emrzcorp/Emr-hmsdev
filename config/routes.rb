@@ -52,8 +52,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-
-
   resources :patients do
     resources :appointments, only: [:index, :new, :create] 
     resources :medical_records, only: [:index, :new, :create]
@@ -62,7 +60,14 @@ Rails.application.routes.draw do
   resources :doctors do
     resources :appointments, only: [:index]               
   end
-  
-  resources :appointments
+
+  resources :appointments do
+    collection do
+      get :calendar
+    end
+  end
+
   resources :medical_records
+
+  get "dashboard", to: "dashboard#show"
 end

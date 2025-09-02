@@ -71,3 +71,5 @@ end
 
 gem 'devise'
 gem "rdoc", "~> 6.14.2"
+gem "kaminari"
+
