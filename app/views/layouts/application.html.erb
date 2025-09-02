@@ -32,11 +32,11 @@
       <div class="topbar">
           <%= render "shared/topbar" %>
       </div>
-    <% end %>
 
       <nav class="sidebar">
         <%= render "shared/sidebar" %>
       </nav>
+    <% end %>
       <%= yield %>
     <% flash.each do |type, message| %>
       <% alert_class = case type.to_sym
